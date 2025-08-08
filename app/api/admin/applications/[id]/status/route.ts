@@ -40,12 +40,14 @@ export async function POST(
     const templateType = status === "ACCEPTED" ? "ACCEPTANCE" : "REJECTION"
     console.log("Looking for email template type:", templateType)
     
-    const template = await prisma.emailTemplate.findFirst({
-      where: { 
-        type: templateType as any, // Cast to any to avoid enum issues
-        isActive: true
-      }
-    })
+    // Use raw SQL to avoid enum casting issues
+    const templates = await prisma.$queryRaw`
+      SELECT * FROM email_templates 
+      WHERE type = ${templateType} AND "isActive" = true 
+      LIMIT 1
+    ` as any[]
+    
+    const template = templates.length > 0 ? templates[0] : null
 
     if (!template) {
       console.log("No email template found for type:", templateType)
@@ -75,17 +77,11 @@ export async function POST(
         console.log("Email sent successfully:", emailData?.id)
       }
 
-      // Log email attempt
-      await prisma.emailLog.create({
-        data: {
-          applicationId: application.id,
-          type: templateType as any, // Cast to avoid enum issues
-          recipientEmail: application.contactEmail,
-          subject: emailSubject,
-          status: emailError ? "FAILED" : "SENT",
-          errorMessage: emailError?.message || null
-        }
-      })
+      // Log email attempt using raw SQL to avoid enum issues
+      await prisma.$executeRaw`
+        INSERT INTO email_logs (id, "applicationId", type, "recipientEmail", subject, "sentAt", status, "errorMessage")
+        VALUES (${require('crypto').randomUUID()}, ${application.id}, ${templateType}, ${application.contactEmail}, ${emailSubject}, NOW(), ${emailError ? "FAILED" : "SENT"}, ${emailError?.message || null})
+      `
 
     } catch (emailError) {
       console.error("Email sending failed:", emailError)
