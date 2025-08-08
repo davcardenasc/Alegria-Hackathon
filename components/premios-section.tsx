@@ -21,36 +21,43 @@ export default function PremiosSection() {
           <p className="text-[#BFC9DB] text-lg">{t("prizes.description")}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {prizes.map((prize, index) => (
             <div
               key={index}
-              className={`relative ${index === 1 ? 'bg-blue-500/20' : index === 2 ? 'bg-orange-500/20' : `bg-gradient-to-br ${prize.bgGradient}`} border-2 ${prize.borderColor} rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group overflow-hidden`}
+              className={`relative ${index === 1 ? 'bg-blue-500/20' : index === 2 ? 'bg-orange-500/20' : `bg-gradient-to-br ${prize.bgGradient}`} border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-110 hover:-translate-y-2 transition-all duration-500 group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
             >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/5 to-transparent rounded-full -translate-y-10 translate-x-10" />
-
-              {/* Icon */}
-              <div className="relative z-10">
-                <prize.icon
-                  className={`mx-auto mb-4 ${prize.color} group-hover:scale-110 transition-transform duration-300`}
-                  size={56}
-                />
+              {/* Enhanced background decorations */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-12 -translate-x-12" />
+              
+              <div className="relative z-10 flex-grow flex flex-col">
+                {/* Icon */}
+                <div className="mb-6">
+                  <prize.icon
+                    className={`mx-auto ${prize.color} group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 drop-shadow-lg`}
+                    size={80}
+                  />
+                </div>
 
                 {/* Place */}
-                <h4 className="text-xl font-bold text-[#F7F9FF] mb-3">{prize.place}</h4>
+                <h4 className="text-2xl md:text-3xl font-bold text-[#F7F9FF] mb-4 tracking-wide">{prize.place}</h4>
 
                 {/* Main prize */}
-                <div className={`text-lg font-semibold ${prize.color} mb-2`}>{prize.prize}</div>
+                <div className={`text-xl md:text-2xl font-bold ${prize.color} mb-4 leading-tight`}>{prize.prize}</div>
 
-                {/* Bonus */}
-                <div className="text-[#F7F9FF] text-base font-bold bg-gradient-to-r from-[#4A5EE7]/30 to-[#BFC9DB]/30 border border-[#4A5EE7]/40 rounded-xl px-4 py-3 backdrop-blur-sm mt-3 shadow-lg transform hover:scale-105 transition-all duration-300">
-                  {prize.bonus}
+                {/* Bonus - Enhanced */}
+                <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl transform hover:scale-110 hover:shadow-2xl transition-all duration-400 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] group-hover:translate-x-[300%] transition-transform duration-1000" />
+                  <span className="relative z-10">{prize.bonus}</span>
                 </div>
               </div>
 
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+              {/* Enhanced shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1200" />
+              
+              {/* Glow effect on hover */}
+              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${prize.bgGradient} blur-xl -z-10`} />
             </div>
           ))}
         </div>
