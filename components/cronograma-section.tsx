@@ -14,8 +14,9 @@ export default function CronogramaSection() {
   return (
     <section id="cronograma" className="py-20">
       <div className="container mx-auto px-6 sm:px-8 lg:px-4">
-        <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16">Cronograma y Speakers</h2>
-
+        <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16 font-heading">
+          {t("schedule.title")}
+        </h2>
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="space-y-8">
             {/* Día 1 */}
