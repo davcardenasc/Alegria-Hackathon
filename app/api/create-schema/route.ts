@@ -3,13 +3,46 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET() {
   try {
+    // First, create the enums that Prisma uses
+    await prisma.$executeRaw`
+      DO $$ BEGIN
+        CREATE TYPE "ApplicationStatus" AS ENUM ('PENDING', 'ACCEPTED', 'REJECTED');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `
+
+    await prisma.$executeRaw`
+      DO $$ BEGIN
+        CREATE TYPE "UserRole" AS ENUM ('REVIEWER', 'ADMINISTRATOR');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `
+
+    await prisma.$executeRaw`
+      DO $$ BEGIN
+        CREATE TYPE "EmailType" AS ENUM ('ACCEPTANCE', 'REJECTION');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `
+
+    await prisma.$executeRaw`
+      DO $$ BEGIN
+        CREATE TYPE "EmailStatus" AS ENUM ('SENT', 'FAILED', 'PENDING');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `
+
     // Create tables using raw SQL based on our Prisma schema
     await prisma.$executeRaw`
       CREATE TABLE IF NOT EXISTS "users" (
         "id" TEXT NOT NULL PRIMARY KEY,
         "email" TEXT NOT NULL UNIQUE,
         "passwordHash" TEXT NOT NULL,
-        "role" TEXT NOT NULL DEFAULT 'REVIEWER',
+        "role" "UserRole" NOT NULL DEFAULT 'REVIEWER',
         "name" TEXT NOT NULL,
         "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
         "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -30,7 +63,7 @@ export async function GET() {
         "experienceText" TEXT,
         "motivationText" TEXT NOT NULL,
         "ideasText" TEXT,
-        "status" TEXT NOT NULL DEFAULT 'PENDING',
+        "status" "ApplicationStatus" NOT NULL DEFAULT 'PENDING',
         "starred" BOOLEAN NOT NULL DEFAULT false,
         "reviewedBy" TEXT,
         "reviewedAt" TIMESTAMP(3),
@@ -43,7 +76,7 @@ export async function GET() {
     await prisma.$executeRaw`
       CREATE TABLE IF NOT EXISTS "email_templates" (
         "id" TEXT NOT NULL PRIMARY KEY,
-        "type" TEXT NOT NULL,
+        "type" "EmailType" NOT NULL,
         "subject" TEXT NOT NULL,
         "body" TEXT NOT NULL,
         "isActive" BOOLEAN NOT NULL DEFAULT true,
@@ -56,11 +89,11 @@ export async function GET() {
       CREATE TABLE IF NOT EXISTS "email_logs" (
         "id" TEXT NOT NULL PRIMARY KEY,
         "applicationId" TEXT NOT NULL,
-        "type" TEXT NOT NULL,
+        "type" "EmailType" NOT NULL,
         "recipientEmail" TEXT NOT NULL,
         "subject" TEXT NOT NULL,
         "sentAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        "status" TEXT NOT NULL DEFAULT 'SENT',
+        "status" "EmailStatus" NOT NULL DEFAULT 'SENT',
         "errorMessage" TEXT,
         FOREIGN KEY ("applicationId") REFERENCES "applications"("id") ON DELETE CASCADE ON UPDATE CASCADE
       );
@@ -69,6 +102,7 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       message: "Database schema created successfully",
+      enums: ["ApplicationStatus", "UserRole", "EmailType", "EmailStatus"],
       tables: ["users", "applications", "email_templates", "email_logs"]
     })
   } catch (error) {
