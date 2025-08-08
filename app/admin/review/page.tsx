@@ -55,14 +55,19 @@ export default function ReviewPendingApplications() {
   const fetchPendingApplications = async () => {
     try {
       const response = await fetch("/api/admin/applications?status=PENDING")
+      console.log("Response status:", response.status, response.ok)
       if (response.ok) {
         const data = await response.json()
+        console.log("Fetched pending applications:", data.length, data)
         // Parse participants for each application
         const parsedData = data.map((app: any) => ({
           ...app,
           participants: JSON.parse(app.participants)
         }))
+        console.log("Parsed data:", parsedData.length, parsedData)
         setApplications(parsedData)
+      } else {
+        console.error("Response not ok:", response.status, await response.text())
       }
     } catch (error) {
       console.error("Error fetching pending applications:", error)
