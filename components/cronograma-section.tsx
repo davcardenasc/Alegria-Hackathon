@@ -12,7 +12,7 @@ export default function CronogramaSection() {
   }
 
   return (
-    <section id="cronograma" className="py-20">
+    <section id="cronograma" className="py-28">
       <div className="container mx-auto px-6 sm:px-8 lg:px-4">
         <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16 font-heading">
           {t("schedule.title")}

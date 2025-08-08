@@ -30,7 +30,7 @@ export default function MomentosSection() {
   }
 
   return (
-    <section id="momentos" className="py-20">
+    <section id="momentos" className="py-28">
       <div className="container mx-auto px-6 sm:px-8 lg:px-4">
         {/* Solo Carrusel de Testimonios */}
         <div className="max-w-4xl mx-auto">
