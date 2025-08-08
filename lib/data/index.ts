@@ -177,7 +177,7 @@ export const PRIZES: Prize[] = [
     prize: "prizes.second_prize",
     bonus: "prizes.second_bonus",
     color: "text-blue-400",
-    bgGradient: "from-blue-400/30 to-blue-400/30",
+    bgGradient: "from-blue-400/20 to-blue-600/20",
     borderColor: "border-blue-400/50",
   },
   {
@@ -186,7 +186,7 @@ export const PRIZES: Prize[] = [
     prize: "prizes.third_prize",
     bonus: "prizes.third_bonus",
     color: "text-orange-400",
-    bgGradient: "from-orange-400/30 to-orange-400/30",
+    bgGradient: "from-orange-400/20 to-orange-600/20",
     borderColor: "border-orange-400/50",
   },
   {

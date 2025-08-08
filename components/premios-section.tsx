@@ -25,11 +25,14 @@ export default function PremiosSection() {
           {prizes.map((prize, index) => (
             <div
               key={index}
-              className={`relative ${index === 1 ? 'bg-blue-500/20' : index === 2 ? 'bg-orange-500/20' : `bg-gradient-to-br ${prize.bgGradient}`} border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-110 hover:-translate-y-2 transition-all duration-500 group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
+              className={`relative bg-gradient-to-br ${prize.bgGradient} hover:bg-opacity-80 border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-110 hover:-translate-y-2 transition-all duration-500 group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
             >
               {/* Enhanced background decorations */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-12 -translate-x-12" />
+              
+              {/* Hover brightness overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/10 group-hover:to-white/5 rounded-2xl transition-all duration-500" />
               
               <div className="relative z-10 flex-grow flex flex-col">
                 {/* Icon */}
