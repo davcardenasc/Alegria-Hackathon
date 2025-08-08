@@ -71,7 +71,7 @@ export default function OverviewSection() {
   const currentItem = items[currentIndex]
 
   return (
-    <section id="overview" className="py-20">
+    <section id="overview" className="py-12">
       <div className="container mx-auto px-6 sm:px-8 lg:px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] mb-4">{t("overview.title")}</h2>
@@ -144,22 +144,6 @@ export default function OverviewSection() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-          <Link
-            href="/#aplicaciones"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A5EE7] to-[#BFC9DB] hover:from-[#4A5EE7]/80 hover:to-[#BFC9DB]/80 text-white px-8 py-4 rounded-xl font-semibold transition-colors duration-300"
-          >
-            {t("overview.cta_primary")}
-            <ArrowRight size={16} />
-          </Link>
-          <Link
-            href="/#cronograma"
-            className="inline-flex items-center gap-2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#F7F9FF] px-8 py-4 rounded-xl font-semibold transition-colors duration-300"
-          >
-            {t("overview.cta_secondary")}
-            <ArrowRight size={16} />
-          </Link>
-        </div>
       </div>
     </section>
   )
