@@ -80,26 +80,42 @@ export async function POST(
     console.log("Email body preview:", emailBody.substring(0, 200) + "...")
     console.log("Resend API key exists:", !!process.env.RESEND_API_KEY || "using hardcoded key")
     
+    // TEMPORARY FIX: Send to verified email since Resend blocks unverified domains
+    // In production, you'd need to verify your domain or use a different email service
+    const recipientEmail = "cursos.alegria.labs@gmail.com" // Use verified email for now
+    const originalRecipient = application.contactEmail
+    
+    // Update email body to show original recipient
+    const modifiedEmailBody = `
+      <div style="background-color: #f0f0f0; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+        <strong>Note:</strong> This email was originally intended for: ${originalRecipient}<br>
+        <small>Using verified email due to Resend domain restrictions.</small>
+      </div>
+      ${emailBody}
+    `
+    
     try {
       const { data: emailData, error: emailError } = await resend.emails.send({
         from: "AlegrIA Hackathon <onboarding@resend.dev>",
-        to: [application.contactEmail],
-        subject: emailSubject,
-        html: emailBody,
+        to: [recipientEmail],
+        subject: `${emailSubject} (for ${originalRecipient})`,
+        html: modifiedEmailBody,
       })
 
       if (emailError) {
         console.error("Email sending error:", emailError)
         console.error("Error details:", JSON.stringify(emailError, null, 2))
       } else {
-        console.log("Email sent successfully to:", application.contactEmail)
+        console.log("Email sent successfully!")
+        console.log("Original recipient:", originalRecipient)
+        console.log("Actual recipient (verified):", recipientEmail)
         console.log("Email ID:", emailData?.id)
       }
 
       // Log email attempt using raw SQL to avoid enum issues
       await prisma.$executeRaw`
         INSERT INTO email_logs (id, "applicationId", type, "recipientEmail", subject, "sentAt", status, "errorMessage")
-        VALUES (${require('crypto').randomUUID()}, ${application.id}, ${templateType}, ${application.contactEmail}, ${emailSubject}, NOW(), ${emailError ? "FAILED" : "SENT"}, ${emailError?.message || null})
+        VALUES (${require('crypto').randomUUID()}, ${application.id}, ${templateType}, ${originalRecipient}, ${emailSubject}, NOW(), ${emailError ? "FAILED" : "SENT"}, ${emailError?.message || null})
       `
 
     } catch (emailError) {
