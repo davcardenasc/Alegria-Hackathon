@@ -608,17 +608,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   const t = (key: string): string => {
-    const translationKeys = translations[language] as Record<string, any>
-    const getValue = (obj: any, path: string): string => {
-      const keys = path.split('.')
-      let current = obj
-      for (const k of keys) {
-        current = current?.[k]
-        if (current === undefined) return key
-      }
-      return current || key
-    }
-    return getValue(translationKeys, key)
+    return translations[language][key as keyof (typeof translations)[typeof language]] || key
   }
 
   return (
