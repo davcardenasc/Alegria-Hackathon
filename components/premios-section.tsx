@@ -6,12 +6,7 @@ import { PRIZES } from '@/lib/data'
 
 export default function PremiosSection() {
   const { t } = useLanguage()
-  const prizes = PRIZES.map(prize => ({
-    ...prize,
-    place: t(prize.place),
-    prize: t(prize.prize),
-    bonus: t(prize.bonus)
-  }))
+  const prizes = PRIZES
 
   return (
     <section id="premios" className="py-20">
