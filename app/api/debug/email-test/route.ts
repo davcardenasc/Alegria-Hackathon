@@ -8,7 +8,7 @@ export async function GET() {
     // Test basic email sending
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: "AlegrIA Hackathon <onboarding@resend.dev>",
-      to: ["davidcardecodri@gmail.com"], // Send to your email for testing
+      to: ["cursos.alegria.labs@gmail.com"], // Send to verified email for testing
       subject: "Test Email from Admin Dashboard",
       html: `
         <h1>Email Test Successful!</h1>
@@ -29,7 +29,7 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       emailData,
-      message: "Test email sent successfully to davidcardecodri@gmail.com"
+      message: "Test email sent successfully to cursos.alegria.labs@gmail.com"
     })
 
   } catch (error) {

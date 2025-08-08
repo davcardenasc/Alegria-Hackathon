@@ -412,14 +412,21 @@ export default function ReviewPendingApplications() {
                   {currentApplication.idDocumentUrl && (
                     <div>
                       <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
-                      <a 
-                        href={currentApplication.idDocumentUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline"
-                      >
-                        View Document
-                      </a>
+                      <div className="space-y-1">
+                        <p className="text-[#F7F9FF] text-xs font-mono break-all">{currentApplication.idDocumentUrl}</p>
+                        {currentApplication.idDocumentUrl.startsWith('http') ? (
+                          <a 
+                            href={currentApplication.idDocumentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
+                          >
+                            View Document ↗
+                          </a>
+                        ) : (
+                          <p className="text-yellow-300 text-xs">Invalid document URL</p>
+                        )}
+                      </div>
                     </div>
                   )}
 
