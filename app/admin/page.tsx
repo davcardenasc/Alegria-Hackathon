@@ -136,6 +136,10 @@ export default function AdminDashboard() {
     }
   }
 
+  const handleStatsCardClick = (filter: string) => {
+    setStatusFilter(filter)
+  }
+
   const getStatusBadge = (status: string) => {
     const variants = {
       PENDING: "secondary",
@@ -187,7 +191,10 @@ export default function AdminDashboard() {
       <div className="p-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+          <Card 
+            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
+            onClick={() => handleStatsCardClick("ALL")}
+          >
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <FileText size={20} className="text-[#4A5EE7]" />
@@ -199,7 +206,10 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
           
-          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+          <Card 
+            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
+            onClick={() => handleStatsCardClick("PENDING")}
+          >
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <Calendar size={20} className="text-yellow-400" />
@@ -211,7 +221,10 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+          <Card 
+            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
+            onClick={() => handleStatsCardClick("STARRED")}
+          >
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <Star size={20} className="text-yellow-400" />
@@ -223,7 +236,10 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+          <Card 
+            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
+            onClick={() => handleStatsCardClick("ACCEPTED")}
+          >
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <Check size={20} className="text-green-400" />
@@ -235,7 +251,10 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+          <Card 
+            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
+            onClick={() => handleStatsCardClick("REJECTED")}
+          >
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <X size={20} className="text-red-400" />
@@ -267,12 +286,12 @@ export default function AdminDashboard() {
                 <SelectTrigger className="w-[200px] bg-[#00162D] border-[#4A5EE7]/20 text-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20">
-                  <SelectItem value="ALL">All Applications</SelectItem>
-                  <SelectItem value="PENDING">Pending</SelectItem>
-                  <SelectItem value="STARRED">Starred</SelectItem>
-                  <SelectItem value="ACCEPTED">Accepted</SelectItem>
-                  <SelectItem value="REJECTED">Rejected</SelectItem>
+                <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
+                  <SelectItem value="ALL" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">All Applications</SelectItem>
+                  <SelectItem value="PENDING" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Pending</SelectItem>
+                  <SelectItem value="STARRED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Starred</SelectItem>
+                  <SelectItem value="ACCEPTED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Accepted</SelectItem>
+                  <SelectItem value="REJECTED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Rejected</SelectItem>
                 </SelectContent>
               </Select>
               <Button 
