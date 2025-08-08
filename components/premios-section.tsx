@@ -6,7 +6,12 @@ import { PRIZES } from '@/lib/data'
 
 export default function PremiosSection() {
   const { t } = useLanguage()
-  const prizes = PRIZES
+  const prizes = PRIZES.map(prize => ({
+    ...prize,
+    place: t(prize.place),
+    prize: t(prize.prize),
+    bonus: t(prize.bonus)
+  }))
 
   return (
     <section id="premios" className="py-20">
@@ -39,7 +44,7 @@ export default function PremiosSection() {
                 <div className={`text-lg font-semibold ${prize.color} mb-2`}>{prize.prize}</div>
 
                 {/* Bonus */}
-                <div className="text-[#BFC9DB] text-sm font-medium bg-[#00162D]/50 rounded-lg px-3 py-2 backdrop-blur-sm">
+                <div className="text-[#F7F9FF] text-base font-bold bg-gradient-to-r from-[#4A5EE7]/30 to-[#BFC9DB]/30 border border-[#4A5EE7]/40 rounded-xl px-4 py-3 backdrop-blur-sm mt-3 shadow-lg transform hover:scale-105 transition-all duration-300">
                   {prize.bonus}
                 </div>
               </div>
