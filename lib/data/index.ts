@@ -1,0 +1,254 @@
+// Centralized data management
+import { Ambassador, Workshop, Sponsor, Prize, GalleryImage, Testimonial } from '@/types'
+import { Crown, Trophy, Medal, Gift } from 'lucide-react'
+
+// Organizers Data
+export const ORGANIZADORES: Ambassador[] = [
+  {
+    name: "David Cárdenas",
+    role: "ambassadors.david.role",
+    institution: "Escuela Campo Alegre",
+    whatsapp: "+58 412 2226901",
+    whatsappMessage: "Hola David, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-david-cardenas.jpeg",
+  },
+  {
+    name: "Ugo Di Martino",
+    role: "ambassadors.ugo.role",
+    institution: "Escuela Campo Alegre",
+    whatsapp: "+58 424 2572999",
+    whatsappMessage: "Hola Ugo, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-ugo-di-martino.jpg",
+  },
+]
+
+// Ambassadors Data
+export const EMBAJADORES: Ambassador[] = [
+  {
+    name: "José Núñez",
+    role: "",
+    institution: "San Ignacio",
+    whatsapp: "+58 412 2378192",
+    whatsappMessage: "Hola José, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-jose-nunez.jpeg",
+  },
+  {
+    name: "Nicolás Lapadula",
+    role: "",
+    institution: "Colegio Ávila",
+    whatsapp: "+58 412 2719711",
+    whatsappMessage: "Hola Nicolás, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-nicolas-lapadula-new.png",
+  },
+  {
+    name: "Augusto Mini",
+    role: "",
+    institution: "British School of Caracas",
+    whatsapp: "+58 424 1368923",
+    whatsappMessage: "Hola Augusto, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-augusto-mini.png",
+  },
+  {
+    name: "Manuel Marín",
+    role: "",
+    institution: "Academia Washington",
+    whatsapp: "+58 412 2407168",
+    whatsappMessage: "Hola Manuel, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-manuel-marin.png",
+  },
+  {
+    name: "Mariana Banchs",
+    role: "",
+    institution: "Cristo Rey",
+    whatsapp: "+58 424 1248997",
+    whatsappMessage: "Hola Mariana, estoy interesada en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-mariana-banchs.png",
+  },
+  {
+    name: "Bernardo Pérez",
+    role: "",
+    institution: "Escuela Campo Alegre",
+    whatsapp: "+58 414 3168157",
+    whatsappMessage: "Hola Bernardo, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    image: "/images/embajador-bernardo-perez.png",
+  },
+]
+
+// Workshops Data
+export const WORKSHOPS: Workshop[] = [
+  { name: "ECA – 6to grado", completed: true },
+  { name: "ECA – 7mo grado", completed: true },
+  { name: "ECA – 8vo grado", completed: true },
+  { name: "San Ignacio – 9no grado", completed: true },
+  { name: "British School – 8vo grado", completed: false },
+  { name: "British School – 9no grado", completed: false },
+  { name: "San Patricio – 8vo grado", completed: false },
+  { name: "San Patricio – 9no grado", completed: false },
+  { name: "Colegio San Agustín – 8vo grado", completed: false },
+  { name: "Colegio San Agustín – 9no grado", completed: false },
+]
+
+// Sponsors Data
+export const SPONSORS: Sponsor[] = [
+  {
+    name: "Slash",
+    description: "sponsors.slash_description",
+    logo: "/images/slash-logo.png",
+    url: "https://www.slash.com",
+    confirmed: true,
+    tier: "gold",
+  },
+  {
+    name: "Yummy",
+    description: "sponsors.yummy_description",
+    logo: "/images/yummy-logo.png",
+    url: "https://www.yummy.com.ve",
+    confirmed: true,
+    tier: "gold",
+  },
+  {
+    name: "Lovable",
+    description: "sponsors.lovable_description",
+    logo: "/images/lovable-logo.png",
+    url: "https://lovable.dev",
+    confirmed: true,
+    tier: "silver",
+  },
+  {
+    name: "Cashea",
+    description: "sponsors.cashea_description",
+    logo: "/images/cashea-logo.jpg",
+    url: "https://www.cashea.com.ve",
+    confirmed: false,
+    tier: "silver",
+  },
+  {
+    name: "Corporación Cárdenas",
+    description: "sponsors.cardenas_description",
+    logo: "/images/corporacion-cardenas-logo.png",
+    url: "https://www.corporacioncardenas.com",
+    confirmed: true,
+    tier: "bronze",
+  },
+  {
+    name: "Kontigo",
+    description: "sponsors.kontigo_description",
+    logo: "/images/kontigo-logo.png",
+    url: "https://www.kontigo.io",
+    confirmed: false,
+    tier: "bronze",
+  },
+]
+
+// Prizes Data
+export const PRIZES: Prize[] = [
+  {
+    place: "prizes.first_place",
+    icon: Crown,
+    prize: "prizes.first_prize",
+    bonus: "prizes.first_bonus",
+    color: "text-yellow-400",
+    bgGradient: "from-yellow-400/20 to-yellow-600/20",
+    borderColor: "border-yellow-400/30",
+  },
+  {
+    place: "prizes.second_place",
+    icon: Trophy,
+    prize: "prizes.second_prize",
+    bonus: "prizes.second_bonus",
+    color: "text-gray-300",
+    bgGradient: "from-gray-300/20 to-gray-500/20",
+    borderColor: "border-gray-300/30",
+  },
+  {
+    place: "prizes.third_place",
+    icon: Medal,
+    prize: "prizes.third_prize",
+    bonus: "prizes.third_bonus",
+    color: "text-amber-600",
+    bgGradient: "from-amber-600/20 to-amber-800/20",
+    borderColor: "border-amber-600/30",
+  },
+  {
+    place: "prizes.participation",
+    icon: Gift,
+    prize: "prizes.participation_prize",
+    bonus: "prizes.participation_bonus",
+    color: "text-[#4A5EE7]",
+    bgGradient: "from-[#4A5EE7]/20 to-[#6366F1]/20",
+    borderColor: "border-[#4A5EE7]/30",
+  },
+]
+
+// Gallery Images Data
+export const GALLERY_IMAGES: GalleryImage[] = [
+  {
+    src: "/images/6to-1-copy.jpg",
+    alt: "Curso de 6to grado – ECA",
+    description: "moments.photo1",
+  },
+  {
+    src: "/images/7mo-1-copy.jpeg",
+    alt: "Curso de 7mo grado – ECA",
+    description: "moments.photo2",
+  },
+  {
+    src: "/images/7mo-3-copy.jpg",
+    alt: "Curso de 7mo grado – ECA",
+    description: "moments.photo3",
+  },
+  {
+    src: "/images/7mo-6-copy.jpg",
+    alt: "Curso de 7mo grado – ECA",
+    description: "moments.photo4",
+  },
+  {
+    src: "/images/7mo-8-copy.jpg",
+    alt: "Curso de 7mo grado – ECA",
+    description: "moments.photo5",
+  },
+  {
+    src: "/images/8vo-1.jpg",
+    alt: "Curso de 8vo grado – ECA",
+    description: "moments.photo6",
+  },
+  {
+    src: "/images/8vo-3.jpg",
+    alt: "Curso de 8vo grado – ECA",
+    description: "moments.photo7",
+  },
+  {
+    src: "/images/8vo-4-copy.jpg",
+    alt: "Curso de 8vo grado – ECA",
+    description: "moments.photo8",
+  },
+  {
+    src: "/images/9san-ignacio-alegria.jpg",
+    alt: "Taller en San Ignacio",
+    description: "moments.photo9",
+  },
+  {
+    src: "/images/9san-ignacio-alegria-2.png",
+    alt: "Workshop interactivo en San Ignacio",
+    description: "moments.photo10",
+  },
+]
+
+// Testimonials Data
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    texto: "moments.testimonial1",
+    nombre: "Matias Azpurua",
+    colegio: "San Ignacio",
+  },
+  {
+    texto: "moments.testimonial2",
+    nombre: "Jesus Rubinetti",
+    colegio: "British School",
+  },
+  {
+    texto: "moments.testimonial3",
+    nombre: "María González",
+    colegio: "Escuela Campo Alegre",
+  },
+]

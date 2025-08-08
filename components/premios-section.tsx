@@ -2,51 +2,16 @@
 
 import { Star, Sparkles, Crown, Gem } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { PRIZES } from '@/lib/data'
 
 export default function PremiosSection() {
   const { t } = useLanguage()
-  const prizes = [
-    {
-      place: t("prizes.first_place"),
-      icon: Crown,
-      prize: t("prizes.first_prize"),
-      bonus: t("prizes.first_bonus"),
-      color: "text-yellow-400",
-      bgGradient: "from-yellow-400/20 to-yellow-600/20",
-      borderColor: "border-yellow-400/40",
-      glowColor: "shadow-[0_0_30px_rgba(251,191,36,0.3)]",
-    },
-    {
-      place: t("prizes.second_place"),
-      icon: Gem,
-      prize: t("prizes.second_prize"),
-      bonus: t("prizes.second_bonus"),
-      color: "text-gray-300",
-      bgGradient: "from-gray-300/20 to-gray-500/20",
-      borderColor: "border-gray-300/40",
-      glowColor: "shadow-[0_0_30px_rgba(209,213,219,0.3)]",
-    },
-    {
-      place: t("prizes.third_place"),
-      icon: Sparkles,
-      prize: t("prizes.third_prize"),
-      bonus: t("prizes.third_bonus"),
-      color: "text-orange-400",
-      bgGradient: "from-orange-400/20 to-orange-600/20",
-      borderColor: "border-orange-400/40",
-      glowColor: "shadow-[0_0_30px_rgba(251,146,60,0.3)]",
-    },
-    {
-      place: t("prizes.top5"),
-      icon: Star,
-      prize: t("prizes.top5_prize"),
-      bonus: t("prizes.top5_bonus"),
-      color: "text-[#4A5EE7]",
-      bgGradient: "from-[#4A5EE7]/20 to-[#6366f1]/20",
-      borderColor: "border-[#4A5EE7]/40",
-      glowColor: "shadow-[0_0_30px_rgba(74,94,231,0.3)]",
-    },
-  ]
+  const prizes = PRIZES.map(prize => ({
+    ...prize,
+    place: t(prize.place),
+    prize: t(prize.prize),
+    bonus: t(prize.bonus)
+  }))
 
   return (
     <section id="premios" className="py-20">

@@ -2,47 +2,16 @@
 
 import Image from "next/image"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { SPONSORS } from '@/lib/data'
 
 export default function PatrocinadoresSection() {
   const { t } = useLanguage()
 
-  const sponsors = [
-    {
-      name: "Slash",
-      description: t("sponsors.slash_description"),
-      logo: "/images/slash-logo.png",
-      url: "https://www.slash.com",
-      confirmed: true,
-    },
-    {
-      name: "Corporación Cárdenas",
-      description: t("sponsors.cardenas_description"),
-      logo: "/images/corporacion-cardenas-logo.png",
-      url: "https://www.corporacioncardenas.com",
-      confirmed: true,
-    },
-    {
-      name: t("sponsors.sponsor"),
-      description: t("sponsors.description"),
-      logo: null,
-      url: "#",
-      confirmed: false,
-    },
-    {
-      name: t("sponsors.sponsor"),
-      description: t("sponsors.description"),
-      logo: null,
-      url: "#",
-      confirmed: false,
-    },
-    {
-      name: t("sponsors.sponsor"),
-      description: t("sponsors.description"),
-      logo: null,
-      url: "#",
-      confirmed: false,
-    },
-  ]
+  const sponsors = SPONSORS.map(sponsor => ({
+    ...sponsor,
+    name: sponsor.name === 'TBD' ? t("sponsors.sponsor") : sponsor.name,
+    description: t(sponsor.description)
+  }))
 
   const handleSponsorClick = (sponsor: any) => {
     if (sponsor.confirmed && sponsor.url !== "#") {

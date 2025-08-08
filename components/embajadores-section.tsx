@@ -3,73 +3,17 @@
 import { Phone } from 'lucide-react'
 import Image from "next/image"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { ORGANIZADORES, EMBAJADORES } from '@/lib/data'
 
 export default function EmbajadoresSection() {
   const { t } = useLanguage()
 
-  const organizadores = [
-    {
-      name: "David Cárdenas",
-      role: t("ambassadors.david.role"),
-      institution: "Escuela Campo Alegre",
-      whatsapp: "+58 412 2226901",
-      whatsappMessage: "Hola David, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-david-cardenas.jpeg",
-    },
-    {
-      name: "Ugo Di Martino",
-      role: t("ambassadors.ugo.role"),
-      institution: "Escuela Campo Alegre",
-      whatsapp: "+58 424 2572999",
-      whatsappMessage: "Hola Ugo, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-ugo-di-martino.jpg",
-    },
-  ]
+  const organizadores = ORGANIZADORES.map(org => ({
+    ...org,
+    role: org.role ? t(org.role) : ''
+  }))
 
-  const embajadores = [
-    {
-      name: "José Núñez",
-      institution: "San Ignacio",
-      whatsapp: "+58 412 2378192",
-      whatsappMessage: "Hola José, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-jose-nunez.jpeg",
-    },
-    {
-      name: "Nicolás Lapadula",
-      institution: "Colegio Ávila",
-      whatsapp: "+58 412 2719711",
-      whatsappMessage: "Hola Nicolás, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-nicolas-lapadula-new.png",
-    },
-    {
-      name: "Augusto Mini",
-      institution: "British School of Caracas",
-      whatsapp: "+58 424 1368923",
-      whatsappMessage: "Hola Augusto, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-augusto-mini.png",
-    },
-    {
-      name: "Manuel Marín",
-      institution: "Academia Washington",
-      whatsapp: "+58 412 2407168",
-      whatsappMessage: "Hola Manuel, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-manuel-marin.png",
-    },
-    {
-      name: "Mariana Banchs",
-      institution: "Cristo Rey",
-      whatsapp: "+58 424 1248997",
-      whatsappMessage: "Hola Mariana, estoy interesada en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-mariana-banchs.png",
-    },
-    {
-      name: "Bernardo Pérez",
-      institution: "Escuela Campo Alegre",
-      whatsapp: "+58 414 3168157",
-      whatsappMessage: "Hola Bernardo, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
-      image: "/images/embajador-bernardo-perez.png",
-    },
-  ]
+  const embajadores = EMBAJADORES
 
   return (
     <section id="embajadores" className="py-20">

@@ -3,28 +3,16 @@
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { TESTIMONIALS } from '@/lib/data'
 
 export default function MomentosSection() {
   const [currentTestimonio, setCurrentTestimonio] = useState(0)
   const { t } = useLanguage()
 
-  const testimonios = [
-    {
-      texto: t("moments.testimonial1"),
-      nombre: "Matias Azpurua",
-      colegio: "San Ignacio",
-    },
-    {
-      texto: t("moments.testimonial2"),
-      nombre: "Jesus Rubinetti",
-      colegio: "British School",
-    },
-    {
-      texto: t("moments.testimonial3"),
-      nombre: "María González",
-      colegio: "Escuela Campo Alegre",
-    },
-  ]
+  const testimonios = TESTIMONIALS.map(testimonial => ({
+    ...testimonial,
+    texto: t(testimonial.texto)
+  }))
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 import ImageModal from "./image-modal"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { GALLERY_IMAGES } from '@/lib/data'
 
 export default function MomentosScrollSection() {
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
@@ -13,58 +14,10 @@ export default function MomentosScrollSection() {
   const { t } = useLanguage()
 
   // Updated gallery with translated descriptions
-  const galeria = [
-    {
-      src: "/images/6to-1-copy.jpg",
-      alt: "Curso de 6to grado – ECA",
-      description: t("moments.photo1"),
-    },
-    {
-      src: "/images/7mo-1-copy.jpeg",
-      alt: "Curso de 7mo grado – ECA",
-      description: t("moments.photo2"),
-    },
-    {
-      src: "/images/7mo-3-copy.jpg",
-      alt: "Curso de 7mo grado – ECA",
-      description: t("moments.photo3"),
-    },
-    {
-      src: "/images/7mo-6-copy.jpg",
-      alt: "Curso de 7mo grado – ECA",
-      description: t("moments.photo4"),
-    },
-    {
-      src: "/images/7mo-8-copy.jpg",
-      alt: "Curso de 7mo grado – ECA",
-      description: t("moments.photo5"),
-    },
-    {
-      src: "/images/8vo-1.jpg",
-      alt: "Curso de 8vo grado – ECA",
-      description: t("moments.photo6"),
-    },
-    {
-      src: "/images/8vo-3.jpg",
-      alt: "Curso de 8vo grado – ECA",
-      description: t("moments.photo7"),
-    },
-    {
-      src: "/images/8vo-4-copy.jpg",
-      alt: "Curso de 8vo grado – ECA",
-      description: t("moments.photo8"),
-    },
-    {
-      src: "/images/9san-ignacio-alegria.jpg",
-      alt: "Taller en San Ignacio",
-      description: t("moments.photo9"),
-    },
-    {
-      src: "/images/9san-ignacio-alegria-2.png",
-      alt: "Workshop interactivo en San Ignacio",
-      description: t("moments.photo10"),
-    },
-  ]
+  const galeria = GALLERY_IMAGES.map(img => ({
+    ...img,
+    description: t(img.description)
+  }))
 
   // Preload images when component mounts
   useEffect(() => {

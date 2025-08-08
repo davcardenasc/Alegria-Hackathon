@@ -2,21 +2,12 @@
 
 import { CheckCircle, Clock } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { WORKSHOPS } from '@/lib/data'
 
 export default function WorkshopsSection() {
   const { t } = useLanguage()
 
-  const workshops = [
-    { name: "ECA – 6to grado", completed: true },
-    { name: "ECA – 7mo grado", completed: true },
-    { name: "ECA – 8vo grado", completed: true },
-    { name: "San Ignacio – Centro Estudiantil", completed: true },
-    { name: "Cristo Rey", completed: false },
-    { name: "British School of Caracas", completed: false },
-    { name: "Colegio Ávila", completed: false },
-    { name: "CIC", completed: false },
-    { name: "Academia Washington", completed: false },
-  ]
+  const workshops = WORKSHOPS
 
   return (
     <section id="workshops" className="py-20">
