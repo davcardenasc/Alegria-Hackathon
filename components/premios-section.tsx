@@ -25,7 +25,7 @@ export default function PremiosSection() {
           {prizes.map((prize, index) => (
             <div
               key={index}
-              className={`relative bg-gradient-to-br ${prize.bgGradient} border-2 ${prize.borderColor} rounded-xl p-6 text-center hover:${prize.glowColor} hover:scale-105 transition-all duration-300 group overflow-hidden`}
+              className={`relative bg-gradient-to-br ${prize.bgGradient} border-2 ${prize.borderColor} rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group overflow-hidden`}
             >
               {/* Background decoration */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/5 to-transparent rounded-full -translate-y-10 translate-x-10" />

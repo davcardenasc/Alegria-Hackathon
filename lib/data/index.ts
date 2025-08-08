@@ -177,7 +177,7 @@ export const PRIZES: Prize[] = [
     prize: "prizes.second_prize",
     bonus: "prizes.second_bonus",
     color: "text-blue-400",
-    bgGradient: "from-blue-400/40 to-blue-500/40",
+    bgGradient: "from-blue-400/40 to-blue-600/40",
     borderColor: "border-blue-400/50",
   },
   {
@@ -185,9 +185,9 @@ export const PRIZES: Prize[] = [
     icon: Sparkles,
     prize: "prizes.third_prize",
     bonus: "prizes.third_bonus",
-    color: "text-orange-500",
-    bgGradient: "from-orange-500/40 to-orange-600/40",
-    borderColor: "border-orange-500/50",
+    color: "text-orange-400",
+    bgGradient: "from-orange-400/40 to-orange-600/40",
+    borderColor: "border-orange-400/50",
   },
   {
     place: "⭐ Top 5 finalistas",
