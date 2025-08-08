@@ -295,7 +295,7 @@ export default function AdminDashboard() {
                 </SelectContent>
               </Select>
               <Button 
-                onClick={() => window.open('/admin/review', '_blank')}
+                onClick={() => window.location.href = '/admin/review'}
                 className="bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white"
               >
                 <Users size={16} className="mr-2" />

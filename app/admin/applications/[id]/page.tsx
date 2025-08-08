@@ -391,7 +391,14 @@ export default function ApplicationDetail() {
                 {application.idDocumentUrl && (
                   <div>
                     <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
-                    <p className="text-[#4A5EE7] text-sm">{application.idDocumentUrl}</p>
+                    <a 
+                      href={application.idDocumentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline"
+                    >
+                      View Document
+                    </a>
                   </div>
                 )}
               </CardContent>
