@@ -176,8 +176,8 @@ export const PRIZES: Prize[] = [
     icon: Gem,
     prize: "prizes.second_prize",
     bonus: "prizes.second_bonus",
-    color: "text-gray-300",
-    bgGradient: "from-gray-300/40 to-gray-400/40",
+    color: "text-blue-300",
+    bgGradient: "from-blue-300/40 to-blue-400/40",
     borderColor: "border-gray-300/50",
   },
   {
@@ -185,8 +185,8 @@ export const PRIZES: Prize[] = [
     icon: Sparkles,
     prize: "prizes.third_prize",
     bonus: "prizes.third_bonus",
-    color: "text-amber-600",
-    bgGradient: "from-amber-600/40 to-amber-700/40",
+    color: "text-orange-600",
+    bgGradient: "from-orange-600/40 to-orange-700/40",
     borderColor: "border-amber-600/50",
   },
   {
