@@ -12,8 +12,15 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url)
     const status = searchParams.get('status')
+    
+    console.log("API: Requested status filter:", status)
 
-    const whereClause = status ? { status: status } : {}
+    let whereClause = {}
+    if (status && ['PENDING', 'ACCEPTED', 'REJECTED'].includes(status)) {
+      whereClause = { status: status }
+    }
+    
+    console.log("API: Where clause:", whereClause)
 
     const applications = await prisma.application.findMany({
       where: whereClause,
@@ -38,11 +45,12 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    console.log("API: Found applications:", applications.length)
     return NextResponse.json(applications)
   } catch (error) {
     console.error("Error fetching applications:", error)
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: `Internal server error: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
     )
   }
