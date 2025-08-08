@@ -10,16 +10,20 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    console.log("Status update request received for ID:", params.id)
     const session = await getServerSession()
     
     if (!session) {
+      console.log("No session found")
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const { status } = await request.json()
     const applicationId = params.id
+    console.log("Requested status:", status, "for application:", applicationId)
 
     if (!["ACCEPTED", "REJECTED"].includes(status)) {
+      console.log("Invalid status provided:", status)
       return NextResponse.json({ error: "Invalid status" }, { status: 400 })
     }
 
@@ -99,7 +103,11 @@ export async function POST(
   } catch (error) {
     console.error("Error updating application status:", error)
     return NextResponse.json(
-      { error: "Internal server error" },
+      { 
+        error: "Internal server error", 
+        details: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     )
   }

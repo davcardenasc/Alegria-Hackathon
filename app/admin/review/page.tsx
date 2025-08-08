@@ -414,18 +414,40 @@ export default function ReviewPendingApplications() {
                       <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
                       <div className="space-y-1">
                         <p className="text-[#F7F9FF] text-xs font-mono break-all">{currentApplication.idDocumentUrl}</p>
-                        {currentApplication.idDocumentUrl.startsWith('http') ? (
-                          <a 
-                            href={currentApplication.idDocumentUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
-                          >
-                            View Document ↗
-                          </a>
-                        ) : (
-                          <p className="text-yellow-300 text-xs">Invalid document URL</p>
-                        )}
+                        {(() => {
+                          const url = currentApplication.idDocumentUrl
+                          // Handle different URL formats
+                          if (url.startsWith('http://') || url.startsWith('https://')) {
+                            return (
+                              <a 
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
+                              >
+                                View Document ↗
+                              </a>
+                            )
+                          } else if (url.startsWith('/') || url.includes('.')) {
+                            // Likely a relative path or filename - try to construct full URL
+                            const fullUrl = url.startsWith('/') ? `https://alegria-hackathon.com${url}` : url
+                            return (
+                              <div className="space-y-1">
+                                <a 
+                                  href={fullUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
+                                >
+                                  View Document (constructed URL) ↗
+                                </a>
+                                <p className="text-yellow-300 text-xs">Constructed URL: {fullUrl}</p>
+                              </div>
+                            )
+                          } else {
+                            return <p className="text-red-300 text-xs">Invalid document URL format</p>
+                          }
+                        })()}
                       </div>
                     </div>
                   )}
