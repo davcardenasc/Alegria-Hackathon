@@ -177,8 +177,8 @@ export const PRIZES: Prize[] = [
     prize: "prizes.second_prize",
     bonus: "prizes.second_bonus",
     color: "text-gray-300",
-    bgGradient: "from-gray-300/20 to-gray-400/20",
-    borderColor: "border-gray-300/30",
+    bgGradient: "from-gray-300/40 to-gray-400/40",
+    borderColor: "border-gray-300/50",
   },
   {
     place: "prizes.third_place",
@@ -186,8 +186,8 @@ export const PRIZES: Prize[] = [
     prize: "prizes.third_prize",
     bonus: "prizes.third_bonus",
     color: "text-amber-600",
-    bgGradient: "from-amber-600/20 to-amber-700/20",
-    borderColor: "border-amber-600/30",
+    bgGradient: "from-amber-600/40 to-amber-700/40",
+    borderColor: "border-amber-600/50",
   },
   {
     place: "⭐ Top 5 finalistas",
