@@ -4,12 +4,14 @@ import { prisma } from "@/lib/prisma"
 
 export async function POST(request: NextRequest) {
   try {
-    // Security check - only allow in development or with special token
-    const { searchParams } = new URL(request.url)
-    const token = searchParams.get('token')
-    
-    if (process.env.NODE_ENV === 'production' && token !== process.env.SETUP_TOKEN) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    // Check if admin already exists to prevent multiple setups
+    const existingAdmin = await prisma.user.findFirst()
+    if (existingAdmin) {
+      return NextResponse.json({ 
+        success: true, 
+        message: "Setup already completed", 
+        admin: { email: existingAdmin.email, name: existingAdmin.name }
+      })
     }
 
     // Create admin user
