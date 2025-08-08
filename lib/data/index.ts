@@ -1,6 +1,6 @@
 // Centralized data management
 import { Ambassador, Workshop, Sponsor, Prize, GalleryImage, Testimonial } from '@/types'
-import { Crown, Trophy, Medal, Gift, Diamond, Sparkles, Star } from 'lucide-react'
+import { Crown, Trophy, Medal, Gift, Gem, Sparkles, Star } from 'lucide-react'
 
 // Organizers Data
 export const ORGANIZADORES: Ambassador[] = [
@@ -173,21 +173,21 @@ export const PRIZES: Prize[] = [
   },
   {
     place: "prizes.second_place",
-    icon: Diamond,
+    icon: Gem,
     prize: "prizes.second_prize",
     bonus: "prizes.second_bonus",
-    color: "text-slate-400",
-    bgGradient: "from-slate-400/20 to-slate-500/20",
-    borderColor: "border-slate-400/30",
+    color: "text-gray-300",
+    bgGradient: "from-gray-300/20 to-gray-400/20",
+    borderColor: "border-gray-300/30",
   },
   {
     place: "prizes.third_place",
     icon: Sparkles,
     prize: "prizes.third_prize",
     bonus: "prizes.third_bonus",
-    color: "text-orange-400",
-    bgGradient: "from-orange-400/20 to-orange-500/20",
-    borderColor: "border-orange-400/30",
+    color: "text-amber-600",
+    bgGradient: "from-amber-600/20 to-amber-700/20",
+    borderColor: "border-amber-600/30",
   },
   {
     place: "⭐ Top 5 finalistas",
