@@ -165,7 +165,7 @@ export const PRIZES: Prize[] = [
   {
     place: "🏆 1er lugar",
     icon: Crown,
-    prize: "$1k pp / Macbook Air M4 ($4k)",
+    prize: "$1k por persona o Macbook Air M4 ($4k)",
     bonus: "+ Pasantía en Cashea/Yummy",
     color: "text-yellow-400",
     bgGradient: "from-yellow-400/20 to-yellow-600/20",
@@ -174,7 +174,7 @@ export const PRIZES: Prize[] = [
   {
     place: "🥈 2do lugar",
     icon: Gem,
-    prize: "$500 pp",
+    prize: "$500 por persona",
     bonus: "+ 1 año Suscripción Platzi",
     color: "text-blue-400",
     bgGradient: "from-blue-400/30 to-blue-400/30",
@@ -183,7 +183,7 @@ export const PRIZES: Prize[] = [
   {
     place: "🥉 3er lugar",
     icon: Sparkles,
-    prize: "$250 pp",
+    prize: "$250 por persona",
     bonus: "+ $250 créditos de OpenAI",
     color: "text-orange-400",
     bgGradient: "from-orange-400/30 to-orange-400/30",
