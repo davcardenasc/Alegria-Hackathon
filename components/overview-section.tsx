@@ -70,7 +70,7 @@ export default function OverviewSection() {
           {items.map((item, idx) => (
             <div
               key={idx}
-              className={`relative bg-gradient-to-br ${item.color} border-3 ${item.border} rounded-2xl p-8 hover:scale-110 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(74,94,231,0.3)] transition-all duration-500 overflow-hidden shadow-xl backdrop-blur-sm min-h-[320px] flex flex-col`}
+              className={`relative bg-gradient-to-br ${item.color} border-3 ${item.border} rounded-2xl p-8 overflow-hidden shadow-xl backdrop-blur-sm min-h-[320px] flex flex-col`}
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/8 to-transparent rounded-full -translate-y-12 translate-x-12" />
               <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-10 -translate-x-10" />
@@ -87,7 +87,6 @@ export default function OverviewSection() {
                 </ul>
               </div>
               
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -skew-x-12 translate-x-[-200%] hover:translate-x-[200%] transition-transform duration-1200" />
             </div>
           ))}
         </div>
