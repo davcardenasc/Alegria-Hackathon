@@ -225,7 +225,7 @@ export default function FormularioParticipantes() {
               {t("forms.participants_count")}
             </Label>
             <Select onValueChange={handleNumParticipantesChange} required>
-              <SelectTrigger className="bg-[#00162D] border-[#4A5EE7]/20 text-white hover:border-[#4A5EE7]/40 hover:shadow-[0_0_10px_#4A5EE7/30] transition-all duration-300">
+              <SelectTrigger className="bg-[#00162D] border-[#4A5EE7]/20 text-white hover:border-[#4A5EE7]/40 transition-all duration-300">
                 <SelectValue placeholder={t("forms.select_participants")} className="text-[#BFC9DB]" />
               </SelectTrigger>
               <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20">
