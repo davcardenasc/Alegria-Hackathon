@@ -412,15 +412,47 @@ export default function ReviewPendingApplications() {
                   {currentApplication.idDocumentUrl && (
                     <div>
                       <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
-                      <div className="space-y-1">
+                      <div className="space-y-2">
                         <p className="text-[#F7F9FF] text-xs font-mono break-all">{currentApplication.idDocumentUrl}</p>
                         {(() => {
                           const url = currentApplication.idDocumentUrl
-                          // Handle different URL formats
-                          if (url.startsWith('http://') || url.startsWith('https://')) {
+                          // Check if it's an image URL
+                          const isImage = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(url)
+                          
+                          let fullUrl = url
+                          if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                            fullUrl = url.startsWith('/') ? `https://alegria-hackathon.com${url}` : `https://alegria-hackathon.com/${url}`
+                          }
+                          
+                          if (isImage) {
+                            return (
+                              <div className="space-y-2">
+                                <img 
+                                  src={fullUrl}
+                                  alt="ID Document"
+                                  className="max-w-full max-h-48 object-contain border border-[#4A5EE7]/20 rounded"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none'
+                                    e.currentTarget.nextElementSibling.style.display = 'block'
+                                  }}
+                                />
+                                <div style={{ display: 'none' }} className="text-red-300 text-xs">
+                                  Image failed to load: {fullUrl}
+                                </div>
+                                <a 
+                                  href={fullUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
+                                >
+                                  Open Image in New Tab ↗
+                                </a>
+                              </div>
+                            )
+                          } else {
                             return (
                               <a 
-                                href={url}
+                                href={fullUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
@@ -428,24 +460,6 @@ export default function ReviewPendingApplications() {
                                 View Document ↗
                               </a>
                             )
-                          } else if (url.startsWith('/') || url.includes('.')) {
-                            // Likely a relative path or filename - try to construct full URL
-                            const fullUrl = url.startsWith('/') ? `https://alegria-hackathon.com${url}` : url
-                            return (
-                              <div className="space-y-1">
-                                <a 
-                                  href={fullUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
-                                >
-                                  View Document (constructed URL) ↗
-                                </a>
-                                <p className="text-yellow-300 text-xs">Constructed URL: {fullUrl}</p>
-                              </div>
-                            )
-                          } else {
-                            return <p className="text-red-300 text-xs">Invalid document URL format</p>
                           }
                         })()}
                       </div>
