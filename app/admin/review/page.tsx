@@ -413,31 +413,39 @@ export default function ReviewPendingApplications() {
                     <div>
                       <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
                       <div className="space-y-2">
-                        <p className="text-[#F7F9FF] text-xs font-mono break-all">{currentApplication.idDocumentUrl}</p>
+                        <p className="text-[#F7F9FF] text-xs font-mono break-all">Raw URL: {currentApplication.idDocumentUrl}</p>
                         {(() => {
                           const url = currentApplication.idDocumentUrl
+                          console.log("ID Document URL:", url)
+                          
                           // Check if it's an image URL
                           const isImage = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(url)
+                          console.log("Is image:", isImage, "URL test result:", /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(url))
                           
                           let fullUrl = url
                           if (!url.startsWith('http://') && !url.startsWith('https://')) {
                             fullUrl = url.startsWith('/') ? `https://alegria-hackathon.com${url}` : `https://alegria-hackathon.com/${url}`
                           }
+                          console.log("Full URL:", fullUrl)
                           
                           if (isImage) {
                             return (
                               <div className="space-y-2">
+                                <p className="text-green-300 text-xs">✓ Detected as image, trying to display...</p>
+                                <p className="text-yellow-300 text-xs">Constructed URL: {fullUrl}</p>
                                 <img 
                                   src={fullUrl}
                                   alt="ID Document"
                                   className="max-w-full max-h-48 object-contain border border-[#4A5EE7]/20 rounded"
+                                  onLoad={() => console.log("Image loaded successfully:", fullUrl)}
                                   onError={(e) => {
+                                    console.error("Image failed to load:", fullUrl)
                                     e.currentTarget.style.display = 'none'
                                     e.currentTarget.nextElementSibling.style.display = 'block'
                                   }}
                                 />
                                 <div style={{ display: 'none' }} className="text-red-300 text-xs">
-                                  Image failed to load: {fullUrl}
+                                  ❌ Image failed to load: {fullUrl}
                                 </div>
                                 <a 
                                   href={fullUrl}

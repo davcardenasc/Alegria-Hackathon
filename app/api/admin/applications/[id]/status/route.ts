@@ -36,27 +36,61 @@ export async function POST(
       return NextResponse.json({ error: "Application not found" }, { status: 404 })
     }
 
-    // Get email template
+    // Get email template - using the same enum casting fix as before
     const templateType = status === "ACCEPTED" ? "ACCEPTANCE" : "REJECTION"
     console.log("Looking for email template type:", templateType)
     
-    // Skip email template lookup for now and just update status
-    // const template = await prisma.emailTemplate.findFirst({
-    //   where: { 
-    //     type: templateType,
-    //     isActive: true
-    //   }
-    // })
+    const template = await prisma.emailTemplate.findFirst({
+      where: { 
+        type: templateType as any, // Cast to any to avoid enum issues
+        isActive: true
+      }
+    })
 
-    // if (!template) {
-    //   return NextResponse.json({ error: "Email template not found" }, { status: 500 })
-    // }
+    if (!template) {
+      console.log("No email template found for type:", templateType)
+      return NextResponse.json({ error: "Email template not found" }, { status: 500 })
+    }
 
-    // For now, skip email sending and just update the status
-    console.log("Skipping email for now - will just update status")
+    console.log("Found email template:", template.subject)
 
-    // TODO: Fix enum casting issues and re-enable email functionality
-    // Temporarily disabled to fix accept/reject functionality
+    // Replace placeholders in email template
+    const emailSubject = template.subject.replace(/\{\{teamName\}\}/g, application.teamName)
+    const emailBody = template.body.replace(/\{\{teamName\}\}/g, application.teamName)
+                                   .replace(/\{\{contactEmail\}\}/g, application.contactEmail)
+                                   .replace(/\{\{school\}\}/g, application.school)
+
+    // Send email
+    try {
+      const { data: emailData, error: emailError } = await resend.emails.send({
+        from: "AlegrIA Hackathon <onboarding@resend.dev>",
+        to: [application.contactEmail],
+        subject: emailSubject,
+        html: emailBody,
+      })
+
+      if (emailError) {
+        console.error("Email sending error:", emailError)
+      } else {
+        console.log("Email sent successfully:", emailData?.id)
+      }
+
+      // Log email attempt
+      await prisma.emailLog.create({
+        data: {
+          applicationId: application.id,
+          type: templateType as any, // Cast to avoid enum issues
+          recipientEmail: application.contactEmail,
+          subject: emailSubject,
+          status: emailError ? "FAILED" : "SENT",
+          errorMessage: emailError?.message || null
+        }
+      })
+
+    } catch (emailError) {
+      console.error("Email sending failed:", emailError)
+      // Continue with status update even if email fails
+    }
 
     // Update application status
     const updatedApplication = await prisma.application.update({
