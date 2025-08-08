@@ -1,0 +1,330 @@
+"use client"
+
+import { useEffect, useState, useRef } from "react"
+import Image from "next/image"
+import { ChevronDown } from 'lucide-react'
+import { useLanguage } from "@/contexts/LanguageContext"
+
+export default function HeroSection() {
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const heroRef = useRef<HTMLElement>(null)
+  const { t } = useLanguage()
+
+  const phases = [
+    {
+      title: t("hero.question"),
+      subtitle: "",
+      showAirplane: true,
+      showCTA: false,
+    },
+    {
+      title: t("hero.from_idea"),
+      subtitle: "",
+      showAirplane: true,
+      showCTA: false,
+    },
+    {
+      title: t("hero.to_prototype"),
+      subtitle: "",
+      showAirplane: true,
+      showCTA: false,
+    },
+    {
+      title: t("hero.to_business"),
+      subtitle: "",
+      showAirplane: false,
+      showCTA: false,
+    },
+    {
+      title: t("hero.main_title"),
+      subtitle: t("hero.subtitle"),
+      showAirplane: false,
+      showCTA: true,
+    },
+  ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return
+
+      const heroRect = heroRef.current.getBoundingClientRect()
+      const heroHeight = heroRect.height
+      const viewportHeight = window.innerHeight
+
+      // Calculate total scroll progress through the entire section
+      const scrolled = Math.max(0, -heroRect.top)
+      const maxScroll = heroHeight - viewportHeight
+      const progress = Math.min(1, scrolled / maxScroll)
+
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  // Calculate which phases should be visible and their opacities
+  const getPhaseOpacity = (phaseIndex: number) => {
+    const totalPhases = phases.length
+    const phaseStart = phaseIndex / totalPhases
+    const phaseEnd = (phaseIndex + 1) / totalPhases
+    const phaseMid = (phaseStart + phaseEnd) / 2
+
+    // First phase starts visible
+    if (phaseIndex === 0 && scrollProgress === 0) {
+      return 1
+    }
+
+    // Last phase stays at full opacity for shorter time
+    if (phaseIndex === phases.length - 1 && scrollProgress >= phaseStart - 0.05) {
+      return 1
+    }
+
+    // Special handling for "...a negocio real" (phase 3) - longer full opacity
+    if (phaseIndex === 3) {
+      const fadeRange = 0.04 // Very fast fade
+      const fullOpacityRange = 0.3 // Much longer full opacity
+      const gapBeforeNext = 0.08 // Gap before next phase appears
+
+      if (scrollProgress < phaseStart || scrollProgress > phaseEnd - gapBeforeNext) {
+        return 0
+      }
+
+      if (scrollProgress < phaseMid - fullOpacityRange / 2) {
+        // Fading in
+        const fadeProgress = (scrollProgress - phaseStart) / fadeRange
+        return Math.min(1, fadeProgress)
+      } else if (scrollProgress > phaseMid + fullOpacityRange / 2) {
+        // Fading out - very fast
+        const fadeProgress = (phaseEnd - gapBeforeNext - scrollProgress) / (fadeRange * 0.3)
+        return Math.max(0, Math.min(1, fadeProgress))
+      } else {
+        // Full opacity in the middle
+        return 1
+      }
+    }
+
+    // Create a bell curve for opacity with peak at phase middle
+    if (scrollProgress < phaseStart || scrollProgress > phaseEnd) {
+      return 0
+    }
+
+    // Fade in/out with smoother curve
+    const fadeRange = phaseIndex === phases.length - 1 ? 0.08 : 0.08 // Same fade for all
+    const fullOpacityRange = phaseIndex === phases.length - 1 ? 0.15 : 0.25 // Shorter for last phase
+
+    if (scrollProgress < phaseMid - fullOpacityRange / 2) {
+      // Fading in
+      const fadeProgress = (scrollProgress - phaseStart) / fadeRange
+      return Math.min(1, fadeProgress)
+    } else if (scrollProgress > phaseMid + fullOpacityRange / 2) {
+      // Fading out
+      const fadeProgress = (phaseEnd - scrollProgress) / fadeRange
+      return Math.min(1, fadeProgress)
+    } else {
+      // Full opacity in the middle
+      return 1
+    }
+  }
+
+  // Calculate vertical position for each phase
+  const getPhaseTransform = (phaseIndex: number) => {
+    const totalPhases = phases.length
+    const phaseProgress = scrollProgress * totalPhases - phaseIndex
+
+    // First phase starts centered
+    if (phaseIndex === 0 && scrollProgress === 0) {
+      return 0
+    }
+
+    // Last phase stops moving once it's centered and stays longer
+    if (phaseIndex === phases.length - 1 && phaseProgress >= -0.2) {
+      return 0
+    }
+
+    // Text always moves up when scrolling down
+    // Starts from below (40px) and moves to above (-40px)
+    const yOffset = 40 - phaseProgress * 80
+
+    // Clamp to prevent excessive movement
+    return Math.max(-40, Math.min(40, yOffset))
+  }
+
+  const handleCTAClick = () => {
+    document.querySelector("#aplicaciones")?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  const getTitleColor = (phase: any) => {
+    if (phase.title === "…a negocio real") return "#FFD700"
+    return "#F7F9FF"
+  }
+
+  const getTitleShadow = (phase: any) => {
+    if (phase.title === "…a negocio real") return "0 0 20px #FFD700"
+    return "none"
+  }
+
+  // Calculate airplane visibility
+  const airplaneOpacity = scrollProgress < 0.6 ? 1 - scrollProgress * 1.67 : 0
+
+  return (
+    <section ref={heroRef} id="mision" className="relative" style={{ height: `${phases.length * 120}vh` }}>
+      {/* Sticky content container */}
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-4 text-center">
+          {/* Paper Airplane - Restored to original */}
+          <div
+            className="mb-4 flex justify-center transition-all duration-1000"
+            style={{
+              opacity: airplaneOpacity,
+              transform: `translateY(${-scrollProgress * 50}px) scale(${1 + scrollProgress * 0.3})`,
+              filter: `drop-shadow(0 0 ${25 + scrollProgress * 20}px #4A5EE7)`,
+            }}
+          >
+            <div className="relative w-24 h-24 md:w-32 md:h-32">
+              <Image
+                src="/images/paper-airplane.png"
+                alt="Paper Airplane"
+                fill
+                className="object-contain animate-float"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Titles Container - Increased height for better spacing */}
+          <div className="relative h-40 md:h-48 flex items-center justify-center">
+            {phases.map((phase, index) => {
+              const opacity = getPhaseOpacity(index)
+              const yOffset = getPhaseTransform(index)
+
+              return (
+                <div
+                  key={index}
+                  className="absolute inset-0 flex flex-col items-center justify-center"
+                  style={{
+                    opacity,
+                    transform: `translateY(${yOffset}px)`,
+                    transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+                  }}
+                >
+                  <h1
+                    className="text-3xl md:text-4xl lg:text-6xl font-bold leading-tight whitespace-pre-line text-center"
+                    style={{
+                      color: getTitleColor(phase),
+                      textShadow: getTitleShadow(phase),
+                    }}
+                  >
+                    {phase.title}
+                  </h1>
+
+                  {/* Subtitle with more spacing and special styling for "primer hackathon" */}
+                  {phase.subtitle && (
+                    <div className="text-lg md:text-xl lg:text-2xl text-[#BFC9DB] mt-8 max-w-3xl mx-auto text-center">
+                      <span>{t("hero.subtitle_first_part")}</span>
+                      <span className="relative inline-block">
+                        <span className="relative z-10">{t("hero.subtitle_highlight")}</span>
+                        <svg
+                          className="absolute -bottom-1 left-0 w-full h-4 z-0 opacity-80"
+                          viewBox="0 0 300 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M2 10.5C20 8.2 45 6.8 75 7.5C110 8.5 145 9.2 180 8.8C215 8.4 250 7.9 285 9.2C290 9.5 295 10.1 298 10.8"
+                            stroke="#EF4444"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            fill="none"
+                          />
+                        </svg>
+                      </span>
+                      <span>{t("hero.subtitle_last_part")}</span>
+                    </div>
+                  )}
+
+                  {/* CTA Button - Fixed hitbox */}
+                  {phase.showCTA && (
+                    <div className="mt-12 mx-4 sm:mx-6 md:mx-0">
+                      <button
+                        onClick={handleCTAClick}
+                        className="inline-block bg-gradient-to-r from-[#4A5EE7] to-[#BFC9DB] hover:from-[#4A5EE7]/80 hover:to-[#BFC9DB]/80 text-white px-8 py-4 md:px-10 md:py-5 text-lg md:text-xl font-bold transition-all duration-300 hover:shadow-[0_0_40px_#4A5EE7] hover:scale-105 hover:-translate-y-2 rounded-xl cursor-pointer border-none outline-none focus:outline-none focus:ring-2 focus:ring-[#4A5EE7] focus:ring-offset-2 focus:ring-offset-[#00162D] touch-manipulation select-none"
+                        style={{
+                          WebkitTapHighlightColor: "transparent",
+                          minHeight: "60px",
+                          minWidth: "200px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {t("hero.cta")}
+                      </button>
+
+                      {/* Application deadline notice */}
+                      <p className="text-[#BFC9DB]/80 text-sm md:text-base mt-4 font-medium">{t("hero.deadline")}</p>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Scroll hint - Higher on mobile only */}
+          <div
+            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 md:hidden"
+            style={{
+              bottom: "18vh", // Higher on mobile
+              opacity: Math.max(0.7, 1 - scrollProgress * 3),
+            }}
+          >
+            <div className="flex flex-col items-center opacity-75">
+              <span>{t("hero.scroll_hint")}</span>
+              <ChevronDown className="mt-1" size={20} />
+            </div>
+          </div>
+
+          {/* Desktop scroll hint - original position */}
+          <div
+            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 hidden md:block"
+            style={{
+              bottom: "12vh",
+              opacity: Math.max(0, 1 - scrollProgress * 5),
+            }}
+          >
+            <div className="flex flex-col items-center opacity-75">
+              <span>{t("hero.scroll_hint")}</span>
+              <ChevronDown className="mt-1" size={20} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <style jsx>{`
+        @keyframes gradientSweep {
+          0%,
+          100% {
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+          }
+          50% {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+          }
+        }
+
+        .bg-radial-gradient {
+          background: radial-gradient(circle at center, var(--tw-gradient-stops));
+        }
+
+        /* Scale down plane on larger screens */
+        @media (min-width: 760px) {
+          .plane-container {
+            transform: scale(0.7);
+          }
+        }
+      `}</style>
+    </section>
+  )
+}
