@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Info, PlayCircle, Users, Calendar, DollarSign, Trophy, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLanguage } from "@/contexts/LanguageContext"
 
@@ -60,14 +60,6 @@ export default function OverviewSection() {
     },
   ]
 
-  // Auto-advance carousel every 6 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % items.length)
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [items.length])
-
   const nextCard = () => {
     setCurrentIndex((prev) => (prev + 1) % items.length)
   }
@@ -76,17 +68,7 @@ export default function OverviewSection() {
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length)
   }
 
-  // Calculate cards to show based on screen size
-  const getVisibleCards = () => {
-    // Show 1 card on mobile, 2 on tablet, 3 on desktop
-    return [
-      items[currentIndex],
-      items[(currentIndex + 1) % items.length],
-      items[(currentIndex + 2) % items.length],
-    ]
-  }
-
-  const visibleCards = getVisibleCards()
+  const currentItem = items[currentIndex]
 
   return (
     <section id="overview" className="py-20">
@@ -97,44 +79,51 @@ export default function OverviewSection() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative max-w-7xl mx-auto">
-          {/* Cards */}
+        <div className="relative max-w-2xl mx-auto">
+          {/* Single Card Display */}
           <div className="overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-500">
-              {visibleCards.map((item, idx) => (
+            <div 
+              className="flex transition-transform duration-300 ease-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {items.map((item, idx) => (
                 <div
-                  key={`${currentIndex}-${idx}`}
-                  className={`relative bg-gradient-to-br ${item.color} border-3 ${item.border} rounded-2xl p-8 overflow-hidden shadow-xl backdrop-blur-sm min-h-[320px] flex flex-col transition-all duration-500 transform`}
+                  key={idx}
+                  className="w-full flex-shrink-0"
                 >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/8 to-transparent rounded-full -translate-y-12 translate-x-12" />
-                  <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-10 -translate-x-10" />
-                  
-                  <div className="relative z-10 flex-grow flex flex-col h-full">
-                    <item.icon className={`${item.iconColor} mb-6 drop-shadow-lg`} size={48} />
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#F7F9FF] mb-4 tracking-wide leading-tight">{item.title}</h3>
-                    <ul className="space-y-3 flex-grow">
-                      {item.lines.map((line, i) => (
-                        <li key={i} className="text-[#BFC9DB] text-base md:text-lg leading-relaxed font-medium">
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
+                  <div
+                    className={`relative bg-gradient-to-br ${item.color} border-3 ${item.border} rounded-2xl p-8 overflow-hidden shadow-xl backdrop-blur-sm min-h-[320px] flex flex-col mx-4`}
+                  >
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/8 to-transparent rounded-full -translate-y-12 translate-x-12" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-10 -translate-x-10" />
+                    
+                    <div className="relative z-10 flex-grow flex flex-col h-full">
+                      <item.icon className={`${item.iconColor} mb-6 drop-shadow-lg`} size={48} />
+                      <h3 className="text-2xl md:text-3xl font-bold text-[#F7F9FF] mb-4 tracking-wide leading-tight">{item.title}</h3>
+                      <ul className="space-y-3 flex-grow">
+                        {item.lines.map((line, i) => (
+                          <li key={i} className="text-[#BFC9DB] text-base md:text-lg leading-relaxed font-medium">
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Positioned outside cards */}
           <button
             onClick={prevCard}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#4A5EE7] hover:text-[#F7F9FF] w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 z-10"
+            className="absolute -left-16 top-1/2 transform -translate-y-1/2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#4A5EE7] hover:text-[#F7F9FF] w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 z-10"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={nextCard}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#4A5EE7] hover:text-[#F7F9FF] w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 z-10"
+            className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#4A5EE7] hover:text-[#F7F9FF] w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 z-10"
           >
             <ChevronRight size={20} />
           </button>
