@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/send-application/route": "app/api/send-application/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/send-school-application/route": "app/api/send-school-application/route.js",
+  "/formulario-participantes/page": "app/formulario-participantes/page.js",
+  "/page": "app/page.js",
+  "/ideas/page": "app/ideas/page.js",
+  "/speakers/page": "app/speakers/page.js",
+  "/formulario-colegios/page": "app/formulario-colegios/page.js"
+}
