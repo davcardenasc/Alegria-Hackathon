@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Montserrat, Roboto } from 'next/font/google'
 import "./globals.css"
-import GlobalBackground from "@/components/global-background"
+import ConditionalBackground from "@/components/conditional-background"
 import { Providers } from "@/components/providers"
 
 // Font for headings
@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${roboto.className} ${montserrat.variable} ${roboto.variable}`}>
         <Providers>
-          <GlobalBackground />
+          <ConditionalBackground />
           {children}
         </Providers>
       </body>
