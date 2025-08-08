@@ -36,11 +36,10 @@ export async function POST(
       return NextResponse.json({ error: "Application not found" }, { status: 404 })
     }
 
-    // Get email template - using the same enum casting fix as before
+    // Get email template using raw SQL to avoid enum casting issues
     const templateType = status === "ACCEPTED" ? "ACCEPTANCE" : "REJECTION"
     console.log("Looking for email template type:", templateType)
     
-    // Use raw SQL to avoid enum casting issues
     const templates = await prisma.$queryRaw`
       SELECT * FROM email_templates 
       WHERE type = ${templateType} AND "isActive" = true 
@@ -48,21 +47,35 @@ export async function POST(
     ` as any[]
     
     const template = templates.length > 0 ? templates[0] : null
+    let emailSubject, emailBody
 
     if (!template) {
-      console.log("No email template found for type:", templateType)
-      return NextResponse.json({ error: "Email template not found" }, { status: 500 })
+      console.log("No email template found for type:", templateType, "- using basic template")
+      // Create a basic template if none exists
+      const basicTemplate = {
+        subject: `AlegrIA Hackathon - Application ${status === "ACCEPTED" ? "Accepted" : "Rejected"}`,
+        body: status === "ACCEPTED" 
+          ? `<h1>¡Felicitaciones {{teamName}}!</h1><p>Tu aplicación para el AlegrIA Hackathon ha sido <strong>aceptada</strong>.</p><p>Pronto recibirás más información sobre los próximos pasos.</p><p>¡Te esperamos!</p>`
+          : `<h1>Gracias {{teamName}}</h1><p>Agradecemos tu interés en el AlegrIA Hackathon. Lamentablemente, tu aplicación no ha sido seleccionada en esta ocasión.</p><p>Te animamos a seguir participando en futuros eventos.</p>`
+      }
+      
+      emailSubject = basicTemplate.subject.replace(/\{\{teamName\}\}/g, application.teamName)
+      emailBody = basicTemplate.body.replace(/\{\{teamName\}\}/g, application.teamName)
+                                    .replace(/\{\{contactEmail\}\}/g, application.contactEmail)
+                                    .replace(/\{\{school\}\}/g, application.school)
+    } else {
+      console.log("Found email template:", template.subject)
+      emailSubject = template.subject.replace(/\{\{teamName\}\}/g, application.teamName)
+      emailBody = template.body.replace(/\{\{teamName\}\}/g, application.teamName)
+                                .replace(/\{\{contactEmail\}\}/g, application.contactEmail)
+                                .replace(/\{\{school\}\}/g, application.school)
     }
 
-    console.log("Found email template:", template.subject)
-
-    // Replace placeholders in email template
-    const emailSubject = template.subject.replace(/\{\{teamName\}\}/g, application.teamName)
-    const emailBody = template.body.replace(/\{\{teamName\}\}/g, application.teamName)
-                                   .replace(/\{\{contactEmail\}\}/g, application.contactEmail)
-                                   .replace(/\{\{school\}\}/g, application.school)
-
     // Send email
+    console.log("Attempting to send email to:", application.contactEmail)
+    console.log("Email subject:", emailSubject)
+    console.log("Email body preview:", emailBody.substring(0, 200) + "...")
+    
     try {
       const { data: emailData, error: emailError } = await resend.emails.send({
         from: "AlegrIA Hackathon <onboarding@resend.dev>",
@@ -73,8 +86,10 @@ export async function POST(
 
       if (emailError) {
         console.error("Email sending error:", emailError)
+        console.error("Error details:", JSON.stringify(emailError, null, 2))
       } else {
-        console.log("Email sent successfully:", emailData?.id)
+        console.log("Email sent successfully to:", application.contactEmail)
+        console.log("Email ID:", emailData?.id)
       }
 
       // Log email attempt using raw SQL to avoid enum issues
