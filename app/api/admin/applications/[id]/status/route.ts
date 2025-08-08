@@ -10,7 +10,9 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    console.log("=== STATUS UPDATE REQUEST START ===")
     console.log("Status update request received for ID:", params.id)
+    console.log("Request headers:", Object.fromEntries(request.headers.entries()))
     const session = await getServerSession()
     
     if (!session) {
@@ -72,9 +74,11 @@ export async function POST(
     }
 
     // Send email
+    console.log("=== EMAIL SENDING START ===")
     console.log("Attempting to send email to:", application.contactEmail)
     console.log("Email subject:", emailSubject)
     console.log("Email body preview:", emailBody.substring(0, 200) + "...")
+    console.log("Resend API key exists:", !!process.env.RESEND_API_KEY || "using hardcoded key")
     
     try {
       const { data: emailData, error: emailError } = await resend.emails.send({
@@ -113,6 +117,9 @@ export async function POST(
       }
     })
 
+    console.log("=== STATUS UPDATE COMPLETE ===")
+    console.log("Application updated successfully:", updatedApplication.status)
+    
     return NextResponse.json({
       status: updatedApplication.status,
       reviewedAt: updatedApplication.reviewedAt
