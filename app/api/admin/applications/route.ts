@@ -10,7 +10,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { searchParams } = new URL(request.url)
+    const status = searchParams.get('status')
+
+    const whereClause = status ? { status: status } : {}
+
     const applications = await prisma.application.findMany({
+      where: whereClause,
       orderBy: {
         submittedAt: 'desc'
       },
@@ -24,6 +30,11 @@ export async function GET(request: NextRequest) {
         starred: true,
         participantsCount: true,
         contactEmail: true,
+        participants: true,
+        experienceText: true,
+        motivationText: true,
+        ideasText: true,
+        idDocumentUrl: true,
       }
     })
 
