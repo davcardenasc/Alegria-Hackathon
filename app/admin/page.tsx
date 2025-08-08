@@ -1,0 +1,346 @@
+"use client"
+
+import { useSession, signOut } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { 
+  FileText, 
+  Star, 
+  Check, 
+  X, 
+  Search, 
+  Filter, 
+  Download, 
+  LogOut, 
+  Calendar,
+  Users,
+  ChartBar
+} from "lucide-react"
+
+interface Application {
+  id: string
+  teamName: string
+  school: string
+  gradeOrYear: string
+  submittedAt: string
+  status: "PENDING" | "ACCEPTED" | "REJECTED"
+  starred: boolean
+  participantsCount: number
+  contactEmail: string
+}
+
+export default function AdminDashboard() {
+  const { data: session } = useSession()
+  const [applications, setApplications] = useState<Application[]>([])
+  const [filteredApplications, setFilteredApplications] = useState<Application[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
+  const [statusFilter, setStatusFilter] = useState("ALL")
+  const [loading, setLoading] = useState(true)
+  const [stats, setStats] = useState({
+    total: 0,
+    pending: 0,
+    accepted: 0,
+    rejected: 0,
+    starred: 0
+  })
+
+  useEffect(() => {
+    fetchApplications()
+  }, [])
+
+  useEffect(() => {
+    filterApplications()
+  }, [applications, searchTerm, statusFilter])
+
+  const fetchApplications = async () => {
+    try {
+      const response = await fetch("/api/admin/applications")
+      const data = await response.json()
+      setApplications(data)
+      
+      // Calculate stats
+      const stats = {
+        total: data.length,
+        pending: data.filter((app: Application) => app.status === "PENDING").length,
+        accepted: data.filter((app: Application) => app.status === "ACCEPTED").length,
+        rejected: data.filter((app: Application) => app.status === "REJECTED").length,
+        starred: data.filter((app: Application) => app.starred).length,
+      }
+      setStats(stats)
+    } catch (error) {
+      console.error("Error fetching applications:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const filterApplications = () => {
+    let filtered = applications
+
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(app => 
+        app.teamName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.school.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    }
+
+    // Apply status filter
+    if (statusFilter !== "ALL") {
+      if (statusFilter === "STARRED") {
+        filtered = filtered.filter(app => app.starred)
+      } else {
+        filtered = filtered.filter(app => app.status === statusFilter)
+      }
+    }
+
+    setFilteredApplications(filtered)
+  }
+
+  const toggleStar = async (applicationId: string) => {
+    try {
+      const response = await fetch(`/api/admin/applications/${applicationId}/star`, {
+        method: "POST",
+      })
+      
+      if (response.ok) {
+        fetchApplications() // Refresh data
+      }
+    } catch (error) {
+      console.error("Error toggling star:", error)
+    }
+  }
+
+  const exportToCSV = async () => {
+    try {
+      const response = await fetch("/api/admin/export")
+      if (response.ok) {
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.style.display = 'none'
+        a.href = url
+        a.download = `hackathon-applications-${new Date().toISOString().split('T')[0]}.csv`
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }
+    } catch (error) {
+      console.error("Error exporting CSV:", error)
+    }
+  }
+
+  const getStatusBadge = (status: string) => {
+    const variants = {
+      PENDING: "secondary",
+      ACCEPTED: "default", 
+      REJECTED: "destructive"
+    } as const
+    
+    const colors = {
+      PENDING: "bg-yellow-500/20 text-yellow-300 border-yellow-500/20",
+      ACCEPTED: "bg-green-500/20 text-green-300 border-green-500/20",
+      REJECTED: "bg-red-500/20 text-red-300 border-red-500/20"
+    } as const
+
+    return (
+      <Badge className={colors[status as keyof typeof colors]}>
+        {status.toLowerCase()}
+      </Badge>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#00162D] text-white flex items-center justify-center">
+        <div>Loading applications...</div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-[#00162D] text-white">
+      {/* Header */}
+      <header className="border-b border-[#4A5EE7]/20 p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-[#F7F9FF]">AlegrIA Hackathon Admin</h1>
+            <p className="text-[#BFC9DB]">Welcome, {session?.user?.name}</p>
+          </div>
+          <Button 
+            onClick={() => signOut()} 
+            variant="outline" 
+            className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
+          >
+            <LogOut size={16} className="mr-2" />
+            Sign Out
+          </Button>
+        </div>
+      </header>
+
+      <div className="p-6">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2">
+                <FileText size={20} className="text-[#4A5EE7]" />
+                <div>
+                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.total}</p>
+                  <p className="text-sm text-[#BFC9DB]">Total</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2">
+                <Calendar size={20} className="text-yellow-400" />
+                <div>
+                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.pending}</p>
+                  <p className="text-sm text-[#BFC9DB]">Pending</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2">
+                <Star size={20} className="text-yellow-400" />
+                <div>
+                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.starred}</p>
+                  <p className="text-sm text-[#BFC9DB]">Starred</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2">
+                <Check size={20} className="text-green-400" />
+                <div>
+                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.accepted}</p>
+                  <p className="text-sm text-[#BFC9DB]">Accepted</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2">
+                <X size={20} className="text-red-400" />
+                <div>
+                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.rejected}</p>
+                  <p className="text-sm text-[#BFC9DB]">Rejected</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Filters */}
+        <Card className="mb-6 bg-[#00162D] border-[#4A5EE7]/20">
+          <CardContent className="p-4">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
+                <div className="relative">
+                  <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#BFC9DB]" />
+                  <Input
+                    placeholder="Search teams or schools..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 bg-[#00162D] border-[#4A5EE7]/20 text-white"
+                  />
+                </div>
+              </div>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-[200px] bg-[#00162D] border-[#4A5EE7]/20 text-white">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20">
+                  <SelectItem value="ALL">All Applications</SelectItem>
+                  <SelectItem value="PENDING">Pending</SelectItem>
+                  <SelectItem value="STARRED">Starred</SelectItem>
+                  <SelectItem value="ACCEPTED">Accepted</SelectItem>
+                  <SelectItem value="REJECTED">Rejected</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button 
+                onClick={exportToCSV}
+                variant="outline" 
+                className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
+              >
+                <Download size={16} className="mr-2" />
+                Export CSV
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Applications Table */}
+        <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+          <CardHeader>
+            <CardTitle className="text-[#F7F9FF]">
+              Applications ({filteredApplications.length})
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              {filteredApplications.length === 0 ? (
+                <p className="text-[#BFC9DB] text-center py-8">No applications found</p>
+              ) : (
+                filteredApplications.map((app) => (
+                  <div
+                    key={app.id}
+                    className="flex items-center gap-4 p-4 border border-[#4A5EE7]/10 rounded-lg hover:border-[#4A5EE7]/30 transition-colors cursor-pointer"
+                    onClick={() => window.open(`/admin/applications/${app.id}`, '_blank')}
+                  >
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        toggleStar(app.id)
+                      }}
+                      className="text-yellow-400 hover:text-yellow-300"
+                    >
+                      <Star size={20} fill={app.starred ? "currentColor" : "none"} />
+                    </button>
+                    
+                    <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <div>
+                        <p className="font-medium text-[#F7F9FF]">{app.teamName}</p>
+                        <p className="text-sm text-[#BFC9DB]">{app.participantsCount} members</p>
+                      </div>
+                      <div>
+                        <p className="text-[#F7F9FF]">{app.school}</p>
+                        <p className="text-sm text-[#BFC9DB]">{app.gradeOrYear}</p>
+                      </div>
+                      <div>
+                        <p className="text-[#F7F9FF]">
+                          {new Date(app.submittedAt).toLocaleDateString()}
+                        </p>
+                        <p className="text-sm text-[#BFC9DB]">{app.contactEmail}</p>
+                      </div>
+                      <div className="flex items-center justify-end">
+                        {getStatusBadge(app.status)}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}

@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Montserrat, Roboto } from 'next/font/google'
 import "./globals.css"
 import GlobalBackground from "@/components/global-background"
-import { LanguageProvider } from "@/contexts/LanguageContext"
+import { Providers } from "@/components/providers"
 
 // Font for headings
 const montserrat = Montserrat({
@@ -46,10 +46,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${roboto.className} ${montserrat.variable} ${roboto.variable}`}>
-        <LanguageProvider>
+        <Providers>
           <GlobalBackground />
           {children}
-        </LanguageProvider>
+        </Providers>
       </body>
     </html>
   )
