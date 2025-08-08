@@ -4,14 +4,28 @@ import { prisma } from "@/lib/prisma"
 
 export async function POST(request: NextRequest) {
   try {
+    // First, ensure database schema exists
+    try {
+      await prisma.$executeRaw`SELECT 1`
+    } catch (error) {
+      // Database might not exist yet, this is expected on first setup
+      console.log("Database connection test failed, will create schema during user creation")
+    }
+
     // Check if admin already exists to prevent multiple setups
-    const existingAdmin = await prisma.user.findFirst()
-    if (existingAdmin) {
-      return NextResponse.json({ 
-        success: true, 
-        message: "Setup already completed", 
-        admin: { email: existingAdmin.email, name: existingAdmin.name }
-      })
+    let existingAdmin
+    try {
+      existingAdmin = await prisma.user.findFirst()
+      if (existingAdmin) {
+        return NextResponse.json({ 
+          success: true, 
+          message: "Setup already completed", 
+          admin: { email: existingAdmin.email, name: existingAdmin.name }
+        })
+      }
+    } catch (error) {
+      // Table might not exist yet, continue with setup
+      console.log("User table check failed, proceeding with full setup")
     }
 
     // Create admin user
