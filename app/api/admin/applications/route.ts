@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { prisma } from "@/lib/prisma"
+import { ApplicationStatus } from "@prisma/client"
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     let whereClause = {}
     if (status && ['PENDING', 'ACCEPTED', 'REJECTED'].includes(status)) {
-      whereClause = { status: status }
+      whereClause = { status: status as ApplicationStatus }
     }
     
     console.log("API: Where clause:", whereClause)
