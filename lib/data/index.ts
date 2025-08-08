@@ -1,6 +1,6 @@
 // Centralized data management
 import { Ambassador, Workshop, Sponsor, Prize, GalleryImage, Testimonial } from '@/types'
-import { Crown, Trophy, Medal, Gift } from 'lucide-react'
+import { Crown, Trophy, Medal, Gift, Diamond, Sparkles, Star } from 'lucide-react'
 
 // Organizers Data
 export const ORGANIZADORES: Ambassador[] = [
@@ -99,40 +99,32 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
   },
   {
-    name: "TBD",
-    description: "sponsors.tbd_description",
-    logo: null,
-    url: "#",
-    confirmed: false,
-    tier: "gold",
-  },
-  {
-    name: "TBD",
-    description: "sponsors.tbd_description",
-    logo: null,
-    url: "#",
-    confirmed: false,
-    tier: "silver",
-  },
-  {
-    name: "TBD",
-    description: "sponsors.tbd_description",
-    logo: null,
-    url: "#",
-    confirmed: false,
-    tier: "silver",
-  },
-  {
     name: "Corporación Cárdenas",
     description: "sponsors.cardenas_description",
     logo: "/images/corporacion-cardenas-logo.png",
     url: "https://www.corporacioncardenas.com",
     confirmed: true,
+    tier: "gold",
+  },
+  {
+    name: "Por confirmar",
+    description: "Por confirmar",
+    logo: null,
+    url: "#",
+    confirmed: false,
+    tier: "silver",
+  },
+  {
+    name: "Por confirmar",
+    description: "Por confirmar",
+    logo: null,
+    url: "#",
+    confirmed: false,
     tier: "bronze",
   },
   {
-    name: "TBD",
-    description: "sponsors.tbd_description",
+    name: "Por confirmar",
+    description: "Por confirmar",
     logo: null,
     url: "#",
     confirmed: false,
@@ -181,7 +173,7 @@ export const PRIZES: Prize[] = [
   },
   {
     place: "prizes.second_place",
-    icon: Trophy,
+    icon: Diamond,
     prize: "prizes.second_prize",
     bonus: "prizes.second_bonus",
     color: "text-gray-300",
@@ -190,12 +182,21 @@ export const PRIZES: Prize[] = [
   },
   {
     place: "prizes.third_place",
-    icon: Medal,
+    icon: Sparkles,
     prize: "prizes.third_prize",
     bonus: "prizes.third_bonus",
     color: "text-amber-600",
     bgGradient: "from-amber-600/20 to-amber-800/20",
     borderColor: "border-amber-600/30",
+  },
+  {
+    place: "⭐ Top 5 finalistas",
+    icon: Star,
+    prize: "1 año gratis de Lovable",
+    bonus: "+ Certificado de participación",
+    color: "text-purple-400",
+    bgGradient: "from-purple-400/20 to-purple-600/20",
+    borderColor: "border-purple-400/30",
   },
   {
     place: "prizes.participation",
