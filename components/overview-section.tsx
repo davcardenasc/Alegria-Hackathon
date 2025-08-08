@@ -95,14 +95,14 @@ export default function OverviewSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
           <Link
             href="/#aplicaciones"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A5EE7] to-[#BFC9DB] hover:from-[#4A5EE7]/80 hover:to-[#BFC9DB]/80 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-[0_0_20px_#4A5EE7] hover:scale-105"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A5EE7] to-[#BFC9DB] hover:from-[#4A5EE7]/80 hover:to-[#BFC9DB]/80 text-white px-8 py-4 rounded-xl font-semibold transition-colors duration-300"
           >
             {t("overview.cta_primary")}
             <ArrowRight size={16} />
           </Link>
           <Link
             href="/#cronograma"
-            className="inline-flex items-center gap-2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#F7F9FF] px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-[0_0_20px_#4A5EE7/30] hover:scale-105"
+            className="inline-flex items-center gap-2 bg-[#00162D] border border-[#4A5EE7]/30 hover:border-[#4A5EE7]/60 text-[#F7F9FF] px-8 py-4 rounded-xl font-semibold transition-colors duration-300"
           >
             {t("overview.cta_secondary")}
             <ArrowRight size={16} />

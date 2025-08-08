@@ -25,7 +25,7 @@ export default function PremiosSection() {
           {prizes.map((prize, index) => (
             <div
               key={index}
-              className={`relative bg-gradient-to-br ${prize.bgGradient} hover:bg-opacity-80 border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-110 hover:-translate-y-2 transition-all duration-500 group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
+              className={`relative bg-gradient-to-br ${prize.bgGradient} border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-105 hover:-translate-y-1 transition-all duration-300 ease-out group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
             >
               {/* Enhanced background decorations */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
@@ -50,8 +50,8 @@ export default function PremiosSection() {
                 <div className={`text-xl md:text-2xl font-bold ${prize.color} mb-4 leading-tight`}>{prize.prize}</div>
 
                 {/* Bonus - Enhanced */}
-                <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl transform hover:scale-110 hover:shadow-2xl transition-all duration-400 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] group-hover:translate-x-[300%] transition-transform duration-1000" />
+                <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl hover:scale-105 hover:shadow-2xl hover:from-[#4A5EE7]/50 hover:to-[#BFC9DB]/50 transition-all duration-300 ease-out relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] hover:translate-x-[300%] transition-transform duration-800" />
                   <span className="relative z-10">{prize.bonus}</span>
                 </div>
               </div>
