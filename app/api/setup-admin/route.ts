@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
       await prisma.$executeRaw`SELECT 1`
     } catch (error) {
       // Database might not exist yet, this is expected on first setup
-      console.log("Database connection test failed, will create schema during user creation")
+      // Database connection test failed, will create schema during user creation
     }
 
     // Check if both admins already exist
@@ -22,8 +22,8 @@ export async function POST(request: NextRequest) {
       })
       
       // Check if we already have both admins
-      const hasOriginalAdmin = existingAdmins.some(admin => admin.email === 'davidcardecodri@gmail.com')
-      const hasNewAdmin = existingAdmins.some(admin => admin.email === 'Ugodimartino.27@gmail.com')
+      const hasOriginalAdmin = existingAdmins.some(admin => admin.email.toLowerCase() === 'davidcardecodri@gmail.com')
+      const hasNewAdmin = existingAdmins.some(admin => admin.email.toLowerCase() === 'ugodimartino.27@gmail.com')
       
       if (hasOriginalAdmin && hasNewAdmin) {
         return NextResponse.json({ 
@@ -35,12 +35,12 @@ export async function POST(request: NextRequest) {
       
       // If we have the original admin but not the new one, create the new one
       if (hasOriginalAdmin && !hasNewAdmin) {
-        console.log("Original admin exists, adding new admin...")
+        // Original admin exists, adding new admin
         // Just create the new admin directly
         const hashedPassword = await bcrypt.hash("Ugodi01*", 12)
         const newAdmin = await prisma.user.create({
           data: {
-            email: "Ugodimartino.27@gmail.com",
+            email: "ugodimartino.27@gmail.com",
             name: "Ugo Di Martino",
             passwordHash: hashedPassword,
             role: "ADMINISTRATOR"
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       
     } catch (error) {
       // Table might not exist yet, continue with full setup
-      console.log("User table check failed, proceeding with full setup")
+      // User table check failed, proceeding with full setup
     }
 
     // Create admin users (this will create both)

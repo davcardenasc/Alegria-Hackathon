@@ -65,6 +65,14 @@ export default function FormularioParticipantes() {
         alert("El archivo es demasiado grande. El tamaño máximo es 5MB.")
         return
       }
+      
+      // Validate file type
+      const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp", "application/pdf"]
+      if (!allowedTypes.includes(file.type)) {
+        alert("Tipo de archivo no válido. Solo se permiten imágenes (JPEG, PNG, GIF, WebP) y PDFs.")
+        return
+      }
+      
       setUploadedFile(file)
     }
   }
@@ -108,7 +116,7 @@ export default function FormularioParticipantes() {
 
       // First, upload the file if one was selected
       if (uploadedFile) {
-        console.log("Uploading file:", uploadedFile.name, "Size:", uploadedFile.size, "Type:", uploadedFile.type)
+        // File upload initiated
         
         const fileFormData = new FormData()
         fileFormData.append("file", uploadedFile)
@@ -121,12 +129,16 @@ export default function FormularioParticipantes() {
         if (!uploadResponse.ok) {
           const uploadError = await uploadResponse.json()
           console.error("Upload error:", uploadError)
-          throw new Error(uploadError.message || "Error uploading file")
+          throw new Error(
+            uploadError.error?.message || 
+            uploadError.message || 
+            "Error uploading file"
+          )
         }
 
         const uploadData = await uploadResponse.json()
-        console.log("File uploaded successfully:", uploadData)
-        documentUrl = uploadData.url
+        // File uploaded successfully
+        documentUrl = uploadData.success ? uploadData.data?.url : uploadData.url
       }
 
       // Create a proper JSON object for the application
@@ -155,7 +167,9 @@ export default function FormularioParticipantes() {
         body: JSON.stringify(applicationData),
       })
 
-      if (response.ok) {
+      const responseData = await response.json()
+      
+      if (response.ok && responseData.success) {
         setShowPopup(true)
         // Reset form
         setNumParticipantes("")
@@ -169,13 +183,17 @@ export default function FormularioParticipantes() {
           fileInputRef.current.value = ""
         }
       } else {
-        const errorData = await response.json()
-        throw new Error(errorData.message || "Error al enviar la aplicación")
+        throw new Error(
+          responseData.error?.message || 
+          responseData.message || 
+          "Error al enviar la aplicación"
+        )
       }
     } catch (error) {
       console.error("Error:", error)
+      const errorMessage = error instanceof Error ? error.message : "Error desconocido"
       alert(
-        "Hubo un error al enviar tu aplicación. Por favor, intenta nuevamente o contacta a cursos.alegria.labs@gmail.com",
+        `Error: ${errorMessage}\n\nSi el problema persiste, contacta a cursos.alegria.labs@gmail.com`,
       )
     } finally {
       setIsSubmitting(false)

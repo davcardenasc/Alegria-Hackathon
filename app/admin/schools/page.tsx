@@ -66,7 +66,10 @@ export default function SchoolApplicationsAdmin() {
   const fetchSchoolApplications = async () => {
     try {
       const response = await fetch("/api/admin/school-applications")
-      const data = await response.json()
+      const result = await response.json()
+      
+      // Handle both old and new API response formats
+      const data = result.success ? result.data?.data || result.data || [] : (Array.isArray(result) ? result : [])
       
       // Parse preferred dates for each application
       const parsedData = data.map((app: any) => ({

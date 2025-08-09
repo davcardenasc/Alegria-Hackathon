@@ -10,9 +10,9 @@ export async function createAdminUser() {
       name: "Administrator"
     },
     {
-      email: "Ugodimartino.27@gmail.com",
+      email: "ugodimartino.27@gmail.com",
       password: "Ugodi01*",
-      name: "Ugodi Administrator"
+      name: "Ugo Di Martino"
     }
   ]
   
@@ -25,7 +25,7 @@ export async function createAdminUser() {
     })
     
     if (existingAdmin) {
-      console.log(`Admin user ${adminData.email} already exists`)
+      // Admin user already exists
       createdAdmins.push(existingAdmin)
       continue
     }
@@ -43,10 +43,7 @@ export async function createAdminUser() {
       }
     })
     
-    console.log("Admin user created:", {
-      email: adminData.email,
-      password: adminData.password
-    })
+    // Admin user created successfully
     
     createdAdmins.push(admin)
   }

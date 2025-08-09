@@ -66,7 +66,10 @@ export default function AdminDashboard() {
   const fetchApplications = async () => {
     try {
       const response = await fetch("/api/admin/applications")
-      const data = await response.json()
+      const result = await response.json()
+      
+      // Handle new API response format
+      const data = result.success ? result.data?.data || result.data || [] : []
       setApplications(data)
       
       // Calculate stats

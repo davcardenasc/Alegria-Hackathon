@@ -34,8 +34,8 @@ export default function MomentosScrollSection() {
             const img = new window.Image()
             img.onload = () => resolve()
             img.onerror = () => {
-              console.warn(`Failed to load image: ${imagen.src}`)
-              resolve() // Resolve anyway to not block other images
+              // Failed to load image, resolve anyway to not block other images
+              resolve()
             }
             img.src = imagen.src
           } else {
@@ -48,8 +48,8 @@ export default function MomentosScrollSection() {
         await Promise.all(imagePromises)
         setImagesLoaded(true)
       } catch (error) {
-        console.error("Error preloading images:", error)
-        setImagesLoaded(true) // Show anyway
+        // Error preloading images, show anyway
+        setImagesLoaded(true)
       }
     }
 

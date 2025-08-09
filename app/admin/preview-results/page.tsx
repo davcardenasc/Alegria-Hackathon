@@ -60,7 +60,10 @@ export default function AdminPreviewResultsPage() {
   const fetchAcceptedTeams = async () => {
     try {
       const response = await fetch("/api/admin/applications")
-      const applications = await response.json()
+      const result = await response.json()
+      
+      // Handle new API response format
+      const applications = result.success ? result.data?.data || result.data || [] : []
       
       // Filter only accepted applications and format for results display
       const accepted = applications

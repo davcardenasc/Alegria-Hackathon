@@ -59,7 +59,9 @@ export default function ReviewPendingApplications() {
       // Fetch all applications and filter client-side to avoid database enum issues
       const response = await fetch("/api/admin/applications")
       if (response.ok) {
-        const data = await response.json()
+        const result = await response.json()
+        // Handle new API response format
+        const data = result.success ? result.data?.data || result.data || [] : []
         // Filter pending applications client-side
         const pendingApps = data.filter((app: any) => app.status === "PENDING")
         // API already returns participants parsed; do not parse again

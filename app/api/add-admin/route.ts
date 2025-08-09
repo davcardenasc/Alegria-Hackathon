@@ -46,11 +46,7 @@ export async function POST(request: NextRequest) {
       }
     })
     
-    console.log("New admin user created:", {
-      email: admin.email,
-      name: admin.name,
-      role: admin.role
-    })
+    // New admin user created successfully
     
     return NextResponse.json({
       success: true,

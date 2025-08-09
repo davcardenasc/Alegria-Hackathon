@@ -1,6 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { prisma } from "@/lib/prisma"
+import { validateApplication, sanitizeInput } from "@/lib/validation"
+import { createErrorResponse, createSuccessResponse, withErrorHandler, ValidationError, DatabaseError, ErrorLogger } from "@/lib/error-handling"
 
 /**
  * Interface for hackathon application form data
@@ -134,86 +136,105 @@ function createApplicationEmailHtml(data: ApplicationFormData): string {
  *   "fecha_aplicacion": "2024-10-15"
  * }
  */
-export async function POST(request: NextRequest) {
+const applicationHandler = async (request: NextRequest) => {
+  // Parse and validate request body
+  const data: ApplicationFormData = await request.json()
+  
+  // Sanitize all text inputs
+  const sanitizedData = {
+    ...data,
+    nombre_equipo: sanitizeInput(data.nombre_equipo),
+    participantes: data.participantes?.map(p => sanitizeInput(p)) || [],
+    colegio: sanitizeInput(data.colegio),
+    ano_escolar: sanitizeInput(data.ano_escolar),
+    correo: sanitizeInput(data.correo),
+    experiencia: data.experiencia ? sanitizeInput(data.experiencia) : undefined,
+    motivacion: sanitizeInput(data.motivacion),
+    ideas: data.ideas ? sanitizeInput(data.ideas) : undefined
+  }
+  
+  // Use comprehensive validation
+  const validationResult = validateApplication({
+    correo: sanitizedData.correo,
+    nombre_equipo: sanitizedData.nombre_equipo,
+    participantes: sanitizedData.participantes,
+    numero_participantes: Number(sanitizedData.numero_participantes),
+    colegio: sanitizedData.colegio,
+    ano_escolar: sanitizedData.ano_escolar,
+    motivacion: sanitizedData.motivacion,
+    experiencia: sanitizedData.experiencia,
+    ideas: sanitizedData.ideas
+  })
+  
+  if (!validationResult.isValid) {
+    throw new ValidationError(
+      "Los datos del formulario contienen errores",
+      {
+        errors: validationResult.errors,
+        warnings: validationResult.warnings
+      }
+    )
+  }
+  
+  // Log warnings if any
+  if (validationResult.warnings && validationResult.warnings.length > 0) {
+    ErrorLogger.log(
+      new Error("Application validation warnings"),
+      { warnings: validationResult.warnings, teamName: sanitizedData.nombre_equipo }
+    )
+  }
+    
+  // Save application to database first
+  let application
   try {
-    // Parse and validate request body
-    const data: ApplicationFormData = await request.json()
-    
-    // Validate required fields
-    if (!data.nombre_equipo || !data.correo || !data.motivacion) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: "Los campos nombre_equipo, correo y motivacion son obligatorios" 
-        }, 
-        { status: 400 }
-      )
-    }
-    
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(data.correo)) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: "El formato del correo electrónico no es válido" 
-        }, 
-        { status: 400 }
-      )
-    }
-    
-    // Save application to database first
-    const application = await prisma.application.create({
+    application = await prisma.application.create({
       data: {
-        teamName: data.nombre_equipo,
-        participantsCount: Number(data.numero_participantes),
-        participants: JSON.stringify(data.participantes),
-        school: data.colegio,
-        gradeOrYear: data.ano_escolar,
-        contactEmail: data.correo,
-        idDocumentUrl: data.cedula_url || null,
-        experienceText: data.experiencia || null,
-        motivationText: data.motivacion,
-        ideasText: data.ideas || null,
+        teamName: sanitizedData.nombre_equipo,
+        participantsCount: Number(sanitizedData.numero_participantes),
+        participants: JSON.stringify(sanitizedData.participantes),
+        school: sanitizedData.colegio,
+        gradeOrYear: sanitizedData.ano_escolar,
+        contactEmail: sanitizedData.correo,
+        idDocumentUrl: sanitizedData.cedula_url || null,
+        experienceText: sanitizedData.experiencia || null,
+        motivationText: sanitizedData.motivacion,
+        ideasText: sanitizedData.ideas || null,
         submittedAt: new Date(),
       }
     })
-
-    // Create HTML content for email
-    const htmlContent = createApplicationEmailHtml(data)
-
-    // Send notification email
-    const { data: emailData, error } = await resend.emails.send({
-      from: process.env.FROM_EMAIL || "AlegrIA Aplicaciones <onboarding@resend.dev>",
-      to: [process.env.TO_EMAIL || "cursos.alegria.labs@gmail.com"],
-      subject: `Nueva Aplicación AlegrIA - Equipo: ${data.nombre_equipo}`,
-      html: htmlContent,
-    })
-
-    if (error) {
-      // Log email error but don't fail the request since application was saved
-      console.error("Failed to send notification email:", error)
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: "Aplicación enviada exitosamente",
-      applicationId: application.id,
-      emailSent: !error // Indicate if notification email was successful
-    })
-  } catch (error) {
-    // Log the full error for debugging (in development only)
-    if (process.env.NODE_ENV === 'development') {
-      console.error("Error processing application:", error)
-    }
-    
-    // Return generic error message to prevent information leakage
-    return NextResponse.json(
-      { 
-        success: false, 
-        message: "Error interno del servidor. Por favor intente nuevamente." 
-      }, 
-      { status: 500 }
+  } catch (dbError) {
+    throw new DatabaseError(
+      "Error al guardar la aplicación en la base de datos",
+      dbError as Error
     )
   }
+
+  // Create HTML content for email
+  const htmlContent = createApplicationEmailHtml(sanitizedData)
+
+  // Send notification email
+  const { data: emailData, error } = await resend.emails.send({
+    from: process.env.FROM_EMAIL || "AlegrIA Aplicaciones <onboarding@resend.dev>",
+    to: [process.env.TO_EMAIL || "cursos.alegria.labs@gmail.com"],
+    subject: `Nueva Aplicación AlegrIA - Equipo: ${sanitizedData.nombre_equipo}`,
+    html: htmlContent,
+  })
+
+  if (error) {
+    // Log email error but don't fail the request since application was saved
+    ErrorLogger.log(
+      new Error("Failed to send notification email"),
+      { error: error.message, applicationId: application.id }
+    )
+  }
+
+  return createSuccessResponse(
+    {
+      applicationId: application.id,
+      emailSent: !error
+    },
+    "Aplicación enviada exitosamente"
+  )
 }
+
+export const POST = withErrorHandler(applicationHandler)
