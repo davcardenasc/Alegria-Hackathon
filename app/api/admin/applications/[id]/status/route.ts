@@ -35,7 +35,7 @@ export async function POST(
       data: {
         status,
         reviewedAt: new Date(),
-        reviewerId: session.user?.email || "admin"
+        reviewedBy: session.user?.email || "admin"
       }
     })
 
