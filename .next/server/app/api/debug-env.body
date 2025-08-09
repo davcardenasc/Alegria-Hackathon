@@ -1,1 +1,0 @@
-{"DATABASE_URL_exists":true,"DATABASE_URL_length":63,"DATABASE_URL_preview":"postgresql://placeholder:placeholder@localhost:543...","DATABASE_URL_has_port":true,"DATABASE_URL_ends_with":"der@localhost:5432/placeholder","NEXTAUTH_URL":"http://localhost:3000","NEXTAUTH_SECRET_exists":true,"NODE_ENV":"production"}

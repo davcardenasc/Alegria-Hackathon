@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowLeft, Upload, X, Calendar, AlertTriangle } from "lucide-react"
+import { ArrowLeft, Upload, X, Calendar, AlertTriangle, Users, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import { CustomPopup } from "@/components/CustomPopup"
 import { useLanguage } from "@/contexts/LanguageContext"
@@ -254,93 +254,116 @@ export default function FormularioParticipantes() {
                 <SelectValue placeholder={t("forms.select_participants")} className="text-[#BFC9DB]" />
               </SelectTrigger>
               <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20">
-                <SelectItem value="2" className="text-white hover:bg-white">
+                <SelectItem value="2" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white">
                   2 participantes
                 </SelectItem>
-                <SelectItem value="3" className="text-white hover:bg-white">
+                <SelectItem value="3" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white">
                   3 participantes
                 </SelectItem>
-                <SelectItem value="4" className="text-white hover:bg-white">
+                <SelectItem value="4" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white">
                   4 participantes
                 </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          {participantes.map((_, index) => (
-            <div key={index}>
-              <Label htmlFor={`participante-${index}`} className="text-[#F7F9FF] mb-2 block">
-                {t("forms.participant_name")} {index + 1} *
+          {/* Team Information Section */}
+          <div className="bg-[#4A5EE7]/5 border border-[#4A5EE7]/20 rounded-lg p-4 mb-6">
+            <h3 className="text-lg font-semibold text-[#F7F9FF] mb-3 flex items-center gap-2">
+              <Users size={20} className="text-[#4A5EE7]" />
+              Información del Equipo
+            </h3>
+            
+            <div className="mb-4">
+              <Label htmlFor="nombre-equipo" className="text-[#F7F9FF] mb-2 block">
+                {t("forms.team_name")}
               </Label>
               <Input
-                id={`participante-${index}`}
-                name={`participante-${index}`}
-                value={participantes[index]}
-                onChange={(e) => handleParticipanteChange(index, e.target.value)}
+                id="nombre-equipo"
+                name="nombre-equipo"
                 className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
-                placeholder="Ingresa el nombre completo"
+                placeholder="Ej: Los Innovadores"
                 required
               />
             </div>
-          ))}
 
-          <div>
-            <Label htmlFor="nombre-equipo" className="text-[#F7F9FF] mb-2 block">
-              {t("forms.team_name")}
-            </Label>
-            <Input
-              id="nombre-equipo"
-              name="nombre-equipo"
-              className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
-              placeholder="Ej: Los Innovadores"
-              required
-            />
+            <div className="space-y-3">
+              <p className="text-[#BFC9DB] text-sm font-medium">Nombres de todos los participantes:</p>
+              {participantes.map((_, index) => (
+                <div key={index}>
+                  <Label htmlFor={`participante-${index}`} className="text-[#F7F9FF] mb-2 block">
+                    {index === 0 ? "Líder del equipo (tu nombre)" : `Participante ${index + 1}`} *
+                  </Label>
+                  <Input
+                    id={`participante-${index}`}
+                    name={`participante-${index}`}
+                    value={participantes[index]}
+                    onChange={(e) => handleParticipanteChange(index, e.target.value)}
+                    className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
+                    placeholder={index === 0 ? "Tu nombre completo (líder del equipo)" : "Nombre completo del participante"}
+                    required
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div>
-            <Label htmlFor="colegio" className="text-[#F7F9FF] mb-2 block">
-              {t("forms.school_university")}
-            </Label>
-            <Input
-              id="colegio"
-              name="colegio"
-              className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
-              placeholder="Ej: Escuela Campo Alegre"
-              required
-            />
-          </div>
+          {/* Team Leader Information Section */}
+          <div className="bg-[#4A5EE7]/5 border border-[#4A5EE7]/20 rounded-lg p-4 mb-6">
+            <h3 className="text-lg font-semibold text-[#F7F9FF] mb-3 flex items-center gap-2">
+              <Users size={20} className="text-[#4A5EE7]" />
+              Información del Líder del Equipo
+            </h3>
+            <p className="text-[#BFC9DB] text-sm mb-4">
+              📋 Solo necesitamos la información del líder del equipo (la persona que está llenando este formulario).
+            </p>
 
-          <div>
-            <Label htmlFor="ano-escolar" className="text-[#F7F9FF] mb-2 block">
-              {t("forms.school_year")}
-            </Label>
-            <Input
-              id="ano-escolar"
-              name="ano-escolar"
-              className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
-              placeholder="Ej: 5to año, 1er semestre universidad"
-              required
-            />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <Label htmlFor="colegio" className="text-[#F7F9FF] mb-2 block">
+                  {t("forms.school_university")}
+                </Label>
+                <Input
+                  id="colegio"
+                  name="colegio"
+                  className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
+                  placeholder="Ej: Escuela Campo Alegre"
+                  required
+                />
+              </div>
 
-          <div>
-            <Label htmlFor="correo" className="text-[#F7F9FF] mb-2 block">
-              {t("forms.contact_email")}
-            </Label>
-            <Input
-              id="correo"
-              name="correo"
-              type="email"
-              className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
-              placeholder="ejemplo@correo.com"
-              required
-            />
-          </div>
+              <div>
+                <Label htmlFor="ano-escolar" className="text-[#F7F9FF] mb-2 block">
+                  {t("forms.school_year")}
+                </Label>
+                <Input
+                  id="ano-escolar"
+                  name="ano-escolar"
+                  className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
+                  placeholder="Ej: 5to año, 1er semestre universidad"
+                  required
+                />
+              </div>
+            </div>
 
-          <div>
-            <Label htmlFor="cedula" className="text-[#F7F9FF] mb-2 block">
-              {t("forms.id_photo")}
-            </Label>
+            <div className="mb-4">
+              <Label htmlFor="correo" className="text-[#F7F9FF] mb-2 block">
+                {t("forms.contact_email")} <span className="text-[#BFC9DB] text-sm">(del líder del equipo)</span>
+              </Label>
+              <Input
+                id="correo"
+                name="correo"
+                type="email"
+                className="bg-[#00162D] border-[#4A5EE7]/20 text-white placeholder:text-[#BFC9DB]/60"
+                placeholder="ejemplo@correo.com"
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="cedula" className="text-[#F7F9FF] mb-2 block">
+                {t("forms.id_photo")} <span className="text-[#BFC9DB] text-sm">(del líder del equipo solamente)</span>
+              </Label>
             <div className="border-2 border-dashed border-[#4A5EE7]/20 rounded-lg p-6 text-center hover:border-[#4A5EE7]/40 transition-colors">
               <input
                 type="file"
@@ -376,11 +399,22 @@ export default function FormularioParticipantes() {
               )}
             </div>
           </div>
+          </div>
 
-          <div>
-            <Label htmlFor="experiencia" className="text-[#F7F9FF] mb-2 block">
-              {t("forms.previous_experience")}
-            </Label>
+          {/* Team-wide Questions Section */}
+          <div className="bg-[#4A5EE7]/5 border border-[#4A5EE7]/20 rounded-lg p-4 mb-6">
+            <h3 className="text-lg font-semibold text-[#F7F9FF] mb-3 flex items-center gap-2">
+              <MessageCircle size={20} className="text-[#4A5EE7]" />
+              Preguntas del Equipo
+            </h3>
+            <p className="text-[#BFC9DB] text-sm mb-4">
+              💭 Estas preguntas son sobre todo el equipo. El líder puede responder en representación del grupo.
+            </p>
+
+            <div>
+              <Label htmlFor="experiencia" className="text-[#F7F9FF] mb-2 block">
+                {t("forms.previous_experience")}
+              </Label>
             <div className="relative">
               <Textarea
                 id="experiencia"
