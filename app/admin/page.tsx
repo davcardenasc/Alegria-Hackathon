@@ -319,7 +319,7 @@ export default function AdminDashboard() {
                 Export CSV
               </Button>
               <Button 
-                onClick={() => window.open('/resultados', '_blank')}
+                onClick={() => window.open('/admin/preview-results', '_blank')}
                 className="bg-yellow-600 hover:bg-yellow-700 text-white"
               >
                 <Trophy size={16} className="mr-2" />

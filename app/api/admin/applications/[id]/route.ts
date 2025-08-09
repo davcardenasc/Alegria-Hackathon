@@ -44,3 +44,41 @@ export async function GET(
     )
   }
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const session = await getServerSession()
+    
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    // Check if application exists
+    const application = await prisma.application.findUnique({
+      where: { id: params.id },
+    })
+
+    if (!application) {
+      return NextResponse.json({ error: "Application not found" }, { status: 404 })
+    }
+
+    // Delete the application
+    await prisma.application.delete({
+      where: { id: params.id },
+    })
+
+    return NextResponse.json({ 
+      success: true,
+      message: "Application deleted successfully" 
+    })
+  } catch (error) {
+    console.error("Error deleting application:", error)
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    )
+  }
+}

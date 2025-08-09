@@ -19,7 +19,9 @@ import {
   FileText, 
   MessageCircle,
   Lightbulb,
-  Award
+  Award,
+  Trash2,
+  RotateCcw
 } from "lucide-react"
 import Link from "next/link"
 
@@ -86,7 +88,7 @@ export default function ApplicationDetail() {
     }
   }
 
-  const updateApplicationStatus = async (status: "ACCEPTED" | "REJECTED") => {
+  const updateApplicationStatus = async (status: "ACCEPTED" | "REJECTED" | "PENDING") => {
     if (!application) return
     
     setActionLoading(true)
@@ -103,7 +105,7 @@ export default function ApplicationDetail() {
         const data = await response.json()
         setApplication({ ...application, status: data.status, reviewedAt: data.reviewedAt })
         // Show success message
-        alert(`Application ${status.toLowerCase()} successfully! Email sent to team.`)
+        alert(`Application ${status.toLowerCase()} successfully! Status updated.`)
       } else {
         const errorData = await response.json()
         alert(`Error: ${errorData.error}`)
@@ -111,6 +113,33 @@ export default function ApplicationDetail() {
     } catch (error) {
       console.error("Error updating status:", error)
       alert("Error updating application status")
+    } finally {
+      setActionLoading(false)
+    }
+  }
+
+  const deleteApplication = async () => {
+    if (!application) return
+    
+    const confirmed = confirm(`Are you sure you want to delete the application from team "${application.teamName}"? This action cannot be undone.`)
+    if (!confirmed) return
+    
+    setActionLoading(true)
+    try {
+      const response = await fetch(`/api/admin/applications/${application.id}`, {
+        method: "DELETE",
+      })
+      
+      if (response.ok) {
+        alert("Application deleted successfully!")
+        router.push("/admin")
+      } else {
+        const errorData = await response.json()
+        alert(`Error: ${errorData.error}`)
+      }
+    } catch (error) {
+      console.error("Error deleting application:", error)
+      alert("Error deleting application")
     } finally {
       setActionLoading(false)
     }
@@ -281,12 +310,13 @@ export default function ApplicationDetail() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Actions */}
-            {application.status === "PENDING" && (
-              <Card className="bg-[#00162D] border-[#4A5EE7]/20">
-                <CardHeader>
-                  <CardTitle className="text-[#F7F9FF]">Actions</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
+            <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+              <CardHeader>
+                <CardTitle className="text-[#F7F9FF]">Actions</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {/* Status Change Buttons */}
+                {application.status !== "ACCEPTED" && (
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button 
@@ -294,14 +324,14 @@ export default function ApplicationDetail() {
                         disabled={actionLoading}
                       >
                         <Check size={16} className="mr-2" />
-                        Accept Application
+                        {application.status === "REJECTED" ? "Change to Accepted" : "Accept Application"}
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
                       <DialogHeader>
                         <DialogTitle>Accept Application</DialogTitle>
                         <DialogDescription className="text-[#BFC9DB]">
-                          This will send an acceptance email to {application.contactEmail} and mark the application as accepted.
+                          This will mark the application as accepted and it will appear on the results preview page.
                         </DialogDescription>
                       </DialogHeader>
                       <DialogFooter>
@@ -315,7 +345,9 @@ export default function ApplicationDetail() {
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
+                )}
 
+                {application.status !== "REJECTED" && (
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button 
@@ -324,14 +356,14 @@ export default function ApplicationDetail() {
                         disabled={actionLoading}
                       >
                         <X size={16} className="mr-2" />
-                        Reject Application
+                        {application.status === "ACCEPTED" ? "Change to Rejected" : "Reject Application"}
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
                       <DialogHeader>
                         <DialogTitle>Reject Application</DialogTitle>
                         <DialogDescription className="text-[#BFC9DB]">
-                          This will send a rejection email to {application.contactEmail} and mark the application as rejected.
+                          This will mark the application as rejected and remove it from the results preview page.
                         </DialogDescription>
                       </DialogHeader>
                       <DialogFooter>
@@ -345,9 +377,73 @@ export default function ApplicationDetail() {
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
-                </CardContent>
-              </Card>
-            )}
+                )}
+
+                {application.status !== "PENDING" && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button 
+                        className="w-full bg-yellow-600 hover:bg-yellow-700 text-white"
+                        disabled={actionLoading}
+                      >
+                        <RotateCcw size={16} className="mr-2" />
+                        Mark as Pending
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
+                      <DialogHeader>
+                        <DialogTitle>Mark as Pending</DialogTitle>
+                        <DialogDescription className="text-[#BFC9DB]">
+                          This will reset the application status to pending for further review.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <DialogFooter>
+                        <Button 
+                          onClick={() => updateApplicationStatus("PENDING")}
+                          className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                          disabled={actionLoading}
+                        >
+                          {actionLoading ? "Processing..." : "Mark as Pending"}
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                <Separator className="bg-[#4A5EE7]/20" />
+
+                {/* Delete Button */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button 
+                      variant="outline"
+                      className="w-full border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                      disabled={actionLoading}
+                    >
+                      <Trash2 size={16} className="mr-2" />
+                      Delete Application
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
+                    <DialogHeader>
+                      <DialogTitle>Delete Application</DialogTitle>
+                      <DialogDescription className="text-[#BFC9DB]">
+                        Are you sure you want to permanently delete this application? This action cannot be undone.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <Button 
+                        onClick={deleteApplication}
+                        variant="destructive"
+                        disabled={actionLoading}
+                      >
+                        {actionLoading ? "Deleting..." : "Delete Permanently"}
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </CardContent>
+            </Card>
 
             {/* Metadata */}
             <Card className="bg-[#00162D] border-[#4A5EE7]/20">
