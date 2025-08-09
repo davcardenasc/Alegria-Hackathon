@@ -20,7 +20,9 @@ import {
   FileText,
   MessageCircle,
   Lightbulb,
-  Award
+  Award,
+  Trash2,
+  RotateCcw
 } from "lucide-react"
 import Link from "next/link"
 
@@ -103,7 +105,7 @@ export default function ReviewPendingApplications() {
     }
   }
 
-  const updateApplicationStatus = async (status: "ACCEPTED" | "REJECTED") => {
+  const updateApplicationStatus = async (status: "ACCEPTED" | "REJECTED" | "PENDING") => {
     if (!currentApplication) return
     
     setActionLoading(true)
@@ -117,13 +119,14 @@ export default function ReviewPendingApplications() {
       })
       
       if (response.ok) {
-        // Remove this application from the pending list
-        const updatedApplications = applications.filter((_, index) => index !== currentIndex)
-        setApplications(updatedApplications)
-        
-        // Adjust current index if needed
-        if (currentIndex >= updatedApplications.length && updatedApplications.length > 0) {
-          setCurrentIndex(updatedApplications.length - 1)
+        // If moved out of pending, remove from list; if set to PENDING keep
+        if (status !== "PENDING") {
+          const updatedApplications = applications.filter((_, index) => index !== currentIndex)
+          setApplications(updatedApplications)
+          // Adjust current index if needed
+          if (currentIndex >= updatedApplications.length && updatedApplications.length > 0) {
+            setCurrentIndex(updatedApplications.length - 1)
+          }
         }
         
         // Broadcast update for listeners (e.g., preview page)
@@ -135,7 +138,7 @@ export default function ReviewPendingApplications() {
           }
         } catch {}
 
-        alert(`Application ${status.toLowerCase()} successfully! Email sent to team.`)
+        alert("Status updated.")
       } else {
         const errorData = await response.json()
         alert(`Error: ${errorData.error}`)
@@ -347,9 +350,9 @@ export default function ReviewPendingApplications() {
                     <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
                       <DialogHeader>
                         <DialogTitle>Accept Application</DialogTitle>
-                        <DialogDescription className="text-[#BFC9DB]">
-                          This will send an acceptance email to {currentApplication.contactEmail} and remove this application from the pending queue.
-                        </DialogDescription>
+                      <DialogDescription className="text-[#BFC9DB]">
+                        This will mark the application as accepted and remove it from the pending queue.
+                      </DialogDescription>
                       </DialogHeader>
                       <DialogFooter>
                         <Button 
@@ -377,9 +380,9 @@ export default function ReviewPendingApplications() {
                     <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
                       <DialogHeader>
                         <DialogTitle>Reject Application</DialogTitle>
-                        <DialogDescription className="text-[#BFC9DB]">
-                          This will send a rejection email to {currentApplication.contactEmail} and remove this application from the pending queue.
-                        </DialogDescription>
+                      <DialogDescription className="text-[#BFC9DB]">
+                        This will mark the application as rejected and remove it from the pending queue.
+                      </DialogDescription>
                       </DialogHeader>
                       <DialogFooter>
                         <Button 
@@ -418,77 +421,24 @@ export default function ReviewPendingApplications() {
                     <div>
                       <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
                       <div className="space-y-2">
-                        <p className="text-[#F7F9FF] text-xs font-mono break-all">Raw URL: {currentApplication.idDocumentUrl}</p>
-                        {(() => {
-                          const url = currentApplication.idDocumentUrl
-                          console.log("ID Document URL:", url)
-                          
-                          // This looks like just a filename, not a full URL
-                          // Let's check different possible storage locations
-                          const isImage = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(url)
-                          console.log("Is image:", isImage)
-                          
-                          // Try different possible paths where images might be stored
-                          const possiblePaths = [
-                            url, // original
-                            `/uploads/${url}`, // common upload folder
-                            `/public/uploads/${url}`, // public uploads
-                            `/_next/static/media/${url}`, // Next.js static
-                            `/api/files/${url}`, // API route for files
-                          ]
-                          
-                          console.log("Trying these paths:", possiblePaths)
-                          
-                          if (isImage) {
-                            return (
-                              <div className="space-y-2">
-                                <p className="text-green-300 text-xs">✓ Detected as image filename: {url}</p>
-                                <p className="text-orange-300 text-xs">⚠️ This appears to be just a filename, not a full URL. Images may need proper file storage setup.</p>
-                                
-                                {/* Try to display from different possible paths */}
-                                <div className="space-y-1">
-                                  {possiblePaths.map((path, index) => (
-                                    <div key={index} className="text-xs">
-                                      <p className="text-[#BFC9DB]">Trying: {path}</p>
-                                      <img 
-                                        src={path}
-                                        alt={`ID Document attempt ${index + 1}`}
-                                        className="max-w-full max-h-32 object-contain border border-[#4A5EE7]/20 rounded"
-                                        onLoad={(e) => {
-                                          console.log(`Image loaded from path ${index + 1}:`, path)
-                                          e.currentTarget.nextElementSibling.textContent = "✅ Success!"
-                                          e.currentTarget.nextElementSibling.className = "text-green-300 text-xs"
-                                        }}
-                                        onError={(e) => {
-                                          console.log(`Image failed from path ${index + 1}:`, path)
-                                          e.currentTarget.style.display = 'none'
-                                          e.currentTarget.nextElementSibling.textContent = "❌ Failed"
-                                          e.currentTarget.nextElementSibling.className = "text-red-300 text-xs"
-                                        }}
-                                      />
-                                      <p className="text-gray-400 text-xs">Loading...</p>
-                                    </div>
-                                  ))}
-                                </div>
-                                
-                                <p className="text-yellow-300 text-xs mt-2">
-                                  💡 If none work, the application form may need to be updated to properly store images in a file storage system.
-                                </p>
-                              </div>
-                            )
-                          } else {
-                            return (
-                              <a 
-                                href={fullUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
-                              >
-                                View Document ↗
-                              </a>
-                            )
-                          }
-                        })()}
+                        {(currentApplication.idDocumentUrl.startsWith('http') || currentApplication.idDocumentUrl.startsWith('/uploads/')) ? (
+                          <div>
+                            <a 
+                              href={currentApplication.idDocumentUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-block bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                            >
+                              📄 View Document ↗
+                            </a>
+                          </div>
+                        ) : (
+                          <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
+                            <p className="text-yellow-300 text-xs font-semibold mb-1">📂 Legacy filename:</p>
+                            <p className="text-[#F7F9FF] text-xs font-mono mb-2">{currentApplication.idDocumentUrl}</p>
+                            <p className="text-[#BFC9DB] text-xs">This application was submitted before cloud storage was implemented. The actual file is not available.</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
