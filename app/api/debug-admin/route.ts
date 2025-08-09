@@ -8,11 +8,8 @@ import bcrypt from "bcryptjs"
  */
 export async function GET(request: NextRequest) {
   try {
-    // Get all admin users
-    const admins = await prisma.user.findMany({
-      where: {
-        role: 'ADMINISTRATOR'
-      },
+    // Get all users (without role filter to avoid enum issues)
+    const allUsers = await prisma.user.findMany({
       select: {
         id: true,
         email: true,
@@ -56,8 +53,8 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      totalAdmins: admins.length,
-      admins: admins,
+      totalUsers: allUsers.length,
+      allUsers: allUsers,
       ugodiUpperCase: ugodi,
       ugodiLowerCase: ugodiLower,
       passwordTest: {
