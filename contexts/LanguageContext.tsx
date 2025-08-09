@@ -8,7 +8,8 @@ type Language = "es" | "en"
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string | string[]
+  t: (key: string) => string
+  tArray: (key: string) => string[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -621,13 +622,27 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("alegria-language", lang)
   }
 
-  const t = (key: string): string | string[] => {
+  const t = (key: string): string => {
     const translation = translations[language][key as keyof (typeof translations)[typeof language]]
-    return translation || key
+    // If translation is an array, join it or return first element
+    if (Array.isArray(translation)) {
+      return translation.join(', ')
+    }
+    return (translation as string) || key
+  }
+
+  const tArray = (key: string): string[] => {
+    const translation = translations[language][key as keyof (typeof translations)[typeof language]]
+    // If translation is an array, return it
+    if (Array.isArray(translation)) {
+      return translation
+    }
+    // If it's a string, return as single-item array
+    return translation ? [translation as string] : [key]
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t, tArray }}>
       {children}
     </LanguageContext.Provider>
   )
