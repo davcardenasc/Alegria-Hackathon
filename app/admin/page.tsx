@@ -413,15 +413,22 @@ export default function AdminDashboard() {
                     className="flex items-center gap-4 p-4 border border-[#4A5EE7]/10 rounded-lg hover:border-[#4A5EE7]/30 transition-colors cursor-pointer"
                     onClick={() => { window.location.href = `/admin/applications/${app.id}` }}
                   >
-                    <input
-                      type="checkbox"
-                      checked={selectedIds.has(app.id)}
-                      onChange={(e) => {
-                        e.stopPropagation()
-                        toggleSelect(app.id)
-                      }}
-                      className="accent-[#4A5EE7]"
-                    />
+                    <div
+                      onClick={(e) => { e.stopPropagation(); toggleSelect(app.id) }}
+                      className={`shrink-0 w-8 h-8 min-w-8 mr-1 md:mr-2 flex items-center justify-center rounded-md border ${selectedIds.has(app.id) ? 'border-[#4A5EE7] bg-[#4A5EE7]/20' : 'border-[#4A5EE7]/30 bg-transparent'} cursor-pointer`}
+                      aria-label={`Select ${app.teamName}`}
+                      role="checkbox"
+                      aria-checked={selectedIds.has(app.id)}
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); toggleSelect(app.id) } }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.has(app.id)}
+                        readOnly
+                        className="pointer-events-none accent-[#4A5EE7] w-4 h-4"
+                      />
+                    </div>
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
