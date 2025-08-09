@@ -63,6 +63,7 @@ export default function Header() {
       dropdownItems: [
         { href: "/#mision", label: t("nav.mission") },
         { href: "/#overview", label: t("nav.overview") },
+        { href: "/#momentos-galeria", label: t("nav.moments") },
         { href: "/#cronograma", label: t("nav.schedule") },
         { href: "/speakers", label: t("nav.speakers") },
       ],
@@ -88,7 +89,6 @@ export default function Header() {
     },
     { href: "/#workshops", label: t("nav.workshops") },
     { href: "/#embajadores", label: t("nav.ambassadors") },
-    { href: "/#momentos", label: t("nav.moments") },
     { href: "/#faq", label: t("nav.faq") },
     { href: "/#contacto", label: t("nav.contact") },
   ]
