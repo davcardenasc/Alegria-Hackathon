@@ -43,11 +43,19 @@ export async function GET(request: NextRequest) {
         motivationText: true,
         ideasText: true,
         idDocumentUrl: true,
+        reviewedAt: true,
+        reviewedBy: true,
       }
     })
 
-    console.log("API: Found applications:", applications.length)
-    return NextResponse.json(applications)
+    // Parse participants JSON for each application
+    const processedApplications = applications.map(app => ({
+      ...app,
+      participants: JSON.parse(app.participants)
+    }))
+
+    console.log("API: Found applications:", processedApplications.length)
+    return NextResponse.json(processedApplications)
   } catch (error) {
     console.error("Error fetching applications:", error)
     return NextResponse.json(
