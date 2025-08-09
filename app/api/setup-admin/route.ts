@@ -169,7 +169,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       success: true, 
       message: "Admin users and templates created successfully",
-      admins: Array.isArray(admins) ? admins.map(admin => ({ email: admin.email, name: admin.name })) : [{ email: admins.email, name: admins.name }]
+      admins: admins.map(admin => ({ email: admin.email, name: admin.name }))
     })
 
   } catch (error) {
