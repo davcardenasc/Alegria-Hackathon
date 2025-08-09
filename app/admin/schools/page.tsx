@@ -363,16 +363,30 @@ export default function SchoolApplicationsAdmin() {
                         <div className="flex items-center gap-2">
                           <Mail size={16} className="text-[#4A5EE7]" />
                           <div>
-                            <p className="text-[#F7F9FF]">{app.coordinatorEmail}</p>
-                            <p className="text-[#BFC9DB] text-sm">Contact Email</p>
+                            <a 
+                              href={`mailto:${app.coordinatorEmail}?subject=AlegrIA Workshop Request - ${app.schoolName}`}
+                              className="text-[#F7F9FF] hover:text-[#4A5EE7] underline"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {app.coordinatorEmail}
+                            </a>
+                            <p className="text-[#BFC9DB] text-sm">Contact Email (click to open Gmail)</p>
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
                           <Phone size={16} className="text-[#4A5EE7]" />
                           <div>
-                            <p className="text-[#F7F9FF]">{app.phone}</p>
-                            <p className="text-[#BFC9DB] text-sm">Phone</p>
+                            <a 
+                              href={`https://wa.me/${app.phone.replace(/\D/g, '')}?text=Hello! I'm contacting you regarding your workshop request for ${app.schoolName}.`}
+                              className="text-[#F7F9FF] hover:text-green-400 underline"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {app.phone}
+                            </a>
+                            <p className="text-[#BFC9DB] text-sm">Phone (click to open WhatsApp)</p>
                           </div>
                         </div>
 
@@ -417,68 +431,23 @@ export default function SchoolApplicationsAdmin() {
                         </div>
                       )}
 
-                      {/* Actions */}
-                      {app.status === "PENDING" && (
-                        <div className="flex gap-2 pt-4">
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button 
-                                className="bg-green-600 hover:bg-green-700 text-white"
-                                disabled={actionLoading}
-                              >
-                                <Check size={16} className="mr-2" />
-                                Accept
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
-                              <DialogHeader>
-                                <DialogTitle>Accept School Application</DialogTitle>
-                                <DialogDescription className="text-[#BFC9DB]">
-                                  This will accept the workshop request from {app.schoolName}.
-                                </DialogDescription>
-                              </DialogHeader>
-                              <DialogFooter>
-                                <Button 
-                                  onClick={() => updateApplicationStatus(app.id, "ACCEPTED")}
-                                  className="bg-green-600 hover:bg-green-700 text-white"
-                                  disabled={actionLoading}
-                                >
-                                  {actionLoading ? "Processing..." : "Confirm Accept"}
-                                </Button>
-                              </DialogFooter>
-                            </DialogContent>
-                          </Dialog>
-
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button 
-                                variant="destructive" 
-                                disabled={actionLoading}
-                              >
-                                <X size={16} className="mr-2" />
-                                Reject
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
-                              <DialogHeader>
-                                <DialogTitle>Reject School Application</DialogTitle>
-                                <DialogDescription className="text-[#BFC9DB]">
-                                  This will reject the workshop request from {app.schoolName}.
-                                </DialogDescription>
-                              </DialogHeader>
-                              <DialogFooter>
-                                <Button 
-                                  onClick={() => updateApplicationStatus(app.id, "REJECTED")}
-                                  variant="destructive"
-                                  disabled={actionLoading}
-                                >
-                                  {actionLoading ? "Processing..." : "Confirm Reject"}
-                                </Button>
-                              </DialogFooter>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                      )}
+                      {/* Quick Contact Actions */}
+                      <div className="flex gap-2 pt-4">
+                        <Button 
+                          onClick={() => window.open(`mailto:${app.coordinatorEmail}?subject=AlegrIA Workshop Request - ${app.schoolName}`, '_blank')}
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          <Mail size={16} className="mr-2" />
+                          Email Coordinator
+                        </Button>
+                        <Button 
+                          onClick={() => window.open(`https://wa.me/${app.phone.replace(/\D/g, '')}?text=Hello! I'm contacting you regarding your workshop request for ${app.schoolName}.`, '_blank')}
+                          className="bg-green-600 hover:bg-green-700 text-white"
+                        >
+                          <Phone size={16} className="mr-2" />
+                          WhatsApp
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
