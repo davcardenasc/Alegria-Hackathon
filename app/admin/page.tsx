@@ -21,7 +21,8 @@ import {
   Users,
   ChartBar,
   School,
-  Trophy
+  Trophy,
+  Trash2
 } from "lucide-react"
 
 interface Application {
@@ -43,6 +44,8 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("ALL")
   const [loading, setLoading] = useState(true)
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [deleting, setDeleting] = useState(false)
   const [stats, setStats] = useState({
     total: 0,
     pending: 0,
@@ -102,6 +105,43 @@ export default function AdminDashboard() {
     }
 
     setFilteredApplications(filtered)
+  }
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  const selectAllVisible = () => {
+    setSelectedIds(new Set(filteredApplications.map(a => a.id)))
+  }
+
+  const clearSelection = () => {
+    setSelectedIds(new Set())
+  }
+
+  const deleteSelected = async () => {
+    if (selectedIds.size === 0) return
+    const confirmed = confirm(`Delete ${selectedIds.size} selected application(s)? This cannot be undone.`)
+    if (!confirmed) return
+    setDeleting(true)
+    try {
+      for (const id of selectedIds) {
+        await fetch(`/api/admin/applications/${id}`, { method: 'DELETE' })
+      }
+      await fetchApplications()
+      clearSelection()
+      alert('Selected applications deleted')
+    } catch (e) {
+      console.error(e)
+      alert('Error deleting selected applications')
+    } finally {
+      setDeleting(false)
+    }
   }
 
   const toggleStar = async (applicationId: string) => {
@@ -335,6 +375,32 @@ export default function AdminDashboard() {
             <CardTitle className="text-[#F7F9FF]">
               Applications ({filteredApplications.length})
             </CardTitle>
+            {filteredApplications.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                <Button
+                  variant="outline"
+                  onClick={selectAllVisible}
+                  className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
+                >
+                  Select All
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={clearSelection}
+                  className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
+                >
+                  Clear Selection
+                </Button>
+                <Button
+                  onClick={deleteSelected}
+                  disabled={selectedIds.size === 0 || deleting}
+                  className="bg-red-600 hover:bg-red-700 text-white"
+                >
+                  <Trash2 size={16} className="mr-2" />
+                  {deleting ? 'Deleting...' : `Delete Selected (${selectedIds.size})`}
+                </Button>
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -345,8 +411,17 @@ export default function AdminDashboard() {
                   <div
                     key={app.id}
                     className="flex items-center gap-4 p-4 border border-[#4A5EE7]/10 rounded-lg hover:border-[#4A5EE7]/30 transition-colors cursor-pointer"
-                    onClick={() => window.open(`/admin/applications/${app.id}`, '_blank')}
+                    onClick={() => { window.location.href = `/admin/applications/${app.id}` }}
                   >
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.has(app.id)}
+                      onChange={(e) => {
+                        e.stopPropagation()
+                        toggleSelect(app.id)
+                      }}
+                      className="accent-[#4A5EE7]"
+                    />
                     <button
                       onClick={(e) => {
                         e.stopPropagation()

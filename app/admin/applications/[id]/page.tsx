@@ -260,7 +260,15 @@ export default function ApplicationDetail() {
 
                 <div>
                   <p className="text-sm text-[#BFC9DB] mb-1">Contact Email</p>
-                  <p className="text-[#F7F9FF]">{application.contactEmail}</p>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(application.contactEmail)
+                      alert('Email copied to clipboard')
+                    }}
+                    className="text-[#F7F9FF] underline underline-offset-2 hover:text-[#4A5EE7]"
+                  >
+                    {application.contactEmail}
+                  </button>
                 </div>
               </CardContent>
             </Card>

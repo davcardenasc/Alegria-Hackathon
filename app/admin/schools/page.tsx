@@ -21,7 +21,8 @@ import {
   Phone,
   Mail,
   Calendar,
-  MessageCircle
+  MessageCircle,
+  Trash2
 } from "lucide-react"
 import Link from "next/link"
 
@@ -32,7 +33,7 @@ interface SchoolApplication {
   coordinatorEmail: string
   phone: string
   numStudents: number
-  preferredDates: string
+  preferredDates: string[] // Changed from string to string[] since it's parsed as JSON array
   comments?: string
   status: "PENDING" | "ACCEPTED" | "REJECTED"
   starred: boolean
@@ -360,20 +361,18 @@ export default function SchoolApplicationsAdmin() {
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-2">
-                          <Mail size={16} className="text-[#4A5EE7]" />
-                          <div>
-                            <a 
-                              href={`mailto:${app.coordinatorEmail}?subject=AlegrIA Workshop Request - ${app.schoolName}`}
-                              className="text-[#F7F9FF] hover:text-[#4A5EE7] underline"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {app.coordinatorEmail}
-                            </a>
-                            <p className="text-[#BFC9DB] text-sm">Contact Email (click to open Gmail)</p>
+                          <div className="flex items-center gap-2">
+                            <Mail size={16} className="text-[#4A5EE7]" />
+                            <div>
+                              <button
+                                onClick={() => { navigator.clipboard.writeText(app.coordinatorEmail); alert('Email copied to clipboard') }}
+                                className="text-[#F7F9FF] hover:text-[#4A5EE7] underline"
+                              >
+                                {app.coordinatorEmail}
+                              </button>
+                              <p className="text-[#BFC9DB] text-sm">Click to copy email</p>
+                            </div>
                           </div>
-                        </div>
 
                         <div className="flex items-center gap-2">
                           <Phone size={16} className="text-[#4A5EE7]" />
@@ -434,11 +433,11 @@ export default function SchoolApplicationsAdmin() {
                       {/* Quick Contact Actions */}
                       <div className="flex gap-2 pt-4">
                         <Button 
-                          onClick={() => window.open(`mailto:${app.coordinatorEmail}?subject=AlegrIA Workshop Request - ${app.schoolName}`, '_blank')}
+                          onClick={() => { navigator.clipboard.writeText(app.coordinatorEmail); alert('Email copied to clipboard') }}
                           className="bg-blue-600 hover:bg-blue-700 text-white"
                         >
                           <Mail size={16} className="mr-2" />
-                          Email Coordinator
+                          Copy Email
                         </Button>
                         <Button 
                           onClick={() => window.open(`https://wa.me/${app.phone.replace(/\D/g, '')}?text=Hello! I'm contacting you regarding your workshop request for ${app.schoolName}.`, '_blank')}
@@ -446,6 +445,29 @@ export default function SchoolApplicationsAdmin() {
                         >
                           <Phone size={16} className="mr-2" />
                           WhatsApp
+                        </Button>
+                        <Button
+                          onClick={async () => {
+                            const ok = confirm(`Delete workshop request from ${app.schoolName}? This action cannot be undone.`)
+                            if (!ok) return
+                            try {
+                              const res = await fetch(`/api/admin/school-applications/${app.id}`, { method: 'DELETE' })
+                              if (!res.ok) {
+                                const errorData = await res.json()
+                                throw new Error(errorData.error || 'Failed to delete')
+                              }
+                              await fetchSchoolApplications()
+                              alert('School application deleted successfully!')
+                            } catch (e) {
+                              console.error('Error deleting school application:', e)
+                              alert(`Error deleting school application: ${e instanceof Error ? e.message : 'Unknown error'}`)
+                            }
+                          }}
+                          variant="outline"
+                          className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                        >
+                          <Trash2 size={16} className="mr-2" />
+                          Delete
                         </Button>
                       </div>
                     </div>

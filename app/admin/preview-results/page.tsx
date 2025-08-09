@@ -201,17 +201,30 @@ export default function AdminPreviewResultsPage() {
           )}
 
           {/* Teams List */}
-           {filteredTeams.length === 0 ? (
+          {filteredTeams.length === 0 ? (
             <Card className="bg-[#4A5EE7]/5 border-[#4A5EE7]/20 text-center py-12">
               <CardContent>
                 <Sparkles className="mx-auto mb-4 text-[#4A5EE7]" size={64} />
-                <h2 className="text-2xl font-bold text-[#F7F9FF] mb-4">
-                  No teams accepted yet
-                </h2>
-                <p className="text-[#BFC9DB] mb-6">
-                  When you accept applications, they will appear here as a preview <br />
-                  of what will be shown on the public results page.
-                </p>
+                {searchTerm ? (
+                  <>
+                    <h2 className="text-2xl font-bold text-[#F7F9FF] mb-4">
+                      No teams or schools match your search
+                    </h2>
+                    <p className="text-[#BFC9DB] mb-6">
+                      Try a different query or clear the search.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-2xl font-bold text-[#F7F9FF] mb-4">
+                      No teams accepted yet
+                    </h2>
+                    <p className="text-[#BFC9DB] mb-6">
+                      When you accept applications, they will appear here as a preview <br />
+                      of what will be shown on the public results page.
+                    </p>
+                  </>
+                )}
                 <Link
                   href="/admin"
                   className="inline-block bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
