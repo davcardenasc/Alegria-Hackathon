@@ -2,9 +2,48 @@ import { type NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { prisma } from "@/lib/prisma"
 
-const resend = new Resend("re_jo94ZKQX_2aFDDKvNwSNYYQC3qBnsJsn5")
+/**
+ * Interface for school application form data
+ */
+interface SchoolApplicationFormData {
+  nombre_colegio: string
+  coordinador: string
+  correo_coordinador: string
+  telefono: string
+  num_alumnos: number
+  fechas_seleccionadas?: string[]
+  comentarios?: string
+  fecha_aplicacion: string
+}
 
-function createSchoolApplicationEmailHtml(data: any): string {
+// Initialize Resend with API key from environment variables
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+// Validate required environment variables
+if (!process.env.RESEND_API_KEY) {
+  console.error("RESEND_API_KEY environment variable is required")
+}
+
+if (!process.env.FROM_EMAIL) {
+  console.error("FROM_EMAIL environment variable is required")
+}
+
+/**
+ * Creates HTML email content for school workshop application notifications
+ * 
+ * @param data - School application form data
+ * @param data.nombre_colegio - School name
+ * @param data.coordinador - Coordinator/teacher name
+ * @param data.correo_coordinador - Coordinator email
+ * @param data.telefono - Phone number
+ * @param data.num_alumnos - Number of interested students
+ * @param data.fechas_seleccionadas - Array of preferred dates (optional)
+ * @param data.comentarios - Additional comments (optional)
+ * @param data.fecha_aplicacion - Application submission date
+ * 
+ * @returns HTML string formatted for email notification
+ */
+function createSchoolApplicationEmailHtml(data: SchoolApplicationFormData): string {
   const datesList =
     data.fechas_seleccionadas && data.fechas_seleccionadas.length > 0
       ? `<ul>${data.fechas_seleccionadas.map((fecha: string) => `<li>${fecha}</li>`).join("")}</ul>`
@@ -48,9 +87,60 @@ function createSchoolApplicationEmailHtml(data: any): string {
   `
 }
 
+/**
+ * Handles school workshop application submissions
+ * 
+ * This API endpoint:
+ * 1. Validates and sanitizes school application data
+ * 2. Saves application to PostgreSQL database via Prisma
+ * 3. Sends notification email to administrators via Resend
+ * 4. Returns success/error response to client
+ * 
+ * @param request - Next.js request object containing school application data
+ * @returns JSON response with success status and application ID
+ * 
+ * @example
+ * POST /api/send-school-application
+ * Content-Type: application/json
+ * 
+ * {
+ *   "nombre_colegio": "Colegio San José",
+ *   "coordinador": "María González",
+ *   "correo_coordinador": "maria@colegio.edu",
+ *   "telefono": "+58 212-1234567",
+ *   "num_alumnos": 25,
+ *   "fechas_seleccionadas": ["2024-11-15", "2024-11-22"],
+ *   "comentarios": "Interesados en workshop de emprendimiento",
+ *   "fecha_aplicacion": "2024-10-15"
+ * }
+ */
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json()
+    // Parse and validate request body
+    const data: SchoolApplicationFormData = await request.json()
+    
+    // Validate required fields
+    if (!data.nombre_colegio || !data.coordinador || !data.correo_coordinador) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: "Los campos nombre_colegio, coordinador y correo_coordinador son obligatorios" 
+        }, 
+        { status: 400 }
+      )
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(data.correo_coordinador)) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: "El formato del correo electrónico no es válido" 
+        }, 
+        { status: 400 }
+      )
+    }
     
     // Save school application to database
     const schoolApplication = await prisma.schoolApplication.create({
@@ -69,29 +159,38 @@ export async function POST(request: NextRequest) {
     // Create HTML content for notification email
     const htmlContent = createSchoolApplicationEmailHtml(data)
 
-    // Send notification email (keep existing functionality)
+    // Send notification email
     const { data: emailData, error } = await resend.emails.send({
-      from: "AlegrIA Aplicaciones <onboarding@resend.dev>",
-      to: ["cursos.alegria.labs@gmail.com"],
+      from: process.env.FROM_EMAIL || "AlegrIA Aplicaciones <onboarding@resend.dev>",
+      to: [process.env.TO_EMAIL || "cursos.alegria.labs@gmail.com"],
       subject: `Nueva Solicitud de Workshop - ${data.nombre_colegio}`,
       html: htmlContent,
     })
 
     if (error) {
-      console.error("Resend error:", error)
-      // Continue even if email fails, as application is saved in DB
+      // Log email error but don't fail the request since application was saved
+      console.error("Failed to send school application notification email:", error)
     }
 
     return NextResponse.json({
       success: true,
       message: "Aplicación de colegio enviada exitosamente",
-      applicationId: schoolApplication.id
+      applicationId: schoolApplication.id,
+      emailSent: !error // Indicate if notification email was successful
     })
   } catch (error) {
-    console.error("Error processing school application:", error)
+    // Log the full error for debugging (in development only)
+    if (process.env.NODE_ENV === 'development') {
+      console.error("Error processing school application:", error)
+    }
+    
+    // Return generic error message to prevent information leakage
     return NextResponse.json(
-      { success: false, message: "Error al procesar la aplicación del colegio" },
-      { status: 500 },
+      { 
+        success: false, 
+        message: "Error interno del servidor. Por favor intente nuevamente." 
+      },
+      { status: 500 }
     )
   }
 }
