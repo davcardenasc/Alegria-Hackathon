@@ -1,8 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/resultados/page": "app/resultados/page.js",
-  "/api/public/accepted-teams/route": "app/api/public/accepted-teams/route.js",
-  "/admin/page": "app/admin/page.js",
   "/admin/login/page": "app/admin/login/page.js"
 }

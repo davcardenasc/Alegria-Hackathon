@@ -3,8 +3,9 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET() {
   try {
-    // Check if announcement date has passed (September 28th, 2025)
-    const announcementDate = new Date("2025-09-28T00:00:00.000Z")
+    // Check if announcement date has passed (September 28th, 2025 at 12:00am ET)
+    // ET midnight on Sep 28, 2025 corresponds to 04:00:00.000Z (DST)
+    const announcementDate = new Date("2025-09-28T04:00:00.000Z")
     const now = new Date()
     
     if (now < announcementDate) {

@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, Users, Calendar, Sparkles, Clock } from "lucide-react"
+import { Trophy, Users, Calendar, Sparkles, Clock, Search } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/LanguageContext"
 import GlobalBackground from "@/components/global-background"
+import { Input } from "@/components/ui/input"
 
 interface AcceptedTeam {
   id: string
@@ -20,15 +21,28 @@ export default function ResultadosPage() {
   const [acceptedTeams, setAcceptedTeams] = useState<AcceptedTeam[]>([])
   const [loading, setLoading] = useState(true)
   const [isAnnouncementReady, setIsAnnouncementReady] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
   const { t } = useLanguage()
 
   useEffect(() => {
     checkAnnouncementDate()
     fetchAcceptedTeams()
+    // Auto-switch at exact announcement time (Sep 28, 2025 12:00am ET => 04:00:00.000Z)
+    const announcementDate = new Date("2025-09-28T04:00:00.000Z")
+    const now = new Date()
+    if (now < announcementDate) {
+      const timeoutMs = announcementDate.getTime() - now.getTime()
+      const timer = setTimeout(() => {
+        setIsAnnouncementReady(true)
+        fetchAcceptedTeams()
+      }, timeoutMs)
+      return () => clearTimeout(timer)
+    }
   }, [])
 
   const checkAnnouncementDate = () => {
-    const announcementDate = new Date("2025-09-28T00:00:00.000Z")
+    // ET midnight (DST) corresponds to 04:00:00.000Z
+    const announcementDate = new Date("2025-09-28T04:00:00.000Z")
     const now = new Date()
     setIsAnnouncementReady(now >= announcementDate)
   }
@@ -101,20 +115,37 @@ export default function ResultadosPage() {
     )
   }
 
+  const filteredTeams = acceptedTeams.filter(team =>
+    team.teamName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    team.school.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <>
       <GlobalBackground />
       <div className="min-h-screen text-white py-20 relative z-10">
         <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-6xl">
 
-        {/* Stats */}
-        {acceptedTeams.length > 0 && (
+        {/* Search + Stats */}
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <div className="flex-1 max-w-sm relative">
+            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#BFC9DB]" />
+            <Input
+              placeholder="Search teams or schools..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-9 bg-transparent border-[#4A5EE7]/20 text-white"
+            />
+          </div>
+        </div>
+
+        {filteredTeams.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
             <Card className="bg-[#4A5EE7]/10 border-[#4A5EE7]/20 text-center">
               <CardContent className="p-6">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Users className="text-[#4A5EE7]" size={24} />
-                  <h3 className="text-2xl font-bold text-[#F7F9FF]">{acceptedTeams.length}</h3>
+                  <h3 className="text-2xl font-bold text-[#F7F9FF]">{filteredTeams.length}</h3>
                 </div>
                 <p className="text-[#BFC9DB]">Equipos Aceptados</p>
               </CardContent>
@@ -125,7 +156,7 @@ export default function ResultadosPage() {
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Sparkles className="text-[#4A5EE7]" size={24} />
                   <h3 className="text-2xl font-bold text-[#F7F9FF]">
-                    {acceptedTeams.reduce((total, team) => total + team.participantsCount, 0)}
+                    {filteredTeams.reduce((total, team) => total + team.participantsCount, 0)}
                   </h3>
                 </div>
                 <p className="text-[#BFC9DB]">Participantes Totales</p>
@@ -145,7 +176,7 @@ export default function ResultadosPage() {
         )}
 
         {/* Teams List */}
-        {acceptedTeams.length === 0 ? (
+        {filteredTeams.length === 0 ? (
           <Card className="bg-[#4A5EE7]/5 border-[#4A5EE7]/20 text-center py-12">
             <CardContent>
               <Sparkles className="mx-auto mb-4 text-[#4A5EE7]" size={64} />
@@ -172,7 +203,7 @@ export default function ResultadosPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {acceptedTeams.map((team, index) => (
+              {filteredTeams.map((team, index) => (
                 <Card key={team.id} className="bg-[#4A5EE7]/5 border-[#4A5EE7]/20 hover:border-[#4A5EE7]/40 transition-colors">
                   <CardHeader>
                     <div className="flex items-center justify-between">
@@ -203,12 +234,7 @@ export default function ResultadosPage() {
                           {team.school}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar size={16} className="text-[#4A5EE7]" />
-                        <span className="text-[#BFC9DB] text-sm">
-                          Aceptado el {new Date(team.acceptedAt).toLocaleDateString("es-ES")}
-                        </span>
-                      </div>
+                      {/* Accepted date hidden as requested */}
                     </div>
                   </CardContent>
                 </Card>

@@ -79,13 +79,13 @@ export const WORKSHOPS: Workshop[] = [
   { name: "ECA – 6to grado", completed: true },
   { name: "ECA – 7mo grado", completed: true },
   { name: "ECA – 8vo grado", completed: true },
-  { name: "San Ignacio – 9no grado", completed: true },
-  { name: "British School – 8vo grado", completed: false },
-  { name: "British School – 9no grado", completed: false },
-  { name: "San Patricio – 8vo grado", completed: false },
-  { name: "San Patricio – 9no grado", completed: false },
-  { name: "Colegio San Agustín – 8vo grado", completed: false },
-  { name: "Colegio San Agustín – 9no grado", completed: false },
+  { name: "San Ignacio – CESI", completed: true },
+  { name: "British School", completed: false },
+  { name: "British School", completed: false },
+  { name: "Cristo Rey", completed: false },
+  { name: "Cristo Rey", completed: false },
+  { name: "Academia Washington", completed: false },
+  { name: "Academia Washington", completed: false },
 ]
 
 // Sponsors Data

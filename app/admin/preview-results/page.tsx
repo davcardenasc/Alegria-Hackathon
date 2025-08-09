@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Trophy, Users, Calendar, Sparkles, ArrowLeft, RefreshCw } from "lucide-react"
+import { Trophy, Users, Calendar, Sparkles, ArrowLeft, RefreshCw, Search } from "lucide-react"
 import Link from "next/link"
 import GlobalBackground from "@/components/global-background"
+import { Input } from "@/components/ui/input"
 
 interface AcceptedTeam {
   id: string
@@ -24,6 +25,7 @@ export default function AdminPreviewResultsPage() {
   const [acceptedTeams, setAcceptedTeams] = useState<AcceptedTeam[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -113,6 +115,11 @@ export default function AdminPreviewResultsPage() {
     )
   }
 
+  const filteredTeams = acceptedTeams.filter(team =>
+    team.teamName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    team.school.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <>
       <GlobalBackground />
@@ -136,6 +143,15 @@ export default function AdminPreviewResultsPage() {
                 <p className="text-[#BFC9DB]">Real-time preview of what will be shown on September 28th, 2025</p>
               </div>
             </div>
+            <div className="flex-1 max-w-sm relative">
+              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#BFC9DB]" />
+              <Input
+                placeholder="Search teams or schools..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-9 bg-transparent border-[#4A5EE7]/20 text-white"
+              />
+            </div>
             <Button 
               onClick={handleRefresh}
               disabled={refreshing}
@@ -148,7 +164,7 @@ export default function AdminPreviewResultsPage() {
           </div>
 
           {/* Stats */}
-          {acceptedTeams.length > 0 && (
+          {filteredTeams.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
               <Card className="bg-[#4A5EE7]/10 border-[#4A5EE7]/20 text-center">
                 <CardContent className="p-6">
@@ -185,7 +201,7 @@ export default function AdminPreviewResultsPage() {
           )}
 
           {/* Teams List */}
-          {acceptedTeams.length === 0 ? (
+           {filteredTeams.length === 0 ? (
             <Card className="bg-[#4A5EE7]/5 border-[#4A5EE7]/20 text-center py-12">
               <CardContent>
                 <Sparkles className="mx-auto mb-4 text-[#4A5EE7]" size={64} />
@@ -215,7 +231,7 @@ export default function AdminPreviewResultsPage() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {acceptedTeams.map((team, index) => (
+                {filteredTeams.map((team, index) => (
                   <Card key={team.id} className="bg-[#4A5EE7]/5 border-[#4A5EE7]/20 hover:border-[#4A5EE7]/40 transition-colors">
                     <CardHeader>
                       <div className="flex items-center justify-between">
@@ -246,12 +262,7 @@ export default function AdminPreviewResultsPage() {
                             {team.school}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar size={16} className="text-[#4A5EE7]" />
-                          <span className="text-[#BFC9DB] text-sm">
-                            Aceptado el {new Date(team.acceptedAt).toLocaleDateString("es-ES")}
-                          </span>
-                        </div>
+                        {/* Removed accepted date display as requested */}
                       </div>
                     </CardContent>
                   </Card>
