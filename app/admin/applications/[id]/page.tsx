@@ -104,6 +104,14 @@ export default function ApplicationDetail() {
       if (response.ok) {
         const data = await response.json()
         setApplication({ ...application, status: data.status, reviewedAt: data.reviewedAt })
+        // Broadcast update for listeners (e.g., preview page)
+        try {
+          if (typeof window !== "undefined") {
+            const channel = new BroadcastChannel("applications-updates")
+            channel.postMessage({ type: "STATUS_UPDATED", id: application.id, status })
+            channel.close()
+          }
+        } catch {}
         // Show success message
         alert(`Application ${status.toLowerCase()} successfully! Status updated.`)
       } else {

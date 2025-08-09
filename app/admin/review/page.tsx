@@ -130,6 +130,15 @@ export default function ReviewPendingApplications() {
           setCurrentIndex(updatedApplications.length - 1)
         }
         
+        // Broadcast update for listeners (e.g., preview page)
+        try {
+          if (typeof window !== "undefined") {
+            const channel = new BroadcastChannel("applications-updates")
+            channel.postMessage({ type: "STATUS_UPDATED", id: currentApplication.id, status })
+            channel.close()
+          }
+        } catch {}
+
         alert(`Application ${status.toLowerCase()} successfully! Email sent to team.`)
       } else {
         const errorData = await response.json()

@@ -40,6 +40,21 @@ export default function AdminPreviewResultsPage() {
     }
   }, [session])
 
+  // Listen for cross-tab updates when applications change
+  useEffect(() => {
+    if (!session || typeof window === "undefined") return
+    const channel = new BroadcastChannel("applications-updates")
+    const handler = () => {
+      setRefreshing(true)
+      fetchAcceptedTeams()
+    }
+    channel.addEventListener("message", handler)
+    return () => {
+      channel.removeEventListener("message", handler)
+      channel.close()
+    }
+  }, [session])
+
   const fetchAcceptedTeams = async () => {
     try {
       const response = await fetch("/api/admin/applications")

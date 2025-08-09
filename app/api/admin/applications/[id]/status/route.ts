@@ -35,7 +35,8 @@ export async function POST(
       data: {
         status,
         reviewedAt: new Date(),
-        reviewedBy: session.user?.email || "admin"
+        // reviewedBy must reference User.id per FK
+        reviewedBy: session.user?.id ?? null,
       }
     })
 
