@@ -10,13 +10,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { searchParams } = new URL(request.url)
-    const status = searchParams.get('status')
-
-    let whereClause = {}
-    if (status && ['PENDING', 'ACCEPTED', 'REJECTED'].includes(status)) {
-      whereClause = { status: status }
-    }
+    // Only starred filtering is supported on UI; return all and filter client-side
+    const whereClause = {}
 
     const schoolApplications = await prisma.schoolApplication.findMany({
       where: whereClause,
@@ -32,7 +27,7 @@ export async function GET(request: NextRequest) {
         numStudents: true,
         preferredDates: true,
         comments: true,
-        status: true,
+         status: true,
         starred: true,
         submittedAt: true,
         reviewedAt: true,

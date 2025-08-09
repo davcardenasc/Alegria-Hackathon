@@ -35,10 +35,8 @@ interface SchoolApplication {
   numStudents: number
   preferredDates: string[] // Changed from string to string[] since it's parsed as JSON array
   comments?: string
-  status: "PENDING" | "ACCEPTED" | "REJECTED"
   starred: boolean
   submittedAt: string
-  reviewedAt?: string
 }
 
 export default function SchoolApplicationsAdmin() {
@@ -78,12 +76,12 @@ export default function SchoolApplicationsAdmin() {
       
       setApplications(parsedData)
       
-      // Calculate stats
+      // Calculate stats (optimize to only what we need)
       const stats = {
         total: parsedData.length,
-        pending: parsedData.filter((app: SchoolApplication) => app.status === "PENDING").length,
-        accepted: parsedData.filter((app: SchoolApplication) => app.status === "ACCEPTED").length,
-        rejected: parsedData.filter((app: SchoolApplication) => app.status === "REJECTED").length,
+        pending: 0,
+        accepted: 0,
+        rejected: 0,
         starred: parsedData.filter((app: SchoolApplication) => app.starred).length,
       }
       setStats(stats)
@@ -105,13 +103,9 @@ export default function SchoolApplicationsAdmin() {
       )
     }
 
-    // Apply status filter
-    if (statusFilter !== "ALL") {
-      if (statusFilter === "PENDING") {
-        filtered = filtered.filter(app => app.status === "PENDING")
-      } else if (statusFilter === "ACCEPTED") {
-        filtered = filtered.filter(app => app.status === "ACCEPTED")
-      }
+    // Apply filter (only STARRED supported)
+    if (statusFilter === "STARRED") {
+      filtered = filtered.filter(app => app.starred)
     }
 
     setFilteredApplications(filtered)
@@ -209,7 +203,7 @@ export default function SchoolApplicationsAdmin() {
 
       <div className="p-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <Card 
             className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
             onClick={() => handleStatsCardClick("ALL")}
@@ -225,20 +219,7 @@ export default function SchoolApplicationsAdmin() {
             </CardContent>
           </Card>
           
-          <Card 
-            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
-            onClick={() => handleStatsCardClick("PENDING")}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <Calendar size={20} className="text-yellow-400" />
-                <div>
-                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.pending}</p>
-                  <p className="text-sm text-[#BFC9DB]">Pending</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Removed Pending card */}
 
           <Card 
             className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
@@ -317,7 +298,7 @@ export default function SchoolApplicationsAdmin() {
                             Submitted on {new Date(app.submittedAt).toLocaleDateString()}
                           </p>
                         </div>
-                        {app.status !== "PENDING" && getStatusBadge(app.status)}
+                        {/* Status badges removed as we no longer use status here */}
                       </div>
 
                       {/* Details */}
