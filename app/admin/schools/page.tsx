@@ -1,5 +1,7 @@
 "use client"
 
+// School Workshop Applications Admin Interface
+
 import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
