@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
+import { prisma } from "@/lib/prisma"
 
 const resend = new Resend("re_jo94ZKQX_2aFDDKvNwSNYYQC3qBnsJsn5")
 
@@ -50,8 +51,25 @@ function createSchoolApplicationEmailHtml(data: any): string {
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
+    
+    // Save school application to database
+    const schoolApplication = await prisma.schoolApplication.create({
+      data: {
+        schoolName: data.nombre_colegio,
+        coordinatorName: data.coordinador,
+        coordinatorEmail: data.correo_coordinador,
+        phone: data.telefono,
+        numStudents: Number(data.num_alumnos),
+        preferredDates: JSON.stringify(data.fechas_seleccionadas || []),
+        comments: data.comentarios || null,
+        submittedAt: new Date(),
+      }
+    })
+    
+    // Create HTML content for notification email
     const htmlContent = createSchoolApplicationEmailHtml(data)
 
+    // Send notification email (keep existing functionality)
     const { data: emailData, error } = await resend.emails.send({
       from: "AlegrIA Aplicaciones <onboarding@resend.dev>",
       to: ["cursos.alegria.labs@gmail.com"],
@@ -61,12 +79,13 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error("Resend error:", error)
-      return NextResponse.json({ success: false, message: "Error al enviar el correo" }, { status: 500 })
+      // Continue even if email fails, as application is saved in DB
     }
 
     return NextResponse.json({
       success: true,
       message: "Aplicación de colegio enviada exitosamente",
+      applicationId: schoolApplication.id
     })
   } catch (error) {
     console.error("Error processing school application:", error)

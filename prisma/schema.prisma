@@ -40,6 +40,31 @@ model Application {
   @@map("applications")
 }
 
+model SchoolApplication {
+  id                  String   @id @default(cuid())
+  submittedAt         DateTime @default(now())
+  schoolName          String
+  coordinatorName     String
+  coordinatorEmail    String
+  phone               String
+  numStudents         Int
+  preferredDates      String   // JSON array of selected dates
+  comments            String?
+  status              ApplicationStatus @default(PENDING)
+  starred             Boolean  @default(false)
+  reviewedBy          String?
+  reviewedAt          DateTime?
+  
+  // Additional metadata
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  // Relations
+  reviewer            User?    @relation("SchoolApplicationReviewer", fields: [reviewedBy], references: [id])
+  
+  @@map("school_applications")
+}
+
 model User {
   id            String   @id @default(cuid())
   email         String   @unique
@@ -51,6 +76,7 @@ model User {
   
   // Relations
   reviewedApplications Application[]
+  reviewedSchoolApplications SchoolApplication[] @relation("SchoolApplicationReviewer")
   
   @@map("users")
 }

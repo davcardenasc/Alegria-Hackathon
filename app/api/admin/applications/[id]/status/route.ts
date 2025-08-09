@@ -2,8 +2,18 @@ import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { prisma } from "@/lib/prisma"
 import { Resend } from "resend"
+import nodemailer from "nodemailer"
 
 const resend = new Resend("re_jo94ZKQX_2aFDDKvNwSNYYQC3qBnsJsn5")
+
+// Gmail SMTP configuration as fallback
+const gmailTransporter = nodemailer.createTransporter({
+  service: 'gmail',
+  auth: {
+    user: 'cursos.alegria.labs@gmail.com',
+    pass: process.env.GMAIL_APP_PASSWORD || 'your-app-password-here' // You'll need to set this
+  }
+})
 
 export async function POST(
   request: NextRequest,

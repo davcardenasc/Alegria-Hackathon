@@ -19,7 +19,8 @@ import {
   LogOut, 
   Calendar,
   Users,
-  ChartBar
+  ChartBar,
+  School
 } from "lucide-react"
 
 interface Application {
@@ -300,6 +301,13 @@ export default function AdminDashboard() {
               >
                 <Users size={16} className="mr-2" />
                 Review Pending
+              </Button>
+              <Button 
+                onClick={() => window.location.href = '/admin/schools'}
+                className="bg-green-600 hover:bg-green-700 text-white"
+              >
+                <School size={16} className="mr-2" />
+                School Applications
               </Button>
               <Button 
                 onClick={exportToCSV}
