@@ -37,6 +37,14 @@ model Application {
   reviewer        User?    @relation(fields: [reviewedBy], references: [id])
   emailLogs       EmailLog[]
   
+  // Performance indexes for frequently queried fields
+  @@index([status])
+  @@index([starred])
+  @@index([submittedAt])
+  @@index([school])
+  @@index([contactEmail])
+  @@index([reviewedBy])
+  @@index([status, starred]) // Composite index for admin dashboard filtering
   @@map("applications")
 }
 
@@ -62,6 +70,14 @@ model SchoolApplication {
   // Relations
   reviewer            User?    @relation("SchoolApplicationReviewer", fields: [reviewedBy], references: [id])
   
+  // Performance indexes for frequently queried fields
+  @@index([status])
+  @@index([starred])
+  @@index([submittedAt])
+  @@index([schoolName])
+  @@index([coordinatorEmail])
+  @@index([reviewedBy])
+  @@index([status, starred]) // Composite index for admin dashboard filtering
   @@map("school_applications")
 }
 
@@ -106,6 +122,12 @@ model EmailLog {
   // Relations
   application     Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
   
+  // Performance indexes for email audit queries
+  @@index([applicationId])
+  @@index([recipientEmail])
+  @@index([sentAt])
+  @@index([status])
+  @@index([type])
   @@map("email_logs")
 }
 
