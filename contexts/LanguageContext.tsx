@@ -8,7 +8,7 @@ type Language = "es" | "en"
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: string) => string | string[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -621,8 +621,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("alegria-language", lang)
   }
 
-  const t = (key: string): string => {
-    return translations[language][key as keyof (typeof translations)[typeof language]] || key
+  const t = (key: string): string | string[] => {
+    const translation = translations[language][key as keyof (typeof translations)[typeof language]]
+    return translation || key
   }
 
   return (
