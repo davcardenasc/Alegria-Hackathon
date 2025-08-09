@@ -474,6 +474,7 @@ export default function FormularioParticipantes() {
               </div>
             </div>
           </div>
+          </div>
 
           <Button
             type="submit"
