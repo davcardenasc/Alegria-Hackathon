@@ -60,12 +60,8 @@ export default function ReviewPendingApplications() {
         const data = await response.json()
         // Filter pending applications client-side
         const pendingApps = data.filter((app: any) => app.status === "PENDING")
-        // Parse participants for each application
-        const parsedData = pendingApps.map((app: any) => ({
-          ...app,
-          participants: JSON.parse(app.participants)
-        }))
-        setApplications(parsedData)
+        // API already returns participants parsed; do not parse again
+        setApplications(pendingApps)
       }
     } catch (error) {
       console.error("Error fetching pending applications:", error)

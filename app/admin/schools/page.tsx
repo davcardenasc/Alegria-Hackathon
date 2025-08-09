@@ -107,10 +107,10 @@ export default function SchoolApplicationsAdmin() {
 
     // Apply status filter
     if (statusFilter !== "ALL") {
-      if (statusFilter === "STARRED") {
-        filtered = filtered.filter(app => app.starred)
-      } else {
-        filtered = filtered.filter(app => app.status === statusFilter)
+      if (statusFilter === "PENDING") {
+        filtered = filtered.filter(app => app.status === "PENDING")
+      } else if (statusFilter === "ACCEPTED") {
+        filtered = filtered.filter(app => app.status === "ACCEPTED")
       }
     }
 
@@ -242,21 +242,6 @@ export default function SchoolApplicationsAdmin() {
 
           <Card 
             className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
-            onClick={() => handleStatsCardClick("STARRED")}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <Star size={20} className="text-yellow-400" />
-                <div>
-                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.starred}</p>
-                  <p className="text-sm text-[#BFC9DB]">Starred</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card 
-            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
             onClick={() => handleStatsCardClick("ACCEPTED")}
           >
             <CardContent className="p-4">
@@ -270,20 +255,7 @@ export default function SchoolApplicationsAdmin() {
             </CardContent>
           </Card>
 
-          <Card 
-            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
-            onClick={() => handleStatsCardClick("REJECTED")}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <X size={20} className="text-red-400" />
-                <div>
-                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.rejected}</p>
-                  <p className="text-sm text-[#BFC9DB]">Rejected</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Removed Rejected and Starred cards per request */}
         </div>
 
         {/* Filters */}
@@ -305,12 +277,10 @@ export default function SchoolApplicationsAdmin() {
                 <SelectTrigger className="w-[200px] bg-[#00162D] border-[#4A5EE7]/20 text-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
+              <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
                   <SelectItem value="ALL" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">All Applications</SelectItem>
                   <SelectItem value="PENDING" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Pending</SelectItem>
-                  <SelectItem value="STARRED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Starred</SelectItem>
                   <SelectItem value="ACCEPTED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Accepted</SelectItem>
-                  <SelectItem value="REJECTED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Rejected</SelectItem>
                 </SelectContent>
               </Select>
             </div>
