@@ -89,7 +89,6 @@ export default function Header() {
     },
     { href: "/#workshops", label: t("nav.workshops") },
     { href: "/#embajadores", label: t("nav.ambassadors") },
-    { href: "/resultados", label: t("nav.results") },
     { href: "/#faq", label: t("nav.faq") },
     { href: "/#contacto", label: t("nav.contact") },
   ]
@@ -247,8 +246,14 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Language Switcher - Desktop */}
-            <div className="hidden lg:flex items-center ml-4">
+            {/* Results Button & Language Switcher - Desktop */}
+            <div className="hidden lg:flex items-center gap-3 ml-4">
+              <button
+                onClick={() => handleMenuClick("/resultados")}
+                className="bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 text-sm"
+              >
+                {t("nav.results")}
+              </button>
               <LanguageSwitcher />
             </div>
 
@@ -385,8 +390,14 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Language Switcher - Mobile */}
+          {/* Results Button & Language Switcher - Mobile */}
           <div className="px-6 pb-4 border-b border-[#4A5EE7]/20">
+            <button
+              onClick={() => handleMenuClick("/resultados")}
+              className="w-full bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-4 py-3 rounded-lg font-semibold transition-all duration-300 mb-4"
+            >
+              {t("nav.results")}
+            </button>
             <LanguageSwitcher />
           </div>
 

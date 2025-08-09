@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Trophy, Users, Calendar, Sparkles, Clock } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/LanguageContext"
+import GlobalBackground from "@/components/global-background"
 
 interface AcceptedTeam {
   id: string
@@ -60,74 +61,51 @@ export default function ResultadosPage() {
   // Show "coming soon" message if announcement date hasn't passed
   if (!isAnnouncementReady) {
     return (
-      <div className="min-h-screen bg-[#00162D] text-white py-20">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-4xl">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <Clock className="text-[#4A5EE7]" size={48} />
-              <h1 className="text-4xl md:text-6xl font-bold text-[#F7F9FF]" style={{ fontFamily: "Inter, sans-serif" }}>
-                Resultados AlegrIA
-              </h1>
-            </div>
-            
-            <div className="bg-[#4A5EE7]/10 border border-[#4A5EE7]/30 rounded-lg p-12 mb-8">
-              <Sparkles className="mx-auto mb-6 text-[#4A5EE7]" size={64} />
-              <h2 className="text-3xl font-bold text-[#F7F9FF] mb-6">
-                {t && typeof t === 'function' ? t("results.coming_soon") : "¡Los resultados se anunciarán pronto!"}
-              </h2>
-              <p className="text-xl text-[#BFC9DB] mb-6">
-                {t && typeof t === 'function' ? 
-                  t("results.check_back_date") : 
-                  "Regresa el 28 de septiembre de 2025 para ver los equipos aceptados"}
-              </p>
-              <div className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6 inline-block">
-                <div className="flex items-center gap-3">
-                  <Calendar className="text-[#4A5EE7]" size={24} />
-                  <p className="text-[#F7F9FF] font-semibold">
-                    {t && typeof t === 'function' ? 
-                      t("results.announcement_date") : 
-                      "Fecha de anuncio: 28 de septiembre, 2025"}
-                  </p>
+      <>
+        <GlobalBackground />
+        <div className="min-h-screen text-white py-20 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-4xl">
+            <div className="text-center">
+              <div className="bg-[#4A5EE7]/10 border border-[#4A5EE7]/30 rounded-lg p-12 mb-8">
+                <Sparkles className="mx-auto mb-6 text-[#4A5EE7]" size={64} />
+                <h2 className="text-3xl font-bold text-[#F7F9FF] mb-6">
+                  {t && typeof t === 'function' ? t("results.coming_soon") : "¡Los resultados se anunciarán pronto!"}
+                </h2>
+                <p className="text-xl text-[#BFC9DB] mb-6">
+                  {t && typeof t === 'function' ? 
+                    t("results.check_back_date") : 
+                    "Regresa el 28 de septiembre de 2025 para ver los equipos aceptados"}
+                </p>
+                <div className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6 inline-block">
+                  <div className="flex items-center gap-3">
+                    <Calendar className="text-[#4A5EE7]" size={24} />
+                    <p className="text-[#F7F9FF] font-semibold">
+                      {t && typeof t === 'function' ? 
+                        t("results.announcement_date") : 
+                        "Fecha de anuncio: 28 de septiembre, 2025"}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <Link
-              href="/"
-              className="inline-block bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg"
-            >
-              {t && typeof t === 'function' ? t("common.back_home") : "Volver al Inicio"}
-            </Link>
+              <Link
+                href="/"
+                className="inline-block bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg"
+              >
+                {t && typeof t === 'function' ? t("common.back_home") : "Volver al Inicio"}
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#00162D] text-white py-20">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-6xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Trophy className="text-[#4A5EE7]" size={48} />
-            <h1 className="text-4xl md:text-6xl font-bold text-[#F7F9FF]" style={{ fontFamily: "Inter, sans-serif" }}>
-              ¡Resultados AlegrIA!
-            </h1>
-            <Trophy className="text-[#4A5EE7]" size={48} />
-          </div>
-          <p className="text-xl text-[#BFC9DB] mb-4">
-            🎉 ¡Felicitaciones a todos los equipos aceptados para el AlegrIA Hackathon 2025!
-          </p>
-          <div className="bg-[#4A5EE7]/10 border border-[#4A5EE7]/30 rounded-lg p-4 inline-block">
-            <p className="text-[#F7F9FF] font-semibold">
-              📅 El hackathon se realizará del 20-22 de septiembre de 2025
-            </p>
-            <p className="text-[#BFC9DB] text-sm">
-              Los equipos aceptados recibirán más información por correo electrónico
-            </p>
-          </div>
-        </div>
+    <>
+      <GlobalBackground />
+      <div className="min-h-screen text-white py-20 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-6xl">
 
         {/* Stats */}
         {acceptedTeams.length > 0 && (
@@ -254,7 +232,8 @@ export default function ResultadosPage() {
             </div>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

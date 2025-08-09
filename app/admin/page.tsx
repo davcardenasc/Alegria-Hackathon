@@ -20,7 +20,8 @@ import {
   Calendar,
   Users,
   ChartBar,
-  School
+  School,
+  Trophy
 } from "lucide-react"
 
 interface Application {
@@ -316,6 +317,13 @@ export default function AdminDashboard() {
               >
                 <Download size={16} className="mr-2" />
                 Export CSV
+              </Button>
+              <Button 
+                onClick={() => window.open('/resultados', '_blank')}
+                className="bg-yellow-600 hover:bg-yellow-700 text-white"
+              >
+                <Trophy size={16} className="mr-2" />
+                Preview Results
               </Button>
             </div>
           </CardContent>
