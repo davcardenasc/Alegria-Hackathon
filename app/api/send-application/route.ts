@@ -43,7 +43,8 @@ function createApplicationEmailHtml(data: any): string {
         <h2 class="subheading">Documentos</h2>
         <div class="file-info">
           <p class="field"><strong>Archivo de cédula:</strong> ${data.cedula_filename || "No se subió archivo"}</p>
-          ${data.cedula_filename ? '<p class="field" style="font-size: 12px; color: #666;">Nota: El archivo fue enviado junto con esta aplicación.</p>' : ""}
+          ${data.cedula_url ? `<p class="field"><strong>URL del documento:</strong> <a href="${data.cedula_url}" target="_blank" style="color: #4A5EE7; text-decoration: underline;">Ver Documento 📄</a></p>` : ""}
+          ${data.cedula_url ? '<p class="field" style="font-size: 12px; color: #666;">📁 El archivo fue subido a Vercel Blob Storage y está disponible permanentemente.</p>' : ""}
         </div>
         <hr />
         <h2 class="subheading">Experiencia Previa</h2>
@@ -73,7 +74,7 @@ export async function POST(request: NextRequest) {
         school: data.colegio,
         gradeOrYear: data.ano_escolar,
         contactEmail: data.correo,
-        idDocumentUrl: data.cedula_filename || null,
+        idDocumentUrl: data.cedula_url || null,
         experienceText: data.experiencia || null,
         motivationText: data.motivacion,
         ideasText: data.ideas || null,

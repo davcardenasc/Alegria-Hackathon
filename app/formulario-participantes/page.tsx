@@ -104,7 +104,32 @@ export default function FormularioParticipantes() {
       const formElement = e.target as HTMLFormElement
       const formData = new FormData(formElement)
 
-      // Create a proper JSON object for the email
+      let documentUrl = null
+
+      // First, upload the file if one was selected
+      if (uploadedFile) {
+        console.log("Uploading file:", uploadedFile.name, "Size:", uploadedFile.size, "Type:", uploadedFile.type)
+        
+        const fileFormData = new FormData()
+        fileFormData.append("file", uploadedFile)
+
+        const uploadResponse = await fetch("/api/upload-file", {
+          method: "POST",
+          body: fileFormData,
+        })
+
+        if (!uploadResponse.ok) {
+          const uploadError = await uploadResponse.json()
+          console.error("Upload error:", uploadError)
+          throw new Error(uploadError.message || "Error uploading file")
+        }
+
+        const uploadData = await uploadResponse.json()
+        console.log("File uploaded successfully:", uploadData)
+        documentUrl = uploadData.url
+      }
+
+      // Create a proper JSON object for the application
       const applicationData = {
         tipo: "participantes",
         numero_participantes: numParticipantes,
@@ -117,11 +142,11 @@ export default function FormularioParticipantes() {
         motivacion: motivacionText,
         ideas: ideasText,
         cedula_filename: uploadedFile?.name || null,
-        cedula_file: uploadedFile,
+        cedula_url: documentUrl,
         fecha_aplicacion: new Date().toLocaleString("es-ES", { timeZone: "America/Bogota" }),
       }
 
-      // Send to email endpoint
+      // Send to application endpoint
       const response = await fetch("/api/send-application", {
         method: "POST",
         headers: {

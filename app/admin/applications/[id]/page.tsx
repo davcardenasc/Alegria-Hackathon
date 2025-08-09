@@ -391,19 +391,32 @@ export default function ApplicationDetail() {
                 {application.idDocumentUrl && (
                   <div>
                     <p className="text-sm text-[#BFC9DB] mb-1">ID Document</p>
-                    <div className="space-y-1">
-                      <p className="text-[#F7F9FF] text-xs font-mono break-all">{application.idDocumentUrl}</p>
-                      {application.idDocumentUrl.startsWith('http') ? (
-                        <a 
-                          href={application.idDocumentUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#4A5EE7] text-sm hover:text-[#F7F9FF] underline inline-block"
-                        >
-                          View Document ↗
-                        </a>
+                    <div className="space-y-2">
+                      {(application.idDocumentUrl.startsWith('http') || application.idDocumentUrl.startsWith('/uploads/')) ? (
+                        <div>
+                          <a 
+                            href={application.idDocumentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            📄 View Document ↗
+                          </a>
+                          <p className="text-[#BFC9DB] text-xs mt-1 break-all">
+                            {application.idDocumentUrl.includes('blob.vercel-storage.com') ? 
+                              '🌐 Stored in Vercel Blob Storage' : 
+                              application.idDocumentUrl.startsWith('/uploads/') ? 
+                              '📁 Stored locally' : 
+                              '🔗 External URL'
+                            }
+                          </p>
+                        </div>
                       ) : (
-                        <p className="text-yellow-300 text-xs">Invalid document URL</p>
+                        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
+                          <p className="text-yellow-300 text-xs font-semibold mb-1">📂 Legacy filename:</p>
+                          <p className="text-[#F7F9FF] text-xs font-mono mb-2">{application.idDocumentUrl}</p>
+                          <p className="text-[#BFC9DB] text-xs">This application was submitted before cloud storage was implemented. The actual file is not available.</p>
+                        </div>
                       )}
                     </div>
                   </div>
