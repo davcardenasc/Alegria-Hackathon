@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, Users, Calendar, Sparkles } from "lucide-react"
+import { Trophy, Users, Calendar, Sparkles, Clock } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 interface AcceptedTeam {
   id: string
@@ -17,18 +18,29 @@ interface AcceptedTeam {
 export default function ResultadosPage() {
   const [acceptedTeams, setAcceptedTeams] = useState<AcceptedTeam[]>([])
   const [loading, setLoading] = useState(true)
+  const [isAnnouncementReady, setIsAnnouncementReady] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
+    checkAnnouncementDate()
     fetchAcceptedTeams()
   }, [])
+
+  const checkAnnouncementDate = () => {
+    const announcementDate = new Date("2025-09-28T00:00:00.000Z")
+    const now = new Date()
+    setIsAnnouncementReady(now >= announcementDate)
+  }
 
   const fetchAcceptedTeams = async () => {
     try {
       const response = await fetch("/api/public/accepted-teams")
       const data = await response.json()
-      setAcceptedTeams(data)
+      // Ensure data is always an array
+      setAcceptedTeams(Array.isArray(data) ? data : [])
     } catch (error) {
       console.error("Error fetching accepted teams:", error)
+      setAcceptedTeams([])
     } finally {
       setLoading(false)
     }
@@ -40,6 +52,53 @@ export default function ResultadosPage() {
         <div className="text-center">
           <Sparkles className="mx-auto mb-4 text-[#4A5EE7] animate-pulse" size={48} />
           <p className="text-[#F7F9FF]">Cargando resultados...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show "coming soon" message if announcement date hasn't passed
+  if (!isAnnouncementReady) {
+    return (
+      <div className="min-h-screen bg-[#00162D] text-white py-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-4xl">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <Clock className="text-[#4A5EE7]" size={48} />
+              <h1 className="text-4xl md:text-6xl font-bold text-[#F7F9FF]" style={{ fontFamily: "Inter, sans-serif" }}>
+                Resultados AlegrIA
+              </h1>
+            </div>
+            
+            <div className="bg-[#4A5EE7]/10 border border-[#4A5EE7]/30 rounded-lg p-12 mb-8">
+              <Sparkles className="mx-auto mb-6 text-[#4A5EE7]" size={64} />
+              <h2 className="text-3xl font-bold text-[#F7F9FF] mb-6">
+                {t && typeof t === 'function' ? t("results.coming_soon") : "¡Los resultados se anunciarán pronto!"}
+              </h2>
+              <p className="text-xl text-[#BFC9DB] mb-6">
+                {t && typeof t === 'function' ? 
+                  t("results.check_back_date") : 
+                  "Regresa el 28 de septiembre de 2025 para ver los equipos aceptados"}
+              </p>
+              <div className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6 inline-block">
+                <div className="flex items-center gap-3">
+                  <Calendar className="text-[#4A5EE7]" size={24} />
+                  <p className="text-[#F7F9FF] font-semibold">
+                    {t && typeof t === 'function' ? 
+                      t("results.announcement_date") : 
+                      "Fecha de anuncio: 28 de septiembre, 2025"}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/"
+              className="inline-block bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg"
+            >
+              {t && typeof t === 'function' ? t("common.back_home") : "Volver al Inicio"}
+            </Link>
+          </div>
         </div>
       </div>
     )

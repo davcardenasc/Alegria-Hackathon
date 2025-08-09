@@ -3,6 +3,15 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET() {
   try {
+    // Check if announcement date has passed (September 28th, 2025)
+    const announcementDate = new Date("2025-09-28T00:00:00.000Z")
+    const now = new Date()
+    
+    if (now < announcementDate) {
+      // Return empty array if announcement date hasn't passed
+      return NextResponse.json([])
+    }
+
     // Fetch accepted applications
     const acceptedApplications = await prisma.application.findMany({
       where: {
@@ -32,9 +41,6 @@ export async function GET() {
     return NextResponse.json(acceptedTeams)
   } catch (error) {
     console.error("Error fetching accepted teams:", error)
-    return NextResponse.json(
-      { error: "Error fetching accepted teams" },
-      { status: 500 }
-    )
+    return NextResponse.json([], { status: 200 })
   }
 }

@@ -89,6 +89,7 @@ export default function Header() {
     },
     { href: "/#workshops", label: t("nav.workshops") },
     { href: "/#embajadores", label: t("nav.ambassadors") },
+    { href: "/resultados", label: t("nav.results") },
     { href: "/#faq", label: t("nav.faq") },
     { href: "/#contacto", label: t("nav.contact") },
   ]

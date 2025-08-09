@@ -35,6 +35,7 @@ const translations = {
     "nav.project_ideas": "Posibles Ideas",
     "nav.overview": "Resumen",
     "nav.moments": "Momentos",
+    "nav.results": "Resultados",
 
     // Hero Section
     "hero.question": "¿Tienes una idea que puede\ncambiar el mundo?",
@@ -249,6 +250,12 @@ const translations = {
     "common.confirm": "Confirmar",
     "common.yes": "Sí",
     "common.no": "No",
+    "common.back_home": "Volver al Inicio",
+
+    // Results Section
+    "results.coming_soon": "¡Los resultados se anunciarán pronto!",
+    "results.check_back_date": "Regresa el 28 de septiembre de 2025 para ver los equipos aceptados",
+    "results.announcement_date": "Fecha de anuncio: 28 de septiembre, 2025",
 
     // Ideas Section
     "ideas.title": "Posibles ideas",
@@ -323,6 +330,7 @@ const translations = {
     "nav.project_ideas": "Project Ideas",
     "nav.overview": "Overview",
     "nav.moments": "Moments",
+    "nav.results": "Results",
 
     // Hero Section
     "hero.question": "Do you have an idea that can\nchange the world?",
@@ -535,6 +543,12 @@ const translations = {
     "common.confirm": "Confirm",
     "common.yes": "Yes",
     "common.no": "No",
+    "common.back_home": "Back to Home",
+
+    // Results Section
+    "results.coming_soon": "Results will be announced soon!",
+    "results.check_back_date": "Check back on September 28, 2025 to see the accepted teams",
+    "results.announcement_date": "Announcement date: September 28, 2025",
 
     // Ideas Section
     "ideas.title": "Project Ideas",
