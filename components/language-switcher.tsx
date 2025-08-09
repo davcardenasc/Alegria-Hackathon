@@ -3,6 +3,39 @@
 import { useLanguage } from "@/contexts/LanguageContext"
 import { Globe } from "lucide-react"
 
+/**
+ * Language switcher component for toggling between Spanish and English
+ * 
+ * Features:
+ * - Toggle between Spanish (ES) and English (EN)
+ * - Visual feedback for currently selected language
+ * - Smooth transitions with hover effects
+ * - Persists language choice to localStorage
+ * - Globe icon for visual context
+ * - Themed styling matching AlegrIA design system
+ * 
+ * The language preference is automatically saved and restored across sessions
+ * via the LanguageContext provider.
+ * 
+ * @component
+ * @returns {JSX.Element} The language switcher component
+ * 
+ * @example
+ * ```tsx
+ * import LanguageSwitcher from "@/components/language-switcher"
+ * 
+ * // Used in header or navigation
+ * function Header() {
+ *   return (
+ *     <nav>
+ *       <LanguageSwitcher />
+ *     </nav>
+ *   )
+ * }
+ * ```
+ * 
+ * @see {@link LanguageContext} for language state management
+ */
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage()
 

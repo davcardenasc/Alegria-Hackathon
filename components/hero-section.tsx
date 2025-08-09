@@ -5,6 +5,43 @@ import Image from "next/image"
 import { ChevronDown } from 'lucide-react'
 import { useLanguage } from "@/contexts/LanguageContext"
 
+/**
+ * Hero section component with scroll-based story progression animation
+ * 
+ * Features:
+ * - Multi-phase storytelling that progresses as user scrolls
+ * - Smooth transitions between different story phases
+ * - Animated paper airplane that moves during scroll
+ * - Dynamic text changes based on scroll position
+ * - Call-to-action button that appears in final phase
+ * - Parallax-style effects with background elements
+ * - Multi-language support for all text content
+ * - Responsive design for mobile and desktop
+ * 
+ * The hero tells the story of the hackathon journey:
+ * 1. "Do you have an idea that can change the world?"
+ * 2. "From idea..."
+ * 3. "...to prototype" 
+ * 4. "...to real business"
+ * 5. Final CTA with hackathon details
+ * 
+ * @component
+ * @returns {JSX.Element} The hero section component
+ * 
+ * @example
+ * ```tsx
+ * import HeroSection from "@/components/hero-section"
+ * 
+ * export default function HomePage() {
+ *   return (
+ *     <main>
+ *       <HeroSection />
+ *       // Other sections...
+ *     </main>
+ *   )
+ * }
+ * ```
+ */
 export default function HeroSection() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const heroRef = useRef<HTMLElement>(null)

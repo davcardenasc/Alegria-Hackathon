@@ -7,6 +7,38 @@ import { useRouter, usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/LanguageContext"
 import LanguageSwitcher from "./language-switcher"
 
+/**
+ * Header component for the AlegrIA Hackathon landing page
+ * 
+ * Features:
+ * - Responsive navigation with mobile hamburger menu
+ * - Dynamic styling based on scroll position and hero section visibility
+ * - Multi-language support with dropdown menus
+ * - Smooth scrolling navigation to page sections
+ * - Dropdown menus for Applications, Schedule, and Prizes
+ * 
+ * The header changes its appearance based on:
+ * - Scroll position (transparent -> solid background)
+ * - Whether user is in hero section (affects styling)
+ * - Current page route (different behavior on home vs other pages)
+ * - Window width (responsive mobile/desktop layouts)
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * // Used in main layout
+ * import Header from "@/components/header"
+ * 
+ * export default function Layout({ children }) {
+ *   return (
+ *     <>
+ *       <Header />
+ *       <main>{children}</main>
+ *     </>
+ *   )
+ * }
+ * ```
+ */
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isInHero, setIsInHero] = useState(true)
