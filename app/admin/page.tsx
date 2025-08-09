@@ -46,6 +46,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [deleting, setDeleting] = useState(false)
+  const [bulkUpdating, setBulkUpdating] = useState<null | "ACCEPTED" | "PENDING">(null)
   const [stats, setStats] = useState({
     total: 0,
     pending: 0,
@@ -141,6 +142,31 @@ export default function AdminDashboard() {
       alert('Error deleting selected applications')
     } finally {
       setDeleting(false)
+    }
+  }
+
+  const updateSelectedStatus = async (status: "ACCEPTED" | "PENDING") => {
+    if (selectedIds.size === 0) return
+    const label = status === "ACCEPTED" ? "accept" : "mark as pending"
+    const confirmed = confirm(`${label.charAt(0).toUpperCase() + label.slice(1)} ${selectedIds.size} selected application(s)?`)
+    if (!confirmed) return
+    setBulkUpdating(status)
+    try {
+      for (const id of selectedIds) {
+        await fetch(`/api/admin/applications/${id}/status`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status }),
+        })
+      }
+      await fetchApplications()
+      clearSelection()
+      alert(`Selected applications ${label}ed`)
+    } catch (e) {
+      console.error(e)
+      alert('Error updating selected applications')
+    } finally {
+      setBulkUpdating(null)
     }
   }
 
@@ -390,6 +416,20 @@ export default function AdminDashboard() {
                   className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
                 >
                   Clear Selection
+                </Button>
+                <Button
+                  onClick={() => updateSelectedStatus("PENDING")}
+                  disabled={selectedIds.size === 0 || !!bulkUpdating}
+                  className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                >
+                  {bulkUpdating === 'PENDING' ? 'Marking...' : `Mark Pending (${selectedIds.size})`}
+                </Button>
+                <Button
+                  onClick={() => updateSelectedStatus("ACCEPTED")}
+                  disabled={selectedIds.size === 0 || !!bulkUpdating}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  {bulkUpdating === 'ACCEPTED' ? 'Accepting...' : `Accept Selected (${selectedIds.size})`}
                 </Button>
                 <Button
                   onClick={deleteSelected}
