@@ -64,6 +64,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'your-google-verification-code-here',
+    other: {
+      'msvalidate.01': 'CD23DE527FEC2213CFF4831EE7E94A47',
+    },
   },
   generator: 'Next.js',
   category: 'education',
