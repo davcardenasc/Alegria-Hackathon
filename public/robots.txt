@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Educational hackathon website
+# AlegrIA - Venezuelan hackathon for students
+
+Sitemap: https://alegria-hackathon.com/sitemap.xml

@@ -24,6 +24,33 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "AlegrIA - Hackathon de Emprendimiento",
   description: "48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios y lanza tu startup",
+  keywords: ["hackathon", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
+  authors: [{ name: "AlegrIA Team" }],
+  creator: "AlegrIA",
+  publisher: "AlegrIA",
+  robots: "index, follow",
+  openGraph: {
+    type: 'website',
+    locale: 'es_VE',
+    url: 'https://alegria-hackathon.com',
+    title: 'AlegrIA - Hackathon de Emprendimiento',
+    description: '48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios y lanza tu startup',
+    siteName: 'AlegrIA',
+    images: [
+      {
+        url: '/images/full-alegria-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'AlegrIA Hackathon Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AlegrIA - Hackathon de Emprendimiento',
+    description: '48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios',
+    images: ['/images/full-alegria-logo.png'],
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },
@@ -35,7 +62,11 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
   },
-    generator: 'v0.dev'
+  verification: {
+    google: 'your-google-verification-code-here',
+  },
+  generator: 'Next.js',
+  category: 'education',
 }
 
 export default function RootLayout({
