@@ -606,7 +606,7 @@ const translations = {
     "overview.cost.title": "Cost",
     "overview.cost.body": "Applying is free.\nIf accepted: $20 per person.",
     "overview.prizes.title": "Prizes",
-    "overview.prizes.body": "Over $15,000 in prizes.\nExtra software and gear perks."
+    "overview.prizes.body": "Over $15,000 in prizes.\nExtra software and gear perks.",
     "overview.cta_primary": "Apply now",
     "overview.cta_secondary": "View schedule",
   },
