@@ -287,6 +287,9 @@ const translations = {
     "ideas.idea7.title": "Directorio de Actividades Extracurriculares",
     "ideas.idea7.description":
       "Un directorio web o bot donde organizadores de talleres y actividades extracurriculares publiquen horarios, precios y descripciones, y los padres puedan filtrar e inscribir a sus hijos de forma rápida.",
+    "ideas.idea8.title": "Agenda Colaborativa de Eventos",
+    "ideas.idea8.description":
+      "Una plataforma donde organizadores pueden crear páginas atractivas para sus actividades y los asistentes registrarse, recibir recordatorios y acceder a toda la información en un solo enlace compartido.",
     "ideas.apply_now": "Aplica ahora",
     "ideas.back_to_applications": "Volver a aplicaciones",
     "ideas.view_all_ideas": "Ver todas las ideas",
@@ -583,6 +586,9 @@ const translations = {
     "ideas.idea7.title": "Extracurricular Activities Directory",
     "ideas.idea7.description":
       "A web directory or bot where organizers of workshops and extracurricular activities publish schedules, prices, and descriptions, and parents can filter and enroll their children quickly.",
+    "ideas.idea8.title": "Collaborative Event Agenda",
+    "ideas.idea8.description":
+      "A platform where organizers can create attractive pages for their activities and attendees can register, receive reminders, and access all information through a single shared link.",
     "ideas.apply_now": "Apply now",
     "ideas.back_to_applications": "Back to applications",
     "ideas.view_all_ideas": "View all ideas",
