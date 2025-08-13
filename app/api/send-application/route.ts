@@ -3,6 +3,7 @@ import { Resend } from "resend"
 import { prisma } from "@/lib/prisma"
 import { validateApplication, sanitizeInput } from "@/lib/validation"
 import { createErrorResponse, createSuccessResponse, withErrorHandler, ValidationError, DatabaseError, ErrorLogger } from "@/lib/error-handling"
+import { withRateLimit, applicationRateLimit } from "@/lib/rate-limit"
 
 /**
  * Interface for hackathon application form data
@@ -137,6 +138,18 @@ function createApplicationEmailHtml(data: ApplicationFormData): string {
  * }
  */
 const applicationHandler = async (request: NextRequest) => {
+  // Apply rate limiting first
+  const rateLimitResult = await withRateLimit(request, applicationRateLimit)
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      { error: "Too many applications submitted. Please try again later." },
+      { 
+        status: 429,
+        headers: rateLimitResult.headers || {}
+      }
+    )
+  }
+
   // Parse and validate request body
   const data: ApplicationFormData = await request.json()
   

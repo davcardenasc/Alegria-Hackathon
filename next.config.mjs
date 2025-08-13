@@ -10,10 +10,24 @@ const nextConfig = {
     // ignoreBuildErrors: false, // Default behavior - enable TypeScript checks
   },
   
-  // Image optimization disabled - consider enabling for production
-  // This may be needed for static exports or specific deployment requirements
+  // Image optimization re-enabled for better performance
   images: {
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+    domains: ['localhost'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+  
+  // Enable gzip compression
+  compress: true,
+  
+  // Enable SWC minification
+  swcMinify: true,
+  
+  // Optimize bundle
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
   // Security headers to improve domain reputation and trust
