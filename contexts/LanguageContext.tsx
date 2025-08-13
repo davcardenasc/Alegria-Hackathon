@@ -278,18 +278,18 @@ const translations = {
     "ideas.idea4.title": "Marketplace Anti-Desperdicio",
     "ideas.idea4.description":
       "Un marketplace minimalista donde panaderías o restaurantes publiquen su excedente de comida al cierre del día y voluntarios puedan reservarlo para evitar desperdicios.",
-    "ideas.idea5.title": "Portal Ciudadano de Reportes",
+    "ideas.idea5.title": "Agenda Colaborativa de Eventos",
     "ideas.idea5.description":
-      "Un portal ciudadano en el que cualquier vecino suba foto y ubicación de farolas rotas, filtraciones o grietas, con notificaciones automáticas a autoridades o grupos comunitarios.",
-    "ideas.idea6.title": "Red de Alertas Vecinales",
-    "ideas.idea6.description":
-      "Un bot o servicio geolocalizado donde los vecinos publiquen alertas de robos, emergencias o actividad sospechosa y todos reciban la notificación instantánea en un chat común.",
-    "ideas.idea7.title": "Directorio de Actividades Extracurriculares",
-    "ideas.idea7.description":
-      "Un directorio web o bot donde organizadores de talleres y actividades extracurriculares publiquen horarios, precios y descripciones, y los padres puedan filtrar e inscribir a sus hijos de forma rápida.",
-    "ideas.idea8.title": "Agenda Colaborativa de Eventos",
-    "ideas.idea8.description":
       "Una plataforma donde organizadores pueden crear páginas atractivas para sus actividades y los asistentes registrarse, recibir recordatorios y acceder a toda la información en un solo enlace compartido.",
+    "ideas.idea6.title": "Portal Ciudadano de Reportes",
+    "ideas.idea6.description":
+      "Un portal ciudadano en el que cualquier vecino suba foto y ubicación de farolas rotas, filtraciones o grietas, con notificaciones automáticas a autoridades o grupos comunitarios.",
+    "ideas.idea7.title": "Red de Alertas Vecinales",
+    "ideas.idea7.description":
+      "Un bot o servicio geolocalizado donde los vecinos publiquen alertas de robos, emergencias o actividad sospechosa y todos reciban la notificación instantánea en un chat común.",
+    "ideas.idea8.title": "Directorio de Actividades Extracurriculares",
+    "ideas.idea8.description":
+      "Un directorio web o bot donde organizadores de talleres y actividades extracurriculares publiquen horarios, precios y descripciones, y los padres puedan filtrar e inscribir a sus hijos de forma rápida.",
     "ideas.apply_now": "Aplica ahora",
     "ideas.back_to_applications": "Volver a aplicaciones",
     "ideas.view_all_ideas": "Ver todas las ideas",
@@ -577,18 +577,18 @@ const translations = {
     "ideas.idea4.title": "Anti-Waste Marketplace",
     "ideas.idea4.description":
       "A minimalist marketplace where bakeries or restaurants publish their surplus food at closing time and volunteers can reserve it to avoid waste.",
-    "ideas.idea5.title": "Citizen Reporting Portal",
+    "ideas.idea5.title": "Collaborative Event Agenda",
     "ideas.idea5.description":
-      "A citizen portal where any neighbor uploads photos and location of broken streetlights, leaks, or cracks, with automatic notifications to authorities or community groups.",
-    "ideas.idea6.title": "Neighborhood Alert Network",
-    "ideas.idea6.description":
-      "A geolocated bot or service where neighbors publish alerts about robberies, emergencies, or suspicious activity and everyone receives instant notification in a common chat.",
-    "ideas.idea7.title": "Extracurricular Activities Directory",
-    "ideas.idea7.description":
-      "A web directory or bot where organizers of workshops and extracurricular activities publish schedules, prices, and descriptions, and parents can filter and enroll their children quickly.",
-    "ideas.idea8.title": "Collaborative Event Agenda",
-    "ideas.idea8.description":
       "A platform where organizers can create attractive pages for their activities and attendees can register, receive reminders, and access all information through a single shared link.",
+    "ideas.idea6.title": "Citizen Reporting Portal",
+    "ideas.idea6.description":
+      "A citizen portal where any neighbor uploads photos and location of broken streetlights, leaks, or cracks, with automatic notifications to authorities or community groups.",
+    "ideas.idea7.title": "Neighborhood Alert Network",
+    "ideas.idea7.description":
+      "A geolocated bot or service where neighbors publish alerts about robberies, emergencies, or suspicious activity and everyone receives instant notification in a common chat.",
+    "ideas.idea8.title": "Extracurricular Activities Directory",
+    "ideas.idea8.description":
+      "A web directory or bot where organizers of workshops and extracurricular activities publish schedules, prices, and descriptions, and parents can filter and enroll their children quickly.",
     "ideas.apply_now": "Apply now",
     "ideas.back_to_applications": "Back to applications",
     "ideas.view_all_ideas": "View all ideas",

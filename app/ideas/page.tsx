@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ChevronDown, ChevronUp, MapPin, ShoppingCart, Users, Utensils, AlertTriangle, Shield, GraduationCap, ArrowLeft } from 'lucide-react'
+import { ChevronDown, ChevronUp, MapPin, ShoppingCart, Users, Utensils, AlertTriangle, Shield, GraduationCap, ArrowLeft, Calendar } from 'lucide-react'
 import { useLanguage } from "@/contexts/LanguageContext"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -23,6 +23,14 @@ export default function IdeasPage() {
       color: "text-orange-400",
       bgColor: "from-orange-400/20 to-orange-600/20",
       borderColor: "border-orange-400/40",
+    },
+    {
+      title: t("ideas.idea5.title"),
+      description: t("ideas.idea5.description"),
+      icon: Calendar,
+      color: "text-teal-400",
+      bgColor: "from-teal-400/20 to-teal-600/20",
+      borderColor: "border-teal-400/40",
     },
     {
       title: t("ideas.idea1.title"),
@@ -49,24 +57,24 @@ export default function IdeasPage() {
       borderColor: "border-purple-400/40",
     },
     {
-      title: t("ideas.idea5.title"),
-      description: t("ideas.idea5.description"),
+      title: t("ideas.idea6.title"),
+      description: t("ideas.idea6.description"),
       icon: AlertTriangle,
       color: "text-yellow-400",
       bgColor: "from-yellow-400/20 to-yellow-600/20",
       borderColor: "border-yellow-400/40",
     },
     {
-      title: t("ideas.idea6.title"),
-      description: t("ideas.idea6.description"),
+      title: t("ideas.idea7.title"),
+      description: t("ideas.idea7.description"),
       icon: Shield,
       color: "text-red-400",
       bgColor: "from-red-400/20 to-red-600/20",
       borderColor: "border-red-400/40",
     },
     {
-      title: t("ideas.idea7.title"),
-      description: t("ideas.idea7.description"),
+      title: t("ideas.idea8.title"),
+      description: t("ideas.idea8.description"),
       icon: GraduationCap,
       color: "text-indigo-400",
       bgColor: "from-indigo-400/20 to-indigo-600/20",
