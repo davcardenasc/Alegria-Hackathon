@@ -99,11 +99,11 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
   },
   {
-    name: "Corporación Cárdenas",
-    description: "sponsors.cardenas_description",
-    logo: "/images/corporacion-cardenas-logo.png",
-    url: "https://www.corporacioncardenas.com",
-    confirmed: true,
+    name: "Por confirmar",
+    description: "Por confirmar",
+    logo: null,
+    url: "#",
+    confirmed: false,
     tier: "gold",
   },
   {
