@@ -1,16 +1,11 @@
-import { Redis } from "@upstash/redis"
+import { kv } from "@vercel/kv"
 
-// Create Redis instance for caching
-const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-  ? new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    })
-  : null
+// Use Vercel KV (built-in Redis) - automatically configured in Vercel
+const redis = kv
 
 export class Cache {
   private static instance: Cache
-  private redis: Redis | null
+  private redis: typeof redis
 
   private constructor() {
     this.redis = redis
@@ -24,8 +19,6 @@ export class Cache {
   }
 
   async get<T>(key: string): Promise<T | null> {
-    if (!this.redis) return null
-    
     try {
       const data = await this.redis.get(key)
       return data as T
@@ -36,8 +29,6 @@ export class Cache {
   }
 
   async set(key: string, value: any, ttlSeconds: number = 300): Promise<boolean> {
-    if (!this.redis) return false
-    
     try {
       await this.redis.setex(key, ttlSeconds, JSON.stringify(value))
       return true
@@ -48,8 +39,6 @@ export class Cache {
   }
 
   async del(key: string): Promise<boolean> {
-    if (!this.redis) return false
-    
     try {
       await this.redis.del(key)
       return true
@@ -60,8 +49,6 @@ export class Cache {
   }
 
   async invalidatePattern(pattern: string): Promise<void> {
-    if (!this.redis) return
-    
     try {
       const keys = await this.redis.keys(pattern)
       if (keys.length > 0) {

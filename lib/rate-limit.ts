@@ -1,32 +1,27 @@
 import { Ratelimit } from "@upstash/ratelimit"
-import { Redis } from "@upstash/redis"
+import { kv } from "@vercel/kv"
 
-// Create Redis instance only if environment variables are available
-const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-  ? new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    })
-  : null
+// Use Vercel KV (built-in Redis) - automatically configured in Vercel
+const redis = kv
 
 // Create rate limiters with different limits for different endpoints
-export const applicationRateLimit = redis ? new Ratelimit({
+export const applicationRateLimit = new Ratelimit({
   redis: redis,
   limiter: Ratelimit.slidingWindow(5, "15 m"), // 5 requests per 15 minutes
   analytics: true,
-}) : null
+})
 
-export const generalRateLimit = redis ? new Ratelimit({
+export const generalRateLimit = new Ratelimit({
   redis: redis,
   limiter: Ratelimit.slidingWindow(100, "1 m"), // 100 requests per minute
   analytics: true,
-}) : null
+})
 
-export const authRateLimit = redis ? new Ratelimit({
+export const authRateLimit = new Ratelimit({
   redis: redis,
   limiter: Ratelimit.slidingWindow(10, "15 m"), // 10 login attempts per 15 minutes
   analytics: true,
-}) : null
+})
 
 // Helper function to get client IP
 export function getClientIP(request: Request): string {
@@ -50,11 +45,6 @@ export async function withRateLimit(
   rateLimit: typeof applicationRateLimit,
   identifier?: string
 ) {
-  if (!rateLimit) {
-    // If no Redis configured, allow all requests (for development)
-    return { success: true }
-  }
-
   const ip = identifier || getClientIP(request)
   const { success, limit, reset, remaining } = await rateLimit.limit(ip)
 
