@@ -37,12 +37,21 @@ export default function CronogramaSection() {
                 </div>
 
                 <div className="mt-6 p-4 bg-[#4A5EE7]/10 rounded-lg border border-[#4A5EE7]/20">
-                  <p className="text-[#F7F9FF] font-medium mb-2">{t("schedule.day1_description")}</p>
+                  <p className="text-[#F7F9FF] font-medium mb-3">{t("schedule.day1_description")}</p>
+                  
+                  {/* Speakers Preview */}
+                  <div className="mb-4 p-3 bg-[#00162D]/50 rounded-lg border border-[#4A5EE7]/10">
+                    <p className="text-[#BFC9DB] text-sm mb-2">Speakers include:</p>
+                    <p className="text-[#F7F9FF] text-sm font-medium">
+                      Victor Cardenas, CEO of Slash ($400M Company)
+                    </p>
+                  </div>
+                  
                   <Link
                     href="/speakers"
-                    className="text-[#4A5EE7] hover:text-[#BFC9DB] transition-colors duration-300 flex items-center gap-2"
+                    className="inline-flex items-center gap-2 bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-4 py-2 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-xl hover:scale-105"
                   >
-                    <span>{t("schedule.day1_speakers_link")}</span>
+                    <span>Ver todos los speakers</span>
                     <ArrowRight size={16} />
                   </Link>
                 </div>

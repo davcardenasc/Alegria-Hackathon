@@ -11,7 +11,7 @@ interface SpeakerModalProps {
     image: string
     bio: string
     fullBio: string
-    achievements: string[]
+    achievements: string[] | string
     linkedin?: string
   }
   isOpen: boolean
@@ -63,7 +63,7 @@ export default function SpeakerModal({ speaker, isOpen, onClose }: SpeakerModalP
               <div>
                 <h3 className="text-[#F7F9FF] font-semibold mb-2">{t("speakers.curious_facts")}</h3>
                 <ul className="space-y-1">
-                  {speaker.achievements.map((achievement, index) => (
+                  {(Array.isArray(speaker.achievements) ? speaker.achievements : [speaker.achievements]).map((achievement, index) => (
                     <li key={index} className="text-[#BFC9DB] text-sm flex items-start gap-2">
                       <span className="text-[#4A5EE7] mt-1">•</span>
                       <span>{achievement}</span>
