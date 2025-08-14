@@ -280,7 +280,7 @@ const translations = {
       "Un marketplace minimalista donde panaderías o restaurantes publiquen su excedente de comida al cierre del día y voluntarios puedan reservarlo para evitar desperdicios.",
     "ideas.idea5.title": "Agenda Colaborativa de Eventos",
     "ideas.idea5.description":
-      "Una plataforma donde organizadores pueden crear páginas atractivas para sus actividades y los asistentes registrarse, recibir recordatorios y acceder a toda la información en un solo enlace compartido.",
+      "Una plataforma donde organizadores pueden crear páginas para sus eventos y los participantes registrarse, recibir recordatorios y acceder a toda la información en un solo enlace compartido.",
     "ideas.idea6.title": "Portal Ciudadano de Reportes",
     "ideas.idea6.description":
       "Un portal ciudadano en el que cualquier vecino suba foto y ubicación de farolas rotas, filtraciones o grietas, con notificaciones automáticas a autoridades o grupos comunitarios.",

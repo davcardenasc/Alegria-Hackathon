@@ -272,13 +272,13 @@ export default function FormularioParticipantes() {
                 <SelectValue placeholder={t("forms.select_participants")} className="text-[#BFC9DB]" />
               </SelectTrigger>
               <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20">
-                <SelectItem value="2" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white">
+                <SelectItem value="2" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white focus:bg-[#4A5EE7]/20 focus:text-white data-[highlighted]:bg-[#4A5EE7]/20 data-[highlighted]:text-white">
                   2 participantes
                 </SelectItem>
-                <SelectItem value="3" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white">
+                <SelectItem value="3" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white focus:bg-[#4A5EE7]/20 focus:text-white data-[highlighted]:bg-[#4A5EE7]/20 data-[highlighted]:text-white">
                   3 participantes
                 </SelectItem>
-                <SelectItem value="4" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white">
+                <SelectItem value="4" className="text-white hover:bg-[#4A5EE7]/20 hover:text-white focus:bg-[#4A5EE7]/20 focus:text-white data-[highlighted]:bg-[#4A5EE7]/20 data-[highlighted]:text-white">
                   4 participantes
                 </SelectItem>
               </SelectContent>
