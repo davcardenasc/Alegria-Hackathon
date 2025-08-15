@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'AlegrIA',
     images: [
       {
-        url: '/images/full-alegria-logo.png',
+        url: '/images/New Alegria Logo.png',
         width: 1200,
         height: 630,
         alt: 'AlegrIA Hackathon Logo',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AlegrIA - Hackathon de Emprendimiento',
     description: '48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios',
-    images: ['/images/full-alegria-logo.png'],
+    images: ['/images/New Alegria Logo.png'],
   },
   icons: {
     icon: [

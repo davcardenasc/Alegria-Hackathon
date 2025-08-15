@@ -209,7 +209,7 @@ export default function Header() {
             >
               <div className="relative">
                 <Image
-                  src="/images/full-alegria-logo.png"
+                  src="/images/New Alegria Logo.png"
                   alt="AlegrIA Logo"
                   width={120}
                   height={40}
