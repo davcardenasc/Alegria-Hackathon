@@ -70,7 +70,7 @@ const translations = {
     "prizes.second_place": "🥈 2do lugar",
     "prizes.third_place": "🥉 3er lugar",
     "prizes.top5": "⭐ Top 5 finalistas",
-    "prizes.first_prize": "$2k por persona + Macbook Air M4",
+    "prizes.first_prize": "$2,000 por persona + Macbook Air M4",
     "prizes.first_bonus": "+ Pasantía en Slash",
     "prizes.second_prize": "$1,500 por persona",
     "prizes.second_bonus": "+ 1 año Suscripción Platzi",
@@ -166,7 +166,7 @@ const translations = {
     "faq.q7": "¿Se puede ir sin equipo?",
     "faq.a7": "No. Debes aplicar con un equipo de 2 personas como mínimo.",
     "faq.q8": "¿Qué es vibe-coding?",
-    "faq.a8": "Vibe-coding es una filosofía de programación donde priorizamos la creatividad, la colaboración y el disfrute del proceso por encima de la perfección técnica. Es programar con buena vibra, enfocándote en crear algo genial mientras te diviertes y aprendes con tu equipo.",
+    "faq.a8": "Vibe-coding es un estilo de creación rápida de productos donde los participantes construyen aplicaciones, sitios web o herramientas funcionales sin habilidades de programación tradicionales, confiando en IA y plataformas no-code/low-code. El objetivo es lanzar algo funcional rápidamente, priorizando usabilidad y originalidad sobre código perfecto.",
 
     // Footer
     "footer.description": "Empoderando a venezolanos para construir el negocio de sus sueños.",
@@ -373,7 +373,7 @@ const translations = {
     "prizes.second_place": "🥈 2nd place",
     "prizes.third_place": "🥉 3rd place",
     "prizes.top5": "⭐ Top 5 finalists",
-    "prizes.first_prize": "$2k per person + Macbook Air M4",
+    "prizes.first_prize": "$2,000 per person + Macbook Air M4",
     "prizes.first_bonus": "+ Internship at Slash",
     "prizes.second_prize": "$1,500 per person",
     "prizes.second_bonus": "+ 1 year Platzi Subscription",
@@ -468,7 +468,7 @@ const translations = {
     "faq.q7": "Can I go without a team?",
     "faq.a7": "No. You must apply with a team of at least 2 people.",
     "faq.q8": "What is vibe-coding?",
-    "faq.a8": "Vibe-coding is a programming philosophy where we prioritize creativity, collaboration, and enjoyment of the process over technical perfection. It's coding with good vibes, focusing on creating something awesome while having fun and learning with your team.",
+    "faq.a8": "Vibe-coding is a style of rapid product creation where participants build functional apps, websites, or tools without traditional coding skills, relying on AI and no-code/low-code platforms. The goal is to ship something functional fast, prioritizing usability and originality over perfect code.",
 
     // Footer
     "footer.description": "Empowering Venezuelans to build the business of their dreams.",

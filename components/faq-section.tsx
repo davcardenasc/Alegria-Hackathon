@@ -10,6 +10,10 @@ export default function FAQSection() {
 
   const faqs = [
     {
+      question: t("faq.q8"),
+      answer: t("faq.a8"),
+    },
+    {
       question: t("faq.q1"),
       answer: t("faq.a1"),
     },
@@ -36,10 +40,6 @@ export default function FAQSection() {
     {
       question: t("faq.q7"),
       answer: t("faq.a7"),
-    },
-    {
-      question: t("faq.q8"),
-      answer: t("faq.a8"),
     },
   ]
 
