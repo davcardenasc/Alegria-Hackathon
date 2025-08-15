@@ -72,9 +72,9 @@ const translations = {
     "prizes.top5": "⭐ Top 5 finalistas",
     "prizes.first_prize": "$2k por persona + Macbook Air M4",
     "prizes.first_bonus": "+ Pasantía en Slash",
-    "prizes.second_prize": "$1,500 por persona"
+    "prizes.second_prize": "$1,500 por persona",
     "prizes.second_bonus": "+ 1 año Suscripción Platzi",
-    "prizes.third_prize": "$1,000 por persona"
+    "prizes.third_prize": "$1,000 por persona",
     "prizes.third_bonus": "+ $250 créditos de OpenAI",
     "prizes.top5_prize": "3 meses de Lovable Pro",
     "prizes.top5_bonus": "+ Certificado de participación",
@@ -315,7 +315,7 @@ const translations = {
     "overview.cost.title": "Costo",
     "overview.cost.body": "Aplicar es gratis.\nSi eres aceptado: $20 por persona.",
     "overview.prizes.title": "Premios",
-    "overview.prizes.body": "Más de $25,000 en premios.\nPerks extra de software y equipo."
+    "overview.prizes.body": "Más de $25,000 en premios.\nPerks extra de software y equipo.",
     "overview.cta_primary": "Aplica ahora",
     "overview.cta_secondary": "Ver cronograma",
   },
@@ -347,10 +347,10 @@ const translations = {
     "hero.to_prototype": "…to prototype",
     "hero.to_business": "…to real business",
     "hero.main_title": "48 hours. One hackathon. Your future.",
-    "hero.subtitle": "Compete in Venezuela's first vibe-coding hackathon in history for $25,000+ in prizes and launch your startup"
+    "hero.subtitle": "Compete in Venezuela's first vibe-coding hackathon in history for $25,000+ in prizes and launch your startup",
     "hero.subtitle_first_part": "Compete in Venezuela's ",
     "hero.subtitle_highlight": "first vibe-coding hackathon",
-    "hero.subtitle_last_part": " in history for $25,000+ in prizes and launch your startup"
+    "hero.subtitle_last_part": " in history for $25,000+ in prizes and launch your startup",
     "hero.cta": "Apply now",
     "hero.deadline": "Deadline: September 19, 2025",
     "hero.scroll_hint": "Scroll to continue",
@@ -368,16 +368,16 @@ const translations = {
 
     // Prizes Section
     "prizes.title": "Prizes",
-    "prizes.description": "Over $25,000 in prizes waiting for you"
+    "prizes.description": "Over $25,000 in prizes waiting for you",
     "prizes.first_place": "🏆 1st place",
     "prizes.second_place": "🥈 2nd place",
     "prizes.third_place": "🥉 3rd place",
     "prizes.top5": "⭐ Top 5 finalists",
-    "prizes.first_prize": "$2k per person + Macbook Air M4"
+    "prizes.first_prize": "$2k per person + Macbook Air M4",
     "prizes.first_bonus": "+ Internship at Slash",
-    "prizes.second_prize": "$1,500 per person"
+    "prizes.second_prize": "$1,500 per person",
     "prizes.second_bonus": "+ 1 year Platzi Subscription",
-    "prizes.third_prize": "$1,000 per person"
+    "prizes.third_prize": "$1,000 per person",
     "prizes.third_bonus": "+ $250 OpenAI credits",
     "prizes.top5_prize": "3 months Lovable Pro",
     "prizes.top5_bonus": "+ Participation certificate",
@@ -393,7 +393,7 @@ const translations = {
     "schedule.speakers_include": "Speakers include:",
     "schedule.speakers_preview": "Victor Cardenas, CEO of Slash ($400M Company)",
     "schedule.view_all_speakers": "View all speakers",
-    "schedule.day1_networking": "• Networking with bebidas and food"
+    "schedule.day1_networking": "• Networking with drinks and food",
     "schedule.days23": "October 18–19 – Hackathon",
     "schedule.days23_location": "Event area, Escuela Campo Alegre",
     "schedule.days23_time": "48 intensive hours of creation",
@@ -616,7 +616,7 @@ const translations = {
     "overview.cost.title": "Cost",
     "overview.cost.body": "Applying is free.\nIf accepted: $20 per person.",
     "overview.prizes.title": "Prizes",
-    "overview.prizes.body": "Over $25,000 in prizes.\nExtra software and gear perks."
+    "overview.prizes.body": "Over $25,000 in prizes.\nExtra software and gear perks.",
     "overview.cta_primary": "Apply now",
     "overview.cta_secondary": "View schedule",
   },
