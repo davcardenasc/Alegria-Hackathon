@@ -213,21 +213,6 @@ export const GALLERY_IMAGES: GalleryImage[] = [
     description: "moments.photo2",
   },
   {
-    src: "/images/7mo-3-copy.jpg",
-    alt: "Curso de 7mo grado – ECA",
-    description: "moments.photo3",
-  },
-  {
-    src: "/images/7mo-6-copy.jpg",
-    alt: "Curso de 7mo grado – ECA",
-    description: "moments.photo4",
-  },
-  {
-    src: "/images/7mo-8-copy.jpg",
-    alt: "Curso de 7mo grado – ECA",
-    description: "moments.photo5",
-  },
-  {
     src: "/images/8vo-1.jpg",
     alt: "Curso de 8vo grado – ECA",
     description: "moments.photo6",

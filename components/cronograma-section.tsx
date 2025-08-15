@@ -8,7 +8,7 @@ export default function CronogramaSection() {
   const { t } = useLanguage()
 
   const handleMapClick = () => {
-    window.open("https://maps.app.goo.gl/5nESg9ToYqEermNW9", "_blank")
+    window.open("https://maps.app.goo.gl/qLjKTvdZfGNKJJxJ8", "_blank")
   }
 
   return (
@@ -100,7 +100,7 @@ export default function CronogramaSection() {
             >
               {/* Map iframe */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.584789562841!2d-66.86419692399986!3d10.454537665592712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a58de6e2ed0a1%3A0x4e8f4f5c9c9f5e9e!2sEscuela%20Campo%20Alegre!5e0!3m2!1sen!2sve!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.5!2d-66.86!3d10.49!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a58ae4e8c5aeb%3A0x123456789abcdef!2sFinal%20Calle%20La%20Cinta%2C%20Las%20Mercedes%2C%20Caracas%201060%2C%20Venezuela!5e0!3m2!1sen!2sve!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -126,8 +126,8 @@ export default function CronogramaSection() {
                 <div className="flex items-center gap-2">
                   <MapPin size={20} className="text-[#4A5EE7]" />
                   <div>
-                    <p className="font-semibold">Escuela Campo Alegre</p>
-                    <p className="text-sm opacity-90">Caracas, Venezuela</p>
+                    <p className="font-semibold">Final Calle La Cinta</p>
+                    <p className="text-sm opacity-90">Las Mercedes, Caracas</p>
                   </div>
                 </div>
               </div>

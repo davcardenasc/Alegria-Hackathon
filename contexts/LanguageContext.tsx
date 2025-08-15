@@ -44,10 +44,10 @@ const translations = {
     "hero.to_prototype": "…a prototipo",
     "hero.to_business": "…a negocio real",
     "hero.main_title": "48 horas. Un hackathon. Tu futuro.",
-    "hero.subtitle": "Compite en el primer vibe-coding hackathon de la historia de Venezuela por $15,000+ en premios y lanza tu startup",
+    "hero.subtitle": "Compite en el primer vibe-coding hackathon de la historia de Venezuela por $25,000+ en premios y lanza tu startup",
     "hero.subtitle_first_part": "Compite en el ",
     "hero.subtitle_highlight": "primer vibe-coding hackathon",
-    "hero.subtitle_last_part": " de la historia de Venezuela por $15,000+ en premios y lanza tu startup",
+    "hero.subtitle_last_part": " de la historia de Venezuela por $25,000+ en premios y lanza tu startup",
     "hero.cta": "Aplica ahora",
     "hero.deadline": "Fecha límite: 19 de septiembre, 2025",
     "hero.scroll_hint": "Desliza para continuar",
@@ -65,16 +65,16 @@ const translations = {
 
     // Prizes Section
     "prizes.title": "Premios",
-    "prizes.description": "Más de $15,000 en premios esperándote",
+    "prizes.description": "Más de $25,000 en premios esperándote",
     "prizes.first_place": "🏆 1er lugar",
     "prizes.second_place": "🥈 2do lugar",
     "prizes.third_place": "🥉 3er lugar",
     "prizes.top5": "⭐ Top 5 finalistas",
-    "prizes.first_prize": "$1k por persona o Macbook Air M4",
+    "prizes.first_prize": "$2k por persona + Macbook Air M4",
     "prizes.first_bonus": "+ Pasantía en Slash",
-    "prizes.second_prize": "$750 por persona",
+    "prizes.second_prize": "$1,500 por persona"
     "prizes.second_bonus": "+ 1 año Suscripción Platzi",
-    "prizes.third_prize": "$500 por persona",
+    "prizes.third_prize": "$1,000 por persona"
     "prizes.third_bonus": "+ $250 créditos de OpenAI",
     "prizes.top5_prize": "3 meses de Lovable Pro",
     "prizes.top5_bonus": "+ Certificado de participación",
@@ -90,15 +90,15 @@ const translations = {
     "schedule.speakers_include": "Speakers incluyen:",
     "schedule.speakers_preview": "Victor Cardenas, CEO de Slash (Empresa de $400M)",
     "schedule.view_all_speakers": "Ver todos los speakers",
-    "schedule.day1_networking": "• Reunión con tragos y comida",
+    "schedule.day1_networking": "• Reunión con bebidas y comida",
     "schedule.days23": "18–19 de octubre – Hackathon",
     "schedule.days23_location": "Zona de eventos, Escuela Campo Alegre",
     "schedule.days23_time": "48 horas intensivas de creación",
     "schedule.days23_activities":
       "• Desarrollo de prototipos\n• Creación de pitch\n• Mentorías + Networking\n• Premiación final",
     "schedule.location_title": "Ubicación del Evento",
-    "schedule.address1": "Final Av. Andrés Bello con Av. Alameda",
-    "schedule.address2": "Urbanización Campo Alegre, Caracas",
+    "schedule.address1": "Final Calle La Cinta",
+    "schedule.address2": "Las Mercedes, Caracas 1060, Venezuela",
     "schedule.directions": "Ver direcciones",
     "schedule.open_maps": "Abrir en Google Maps",
 
@@ -165,6 +165,8 @@ const translations = {
     "faq.a6": "Es gratis aplicar. Si tu equipo es aceptado, hay una tarifa de inscripción de $20 por persona.",
     "faq.q7": "¿Se puede ir sin equipo?",
     "faq.a7": "No. Debes aplicar con un equipo de 2 personas como mínimo.",
+    "faq.q8": "¿Qué es vibe-coding?",
+    "faq.a8": "Vibe-coding es una filosofía de programación donde priorizamos la creatividad, la colaboración y el disfrute del proceso por encima de la perfección técnica. Es programar con buena vibra, enfocándote en crear algo genial mientras te diviertes y aprendes con tu equipo.",
 
     // Footer
     "footer.description": "Empoderando a venezolanos para construir el negocio de sus sueños.",
@@ -300,7 +302,7 @@ const translations = {
     "overview.description": "Descripción general de lo que vivirás en AlegrIA",
     "overview.what_is.title": "¿Qué es AlegrIA?",
     "overview.what_is.body":
-      "Un vibe‑coding hackathon de 48 horas en Caracas.\nConstruyes prototipos usando herramientas no‑code/low‑code.\nAprendes, creas y presentas tu demo ante jueces.",
+      "Un evento de 48 horas donde equipos crean startups beneficiando a Venezuela desde cero usando herramientas de inteligencia artificial.\nUsas herramientas no‑code/low‑code para construir prototipos funcionales.",
     "overview.flow.title": "Agenda",
     "overview.flow.body":
       "Día 1: Taller + charlas para encender ideas.\nDías 2–3: 48h de construcción guiada con mentores.\nCierre: Demos en vivo y premiación.",
@@ -313,7 +315,7 @@ const translations = {
     "overview.cost.title": "Costo",
     "overview.cost.body": "Aplicar es gratis.\nSi eres aceptado: $20 por persona.",
     "overview.prizes.title": "Premios",
-    "overview.prizes.body": "Más de $15,000 en premios.\nPerks extra de software y equipo.",
+    "overview.prizes.body": "Más de $25,000 en premios.\nPerks extra de software y equipo."
     "overview.cta_primary": "Aplica ahora",
     "overview.cta_secondary": "Ver cronograma",
   },
@@ -345,10 +347,10 @@ const translations = {
     "hero.to_prototype": "…to prototype",
     "hero.to_business": "…to real business",
     "hero.main_title": "48 hours. One hackathon. Your future.",
-    "hero.subtitle": "Compete in Venezuela's first vibe-coding hackathon in history for $15,000+ in prizes and launch your startup",
+    "hero.subtitle": "Compete in Venezuela's first vibe-coding hackathon in history for $25,000+ in prizes and launch your startup"
     "hero.subtitle_first_part": "Compete in Venezuela's ",
     "hero.subtitle_highlight": "first vibe-coding hackathon",
-    "hero.subtitle_last_part": " in history for $15,000+ in prizes and launch your startup",
+    "hero.subtitle_last_part": " in history for $25,000+ in prizes and launch your startup"
     "hero.cta": "Apply now",
     "hero.deadline": "Deadline: September 19, 2025",
     "hero.scroll_hint": "Scroll to continue",
@@ -366,16 +368,16 @@ const translations = {
 
     // Prizes Section
     "prizes.title": "Prizes",
-    "prizes.description": "Over $15,000 in prizes waiting for you",
+    "prizes.description": "Over $25,000 in prizes waiting for you"
     "prizes.first_place": "🏆 1st place",
     "prizes.second_place": "🥈 2nd place",
     "prizes.third_place": "🥉 3rd place",
     "prizes.top5": "⭐ Top 5 finalists",
-    "prizes.first_prize": "$1k per person or Macbook Air M4",
+    "prizes.first_prize": "$2k per person + Macbook Air M4"
     "prizes.first_bonus": "+ Internship at Slash",
-    "prizes.second_prize": "$750 per person",
+    "prizes.second_prize": "$1,500 per person"
     "prizes.second_bonus": "+ 1 year Platzi Subscription",
-    "prizes.third_prize": "$500 per person",
+    "prizes.third_prize": "$1,000 per person"
     "prizes.third_bonus": "+ $250 OpenAI credits",
     "prizes.top5_prize": "3 months Lovable Pro",
     "prizes.top5_bonus": "+ Participation certificate",
@@ -391,15 +393,15 @@ const translations = {
     "schedule.speakers_include": "Speakers include:",
     "schedule.speakers_preview": "Victor Cardenas, CEO of Slash ($400M Company)",
     "schedule.view_all_speakers": "View all speakers",
-    "schedule.day1_networking": "• Networking with drinks and food",
+    "schedule.day1_networking": "• Networking with bebidas and food"
     "schedule.days23": "October 18–19 – Hackathon",
     "schedule.days23_location": "Event area, Escuela Campo Alegre",
     "schedule.days23_time": "48 intensive hours of creation",
     "schedule.days23_activities":
       "• Prototype development\n• Pitch creation\n• Mentoring + Networking\n• Final awards ceremony",
     "schedule.location_title": "Event Location",
-    "schedule.address1": "Final Av. Andrés Bello with Av. Alameda",
-    "schedule.address2": "Campo Alegre Urbanization, Caracas",
+    "schedule.address1": "Final Calle La Cinta",
+    "schedule.address2": "Las Mercedes, Caracas 1060, Venezuela",
     "schedule.directions": "Get directions",
     "schedule.open_maps": "Open in Google Maps",
 
@@ -465,6 +467,8 @@ const translations = {
     "faq.a6": "It's free to apply. If your team is accepted, there's a registration fee of $20 per person.",
     "faq.q7": "Can I go without a team?",
     "faq.a7": "No. You must apply with a team of at least 2 people.",
+    "faq.q8": "What is vibe-coding?",
+    "faq.a8": "Vibe-coding is a programming philosophy where we prioritize creativity, collaboration, and enjoyment of the process over technical perfection. It's coding with good vibes, focusing on creating something awesome while having fun and learning with your team.",
 
     // Footer
     "footer.description": "Empowering Venezuelans to build the business of their dreams.",
@@ -599,7 +603,7 @@ const translations = {
     "overview.description": "A general overview of what you'll experience at AlegrIA.",
     "overview.what_is.title": "What is AlegrIA?",
     "overview.what_is.body":
-      "A 48‑hour vibe‑coding hackathon in Caracas.\nBuild prototypes using no‑code/low‑code tools.\nLearn, create, and pitch your demo to judges.",
+      "A 48‑hour event where teams create startups benefiting Venezuela from scratch using artificial intelligence tools.\nUse no‑code/low‑code tools to build functional prototypes.",
     "overview.flow.title": "Agenda",
     "overview.flow.body":
       "Day 1: Workshop + talks to spark ideas.\nDays 2–3: 48h of guided building with mentors.\nFinale: Live demos and awards.",
@@ -612,7 +616,7 @@ const translations = {
     "overview.cost.title": "Cost",
     "overview.cost.body": "Applying is free.\nIf accepted: $20 per person.",
     "overview.prizes.title": "Prizes",
-    "overview.prizes.body": "Over $15,000 in prizes.\nExtra software and gear perks.",
+    "overview.prizes.body": "Over $25,000 in prizes.\nExtra software and gear perks."
     "overview.cta_primary": "Apply now",
     "overview.cta_secondary": "View schedule",
   },

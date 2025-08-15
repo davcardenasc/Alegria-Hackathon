@@ -37,6 +37,10 @@ export default function FAQSection() {
       question: t("faq.q7"),
       answer: t("faq.a7"),
     },
+    {
+      question: t("faq.q8"),
+      answer: t("faq.a8"),
+    },
   ]
 
   return (
