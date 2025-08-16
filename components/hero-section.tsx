@@ -123,9 +123,9 @@ export default function HeroSection() {
 
     // Special handling for "...a negocio real" (phase 3) - longer full opacity
     if (phaseIndex === 3) {
-      const fadeRange = 0.04 // Very fast fade
-      const fullOpacityRange = 0.3 // Much longer full opacity
-      const gapBeforeNext = 0.08 // Gap before next phase appears
+      const fadeRange = 0.04 // Faster fade
+      const fullOpacityRange = 0.15 // Shorter full opacity for faster transitions
+      const gapBeforeNext = 0.03 // Smaller gap for faster flow
 
       if (scrollProgress < phaseStart || scrollProgress > phaseEnd - gapBeforeNext) {
         return 0
@@ -136,8 +136,8 @@ export default function HeroSection() {
         const fadeProgress = (scrollProgress - phaseStart) / fadeRange
         return Math.min(1, fadeProgress)
       } else if (scrollProgress > phaseMid + fullOpacityRange / 2) {
-        // Fading out - very fast
-        const fadeProgress = (phaseEnd - gapBeforeNext - scrollProgress) / (fadeRange * 0.3)
+        // Fading out - smoother
+        const fadeProgress = (phaseEnd - gapBeforeNext - scrollProgress) / (fadeRange * 0.5)
         return Math.max(0, Math.min(1, fadeProgress))
       } else {
         // Full opacity in the middle
@@ -150,9 +150,9 @@ export default function HeroSection() {
       return 0
     }
 
-    // Fade in/out with smoother curve
-    const fadeRange = phaseIndex === phases.length - 1 ? 0.08 : 0.08 // Same fade for all
-    const fullOpacityRange = phaseIndex === phases.length - 1 ? 0.15 : 0.25 // Shorter for last phase
+    // Fade in/out with faster transitions
+    const fadeRange = phaseIndex === phases.length - 1 ? 0.05 : 0.05 // Faster fade for all
+    const fullOpacityRange = phaseIndex === phases.length - 1 ? 0.1 : 0.15 // Shorter visibility for faster flow
 
     if (scrollProgress < phaseMid - fullOpacityRange / 2) {
       // Fading in
@@ -209,7 +209,7 @@ export default function HeroSection() {
   const airplaneOpacity = scrollProgress < 0.6 ? 1 - scrollProgress * 1.67 : 0
 
   return (
-    <section ref={heroRef} id="mision" className="relative" style={{ height: `${phases.length * 120}vh` }}>
+    <section ref={heroRef} id="mision" className="relative" style={{ height: `${phases.length * 80}vh` }}>
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         <div className="container mx-auto px-6 sm:px-8 lg:px-4 text-center">

@@ -47,7 +47,7 @@ export default function PremiosSection() {
                 <h4 className="text-2xl md:text-3xl font-bold text-[#F7F9FF] mb-4 tracking-wide">{prize.place}</h4>
 
                 {/* Main prize */}
-                <div className={`text-xl md:text-2xl font-bold ${prize.color} mb-4 leading-tight`}>{prize.prize}</div>
+                <div className={`text-3xl md:text-4xl lg:text-5xl font-bold ${prize.color} mb-4 leading-tight`}>{prize.prize}</div>
 
                 {/* Bonus - Enhanced */}
                 <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl hover:scale-105 hover:shadow-2xl hover:from-[#4A5EE7]/50 hover:to-[#BFC9DB]/50 transition-all duration-300 ease-out relative overflow-hidden">
