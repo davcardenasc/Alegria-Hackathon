@@ -29,6 +29,7 @@ export interface Prize {
   place: string
   icon: any // LucideIcon type
   prize: string
+  description?: string
   bonus: string
   color: string
   bgGradient: string
