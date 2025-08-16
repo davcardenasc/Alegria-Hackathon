@@ -91,7 +91,7 @@ export default function MomentosScrollSection() {
   }
 
   return (
-    <section id="momentos-galeria" className="py-8 overflow-hidden">
+    <section id="momentos-galeria" className="py-8 overflow-hidden" onWheel={(e) => e.stopPropagation()}>
       <div className="container mx-auto px-6 sm:px-8 lg:px-4 mb-8">
         <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center">{t("moments.title")}</h2>
         <p className="text-[#BFC9DB] text-center mt-4 max-w-2xl mx-auto">{t("moments.description")}</p>

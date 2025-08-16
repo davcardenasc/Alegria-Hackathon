@@ -50,10 +50,12 @@ export default function PremiosSection() {
                 <div className={`text-3xl md:text-4xl lg:text-5xl font-bold ${prize.color} mb-4 leading-tight`}>{prize.prize}</div>
 
                 {/* Bonus - Enhanced */}
-                <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl hover:scale-105 hover:shadow-2xl hover:from-[#4A5EE7]/50 hover:to-[#BFC9DB]/50 transition-all duration-300 ease-out relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] hover:translate-x-[300%] transition-transform duration-800" />
-                  <span className="relative z-10">{prize.bonus}</span>
-                </div>
+                {prize.bonus && (
+                  <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-6 backdrop-blur-sm mt-auto shadow-xl hover:scale-105 hover:shadow-2xl hover:from-[#4A5EE7]/50 hover:to-[#BFC9DB]/50 transition-all duration-300 ease-out relative overflow-hidden min-h-[80px] flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] hover:translate-x-[300%] transition-transform duration-800" />
+                    <span className="relative z-10 text-center leading-relaxed">{prize.bonus}</span>
+                  </div>
+                )}
               </div>
 
               {/* Enhanced shine effect */}

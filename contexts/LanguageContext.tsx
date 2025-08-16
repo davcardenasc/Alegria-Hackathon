@@ -76,8 +76,8 @@ const translations = {
     "prizes.second_bonus": "+ 1 año Suscripción Platzi",
     "prizes.third_prize": "$2.500",
     "prizes.third_bonus": "+ $500 créditos de OpenAI",
-    "prizes.top5_prize": "1 mes suscripción en Lovable Pro",
-    "prizes.top5_bonus": "+ Certificado de participación",
+    "prizes.top5_prize": "1 mes suscripción en Lovable Pro + Certificado de participación",
+    "prizes.top5_bonus": "",
     "prizes.cta": "¿Listo para competir por estos premios?",
 
     // Schedule Section
@@ -379,8 +379,8 @@ const translations = {
     "prizes.second_bonus": "+ 1 year Platzi Subscription",
     "prizes.third_prize": "$2,500",
     "prizes.third_bonus": "+ $500 OpenAI credits",
-    "prizes.top5_prize": "1 month Lovable Pro subscription",
-    "prizes.top5_bonus": "+ Participation certificate",
+    "prizes.top5_prize": "1 month Lovable Pro subscription + Participation certificate",
+    "prizes.top5_bonus": "",
     "prizes.cta": "Ready to compete for these prizes?",
 
     // Schedule Section
