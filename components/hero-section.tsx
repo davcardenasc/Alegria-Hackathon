@@ -267,9 +267,9 @@ export default function HeroSection() {
                         <span className="relative z-10 cursor-help">{t("hero.subtitle_highlight")}</span>
                         
                         {/* Tooltip */}
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-[#1a2332] border border-[#4A5EE7]/30 rounded-lg text-sm text-[#F7F9FF] max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 whitespace-normal text-left">
-                          <div className="font-medium mb-1">{t("faq.q8")}</div>
-                          <div className="text-[#BFC9DB] leading-relaxed">{t("faq.a8")}</div>
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-[#1a2332] border border-[#4A5EE7]/30 rounded-lg text-sm text-[#F7F9FF] max-w-lg w-[90vw] md:w-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 shadow-xl">
+                          <div className="font-medium text-[#4A5EE7] mb-2">{t("faq.q8")}</div>
+                          <div className="text-[#BFC9DB] leading-relaxed text-xs md:text-sm">{t("faq.a8_short")}</div>
                           {/* Arrow */}
                           <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#1a2332]"></div>
                         </div>

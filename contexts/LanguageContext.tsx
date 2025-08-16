@@ -170,6 +170,7 @@ const translations = {
     "faq.a7": "No. Debes aplicar con un equipo de 2 personas como mínimo.",
     "faq.q8": "¿Qué es vibe-coding?",
     "faq.a8": "Vibe-coding es un estilo de creación rápida de productos donde los participantes construyen aplicaciones, sitios web o herramientas funcionales confiando en IA y plataformas no-code/low-code. El objetivo es lanzar algo funcional rápidamente, priorizando usabilidad y originalidad sobre código perfecto.",
+    "faq.a8_short": "Creación rápida de productos usando IA y plataformas no-code/low-code. Prioriza usabilidad y originalidad sobre código perfecto.",
 
     // Footer
     "footer.description": "Empoderando a venezolanos para construir el negocio de sus sueños.",
@@ -475,6 +476,7 @@ const translations = {
     "faq.a7": "No. You must apply with a team of at least 2 people.",
     "faq.q8": "What is vibe-coding?",
     "faq.a8": "Vibe-coding is a style of rapid product creation where participants build functional apps, websites, or tools relying on AI and no-code/low-code platforms. The goal is to ship something functional fast, prioritizing usability and originality over perfect code.",
+    "faq.a8_short": "Rapid product creation using AI and no-code/low-code platforms. Prioritizes usability and originality over perfect code.",
 
     // Footer
     "footer.description": "Empowering Venezuelans to build the business of their dreams.",
