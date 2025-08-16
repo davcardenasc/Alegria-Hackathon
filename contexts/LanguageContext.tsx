@@ -79,8 +79,8 @@ const translations = {
     "prizes.third_prize": "$2.500",
     "prizes.third_description": "para el desarrollo de su negocio",
     "prizes.third_bonus": "+ $500 créditos de OpenAI",
-    "prizes.top5_prize": "⭐ Todos",
-    "prizes.top5_bonus": "1 mes suscripción en Lovable Pro + Certificado de participación",
+    "prizes.top5_prize": "1 mes suscripción en Lovable Pro",
+    "prizes.top5_bonus": "+ Certificado de participación",
     "prizes.cta": "¿Listo para competir por estos premios?",
 
     // Schedule Section
@@ -385,8 +385,8 @@ const translations = {
     "prizes.third_prize": "$2,500",
     "prizes.third_description": "for business development",
     "prizes.third_bonus": "+ $500 OpenAI credits",
-    "prizes.top5_prize": "⭐ Everyone",
-    "prizes.top5_bonus": "1 month Lovable Pro subscription + Participation certificate",
+    "prizes.top5_prize": "1 month Lovable Pro subscription",
+    "prizes.top5_bonus": "+ Participation certificate",
     "prizes.cta": "Ready to compete for these prizes?",
 
     // Schedule Section

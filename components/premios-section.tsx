@@ -48,7 +48,7 @@ export default function PremiosSection() {
                 <h4 className="text-2xl md:text-3xl font-bold text-[#F7F9FF] mb-4 tracking-wide">{prize.place}</h4>
 
                 {/* Main prize */}
-                <div className={`text-3xl md:text-4xl lg:text-5xl font-bold ${prize.color} mb-2 leading-tight`}>{prize.prize}</div>
+                <div className={`${index === 3 ? 'text-xl md:text-2xl lg:text-3xl' : 'text-3xl md:text-4xl lg:text-5xl'} font-bold ${prize.color} mb-2 leading-tight`}>{prize.prize}</div>
                 
                 {/* Prize description - only for first 3 places */}
                 {prize.description && (
