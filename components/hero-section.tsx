@@ -263,8 +263,17 @@ export default function HeroSection() {
                   {phase.subtitle && (
                     <div className="text-lg md:text-xl lg:text-2xl text-[#BFC9DB] mt-8 max-w-3xl mx-auto text-center">
                       <span>{t("hero.subtitle_first_part")}</span>
-                      <span className="relative inline-block">
-                        <span className="relative z-10">{t("hero.subtitle_highlight")}</span>
+                      <span className="relative inline-block group">
+                        <span className="relative z-10 cursor-help">{t("hero.subtitle_highlight")}</span>
+                        
+                        {/* Tooltip */}
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-[#1a2332] border border-[#4A5EE7]/30 rounded-lg text-sm text-[#F7F9FF] max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 whitespace-normal text-left">
+                          <div className="font-medium mb-1">{t("faq.q8")}</div>
+                          <div className="text-[#BFC9DB] leading-relaxed">{t("faq.a8")}</div>
+                          {/* Arrow */}
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#1a2332]"></div>
+                        </div>
+                        
                         <svg
                           className="absolute -bottom-1 left-0 w-full h-4 z-0 opacity-80"
                           viewBox="0 0 300 16"
