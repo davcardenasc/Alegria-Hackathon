@@ -65,7 +65,7 @@ const translations = {
 
     // Prizes Section
     "prizes.title": "Premios",
-    "prizes.description": "Más de $25,000 en premios esperándote"
+    "prizes.description": "Más de $25,000 en premios esperándote",
     "prizes.first_place": "🏆 1er lugar",
     "prizes.second_place": "🥈 2do lugar",
     "prizes.third_place": "🥉 3er lugar",
@@ -368,7 +368,7 @@ const translations = {
 
     // Prizes Section
     "prizes.title": "Prizes",
-    "prizes.description": "Over $25,000 in prizes waiting for you"
+    "prizes.description": "Over $25,000 in prizes waiting for you",
     "prizes.first_place": "🏆 1st place",
     "prizes.second_place": "🥈 2nd place",
     "prizes.third_place": "🥉 3rd place",
