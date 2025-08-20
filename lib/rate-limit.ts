@@ -1,7 +1,7 @@
 import { Ratelimit } from "@upstash/ratelimit"
 
 // Check if we're in a production environment with KV available
-const isProduction = process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
+const isProduction = !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)
 
 // Simple in-memory storage for local development
 const localRateLimitStore = new Map<string, { count: number; resetTime: number }>()
