@@ -37,6 +37,7 @@ const uploadHandler = async (request: NextRequest) => {
   const safeFileName = `${nameWithoutExt.replace(/[^a-zA-Z0-9-_]/g, '_')}_${timestamp}${extension}`
 
   // Upload to Vercel Blob Storage
+  // Note: Files are public but have unpredictable URLs with timestamps for basic security
   const blob = await put(`id-documents/${safeFileName}`, file, {
     access: 'public',
     token: process.env.BLOB_READ_WRITE_TOKEN

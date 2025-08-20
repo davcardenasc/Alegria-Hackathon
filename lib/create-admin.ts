@@ -2,19 +2,23 @@ import bcrypt from "bcryptjs"
 import { prisma } from "./prisma"
 
 export async function createAdminUser() {
-  // Define admin users to create
+  // Get admin credentials from environment variables
   const adminUsers = [
     {
-      email: "davidcardecodri@gmail.com",
-      password: "KodaCodriansky123!",
+      email: process.env.ADMIN_EMAIL || "admin@example.com",
+      password: process.env.ADMIN_PASSWORD || (() => {
+        throw new Error("ADMIN_PASSWORD environment variable is required")
+      })(),
       name: "Administrator"
     },
     {
-      email: "ugodimartino.27@gmail.com",
-      password: "Ugodi01*",
-      name: "Ugo Di Martino"
+      email: process.env.ADMIN_EMAIL_2 || process.env.ADMIN_EMAIL || "admin@example.com",
+      password: process.env.ADMIN_PASSWORD_2 || process.env.ADMIN_PASSWORD || (() => {
+        throw new Error("ADMIN_PASSWORD environment variable is required")
+      })(),
+      name: process.env.ADMIN_NAME_2 || "Administrator"
     }
-  ]
+  ].filter(admin => admin.email !== "admin@example.com") // Only create admins with real emails
   
   const createdAdmins = []
   
