@@ -36,6 +36,21 @@ const uploadHandler = async (request: NextRequest) => {
   const nameWithoutExt = path.basename(originalName, extension)
   const safeFileName = `${nameWithoutExt.replace(/[^a-zA-Z0-9-_]/g, '_')}_${timestamp}${extension}`
 
+  // Check if we have a real Vercel Blob token
+  if (!process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_READ_WRITE_TOKEN === "local-development-placeholder") {
+    // Local development mode - simulate successful upload
+    const simulatedUrl = `http://localhost:3001/uploads/id-documents/${safeFileName}`
+    
+    return createSuccessResponse({
+      url: simulatedUrl,
+      filename: safeFileName,
+      originalName: originalName,
+      size: file.size,
+      type: file.type,
+      downloadUrl: simulatedUrl
+    }, "File upload simulated for local development")
+  }
+
   // Upload to Vercel Blob Storage
   // Note: Files are public but have unpredictable URLs with timestamps for basic security
   const blob = await put(`id-documents/${safeFileName}`, file, {
