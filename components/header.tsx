@@ -114,7 +114,7 @@ export default function Header() {
       label: t("nav.applications"),
       isDropdown: true,
       dropdownItems: [
-        { href: "/formulario-participantes", label: t("nav.student_application") },
+        { href: "https://tally.so/r/mByGRR", label: t("nav.student_application"), external: true },
         { href: "/formulario-colegios", label: t("nav.school_application") },
         { href: "/ideas", label: t("nav.project_ideas") },
       ],
@@ -130,6 +130,12 @@ export default function Header() {
     setIsCronogramaOpen(false)
     setIsAplicacionesOpen(false)
     setIsPremiosOpen(false)
+
+    // Check if it's an external URL
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+      window.open(href, "_blank", "noopener,noreferrer")
+      return
+    }
 
     if (!href.includes("#")) {
       // Page navigation without hash
