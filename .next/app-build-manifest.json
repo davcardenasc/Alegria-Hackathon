@@ -18,13 +18,6 @@
       "static/chunks/596-9c997aa01770c465.js",
       "static/chunks/app/layout-b9ca0651bf13d4a6.js"
     ],
-    "/formulario-participantes/page": [
-      "static/chunks/webpack-f70358a82fdcdbdc.js",
-      "static/chunks/fd9d1056-550706e6dd399c5e.js",
-      "static/chunks/117-cfca33fdd7bebd6d.js",
-      "static/chunks/main-app-26513ecc2df9fc5e.js",
-      "static/chunks/app/formulario-participantes/page-bbcb1da8fca30f62.js"
-    ],
     "/page": [
       "static/chunks/webpack-f70358a82fdcdbdc.js",
       "static/chunks/fd9d1056-550706e6dd399c5e.js",
@@ -47,17 +40,6 @@
       "static/chunks/596-9c997aa01770c465.js",
       "static/chunks/app/formulario-colegios/page-2e413904b172177d.js"
     ],
-    "/ideas/page": [
-      "static/chunks/webpack-f70358a82fdcdbdc.js",
-      "static/chunks/fd9d1056-550706e6dd399c5e.js",
-      "static/chunks/117-cfca33fdd7bebd6d.js",
-      "static/chunks/main-app-26513ecc2df9fc5e.js",
-      "static/chunks/455-de18438e305621f9.js",
-      "static/chunks/489-b170ad3ebb7c17c3.js",
-      "static/chunks/596-9c997aa01770c465.js",
-      "static/chunks/478-1c3ca308d8f1fcb9.js",
-      "static/chunks/app/ideas/page-81505e4ddb3d7de6.js"
-    ],
     "/speakers/page": [
       "static/chunks/webpack-f70358a82fdcdbdc.js",
       "static/chunks/fd9d1056-550706e6dd399c5e.js",
@@ -78,6 +60,24 @@
       "static/chunks/596-9c997aa01770c465.js",
       "static/chunks/app/resultados/page-7c484720666348d3.js"
     ],
+    "/ideas/page": [
+      "static/chunks/webpack-f70358a82fdcdbdc.js",
+      "static/chunks/fd9d1056-550706e6dd399c5e.js",
+      "static/chunks/117-cfca33fdd7bebd6d.js",
+      "static/chunks/main-app-26513ecc2df9fc5e.js",
+      "static/chunks/455-de18438e305621f9.js",
+      "static/chunks/489-b170ad3ebb7c17c3.js",
+      "static/chunks/596-9c997aa01770c465.js",
+      "static/chunks/478-1c3ca308d8f1fcb9.js",
+      "static/chunks/app/ideas/page-81505e4ddb3d7de6.js"
+    ],
+    "/formulario-participantes/page": [
+      "static/chunks/webpack-f70358a82fdcdbdc.js",
+      "static/chunks/fd9d1056-550706e6dd399c5e.js",
+      "static/chunks/117-cfca33fdd7bebd6d.js",
+      "static/chunks/main-app-26513ecc2df9fc5e.js",
+      "static/chunks/app/formulario-participantes/page-47ab7353c9685e4c.js"
+    ],
     "/admin/login/page": [
       "static/chunks/webpack-f70358a82fdcdbdc.js",
       "static/chunks/fd9d1056-550706e6dd399c5e.js",
@@ -93,7 +93,7 @@
       "static/chunks/117-cfca33fdd7bebd6d.js",
       "static/chunks/main-app-26513ecc2df9fc5e.js",
       "static/chunks/605-f4762958f4161897.js",
-      "static/chunks/app/admin/layout-873a23f88f48ab75.js"
+      "static/chunks/app/admin/layout-bf074ef43d9f50a0.js"
     ],
     "/admin/page": [
       "static/chunks/webpack-f70358a82fdcdbdc.js",

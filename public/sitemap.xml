@@ -22,7 +22,12 @@
   </url>
   <url>
     <loc>https://alegria-hackathon.com/resultados</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-21</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alegria-hackathon.com/formulario-participantes</loc>
+    <lastmod>2025-01-21</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

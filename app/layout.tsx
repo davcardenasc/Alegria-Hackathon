@@ -22,6 +22,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://alegria-hackathon.com'),
   title: "AlegrIA - Hackathon de Emprendimiento",
   description: "48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios y lanza tu startup",
   keywords: ["hackathon", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
@@ -29,6 +30,9 @@ export const metadata: Metadata = {
   creator: "AlegrIA",
   publisher: "AlegrIA",
   robots: "index, follow",
+  alternates: {
+    canonical: 'https://alegria-hackathon.com',
+  },
   openGraph: {
     type: 'website',
     locale: 'es_VE',

@@ -1,26 +1,14 @@
 "use client"
 
 import { useSession } from "next-auth/react"
-import { useRouter, usePathname } from "next/navigation"
-import { useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession()
-  const router = useRouter()
   const pathname = usePathname()
 
-  // Don't redirect if we're already on the login page
+  // Don't apply session checks to login page
   const isLoginPage = pathname === "/admin/login"
-
-  useEffect(() => {
-    if (status === "loading") return // Still loading
-    if (isLoginPage) return // Don't redirect login page
-
-    if (!session) {
-      router.push("/admin/login")
-      return
-    }
-  }, [session, status, router, isLoginPage])
 
   // Show loading for non-login pages while checking session
   if (status === "loading" && !isLoginPage) {
@@ -36,10 +24,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return <>{children}</>
   }
 
-  // For other admin pages, require authentication
-  if (!session) {
-    return null
-  }
-
+  // For other admin pages, middleware handles authentication redirect
+  // Just render the content once session is loaded
   return <>{children}</>
 }
