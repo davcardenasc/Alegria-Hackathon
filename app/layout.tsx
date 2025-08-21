@@ -79,6 +79,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2R12J2EBW"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-T2R12J2EBW');
+            `,
+          }}
+        />
+      </head>
       <body className={`${roboto.className} ${montserrat.variable} ${roboto.variable}`}>
         <Providers>
           <ConditionalBackground />
