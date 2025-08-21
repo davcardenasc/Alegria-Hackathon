@@ -99,7 +99,6 @@ export const CacheKeys = {
   dashboardStats: 'dashboard:stats',
   
   // Email templates
-  emailTemplates: 'email_templates:active',
 }
 
 // Cache TTL values (in seconds)

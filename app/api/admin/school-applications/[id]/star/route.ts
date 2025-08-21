@@ -16,7 +16,7 @@ export async function POST(
     const schoolApplicationId = params.id
 
     // Get current starred status
-    const currentApplication = await prisma.schoolApplication.findUnique({
+    const currentApplication = await prisma.application.findUnique({
       where: { id: schoolApplicationId },
       select: { starred: true }
     })
@@ -26,7 +26,7 @@ export async function POST(
     }
 
     // Toggle starred status
-    const updatedApplication = await prisma.schoolApplication.update({
+    const updatedApplication = await prisma.application.update({
       where: { id: schoolApplicationId },
       data: {
         starred: !currentApplication.starred

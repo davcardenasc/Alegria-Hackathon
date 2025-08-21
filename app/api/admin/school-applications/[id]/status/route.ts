@@ -21,7 +21,7 @@ export async function POST(
     }
 
     // Update school application status
-    const updatedApplication = await prisma.schoolApplication.update({
+    const updatedApplication = await prisma.application.update({
       where: { id: schoolApplicationId },
       data: {
         status: status,

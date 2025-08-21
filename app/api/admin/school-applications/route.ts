@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     // Only starred filtering is supported on UI; return all and filter client-side
     const whereClause = {}
 
-    const schoolApplications = await prisma.schoolApplication.findMany({
+    const schoolApplications = await prisma.application.findMany({
       where: whereClause,
       orderBy: {
         submittedAt: 'desc'

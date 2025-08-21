@@ -13,7 +13,7 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const schoolApplication = await prisma.schoolApplication.findUnique({
+    const schoolApplication = await prisma.application.findUnique({
       where: { id: params.id },
       include: {
         reviewer: {
@@ -57,7 +57,7 @@ export async function DELETE(
     }
 
     // Check if school application exists
-    const schoolApplication = await prisma.schoolApplication.findUnique({
+    const schoolApplication = await prisma.application.findUnique({
       where: { id: params.id },
     })
 
@@ -66,7 +66,7 @@ export async function DELETE(
     }
 
     // Delete the school application
-    await prisma.schoolApplication.delete({
+    await prisma.application.delete({
       where: { id: params.id },
     })
 

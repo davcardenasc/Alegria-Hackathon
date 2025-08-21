@@ -16,16 +16,13 @@ export async function GET(request: NextRequest) {
       },
       select: {
         id: true,
-        teamName: true,
-        participantsCount: true,
-        participants: true,
-        school: true,
-        gradeOrYear: true,
-        contactEmail: true,
-        experienceText: true,
-        motivationText: true,
-        ideasText: true,
-        status: true,
+        schoolName: true,
+        coordinatorName: true,
+        coordinatorEmail: true,
+        phone: true,
+        numStudents: true,
+        preferredDates: true,
+        comments: true,
         starred: true,
         submittedAt: true,
         reviewedAt: true,
@@ -40,16 +37,13 @@ export async function GET(request: NextRequest) {
     // Convert to CSV format
     const csvHeaders = [
       "ID",
-      "Team Name", 
-      "Participants Count",
-      "Participants",
-      "School",
-      "Grade/Year",
-      "Contact Email",
-      "Experience",
-      "Motivation",
-      "Ideas",
-      "Status",
+      "School Name", 
+      "Coordinator Name",
+      "Coordinator Email",
+      "Phone",
+      "Number of Students",
+      "Preferred Dates",
+      "Comments",
       "Starred",
       "Submitted At",
       "Reviewed At",
@@ -57,20 +51,17 @@ export async function GET(request: NextRequest) {
     ]
 
     const csvRows = applications.map(app => {
-      const participants = JSON.parse(app.participants).join("; ")
+      const preferredDates = JSON.parse(app.preferredDates).join("; ")
       
       return [
         app.id,
-        `"${app.teamName}"`,
-        app.participantsCount,
-        `"${participants}"`,
-        `"${app.school}"`,
-        `"${app.gradeOrYear}"`,
-        app.contactEmail,
-        `"${(app.experienceText || "").replace(/"/g, '""')}"`,
-        `"${app.motivationText.replace(/"/g, '""')}"`,
-        `"${(app.ideasText || "").replace(/"/g, '""')}"`,
-        app.status,
+        `"${app.schoolName}"`,
+        `"${app.coordinatorName}"`,
+        app.coordinatorEmail,
+        `"${app.phone}"`,
+        app.numStudents,
+        `"${preferredDates}"`,
+        `"${(app.comments || "").replace(/"/g, '""')}"`,
         app.starred,
         app.submittedAt.toISOString(),
         app.reviewedAt?.toISOString() || "",
@@ -83,7 +74,7 @@ export async function GET(request: NextRequest) {
     return new NextResponse(csvContent, {
       headers: {
         "Content-Type": "text/csv",
-        "Content-Disposition": `attachment; filename="hackathon-applications-${new Date().toISOString().split('T')[0]}.csv"`
+        "Content-Disposition": `attachment; filename="school-applications-${new Date().toISOString().split('T')[0]}.csv"`
       }
     })
 

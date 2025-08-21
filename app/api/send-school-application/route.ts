@@ -143,7 +143,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Save school application to database
-    const schoolApplication = await prisma.schoolApplication.create({
+    const schoolApplication = await prisma.application.create({
       data: {
         schoolName: data.nombre_colegio,
         coordinatorName: data.coordinador,
