@@ -1,88 +1,84 @@
 "use client"
 
+// School Workshop Applications Admin Interface - Main Dashboard
+
 import { useSession, signOut } from "next-auth/react"
-import { useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { 
-  FileText, 
+  School, 
   Star, 
-  Check, 
-  X, 
   Search, 
-  Filter, 
-  Download, 
-  LogOut, 
-  Calendar,
+  LogOut,
   Users,
-  ChartBar,
-  School,
-  Trophy,
+  Phone,
+  Mail,
+  Calendar,
+  MessageCircle,
   Trash2
 } from "lucide-react"
 
-interface Application {
+interface SchoolApplication {
   id: string
-  teamName: string
-  school: string
-  gradeOrYear: string
-  submittedAt: string
-  status: "PENDING" | "ACCEPTED" | "REJECTED"
+  schoolName: string
+  coordinatorName: string
+  coordinatorEmail: string
+  phone: string
+  numStudents: number
+  preferredDates: string[] // Changed from string to string[] since it's parsed as JSON array
+  comments?: string
   starred: boolean
-  participantsCount: number
-  contactEmail: string
+  submittedAt: string
 }
 
 export default function AdminDashboard() {
   const { data: session } = useSession()
-  const [applications, setApplications] = useState<Application[]>([])
-  const [filteredApplications, setFilteredApplications] = useState<Application[]>([])
+  const [applications, setApplications] = useState<SchoolApplication[]>([])
+  const [filteredApplications, setFilteredApplications] = useState<SchoolApplication[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("ALL")
   const [loading, setLoading] = useState(true)
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
-  const [deleting, setDeleting] = useState(false)
-  const [bulkUpdating, setBulkUpdating] = useState<null | "ACCEPTED" | "PENDING">(null)
   const [stats, setStats] = useState({
     total: 0,
-    pending: 0,
-    accepted: 0,
-    rejected: 0,
     starred: 0
   })
 
   useEffect(() => {
-    fetchApplications()
+    fetchSchoolApplications()
   }, [])
 
   useEffect(() => {
     filterApplications()
   }, [applications, searchTerm, statusFilter])
 
-  const fetchApplications = async () => {
+  const fetchSchoolApplications = async () => {
     try {
-      const response = await fetch("/api/admin/applications")
+      const response = await fetch("/api/admin/school-applications")
       const result = await response.json()
       
-      // Handle new API response format
-      const data = result.success ? result.data?.data || result.data || [] : []
-      setApplications(data)
+      // Handle both old and new API response formats
+      const data = result.success ? result.data?.data || result.data || [] : (Array.isArray(result) ? result : [])
       
-      // Calculate stats
+      // Parse preferred dates for each application
+      const parsedData = data.map((app: any) => ({
+        ...app,
+        preferredDates: JSON.parse(app.preferredDates)
+      }))
+      
+      setApplications(parsedData)
+      
+      // Calculate stats (optimize to only what we need)
       const stats = {
-        total: data.length,
-        pending: data.filter((app: Application) => app.status === "PENDING").length,
-        accepted: data.filter((app: Application) => app.status === "ACCEPTED").length,
-        rejected: data.filter((app: Application) => app.status === "REJECTED").length,
-        starred: data.filter((app: Application) => app.starred).length,
+        total: parsedData.length,
+        starred: parsedData.filter((app: SchoolApplication) => app.starred).length,
       }
       setStats(stats)
     } catch (error) {
-      console.error("Error fetching applications:", error)
+      console.error("Error fetching school applications:", error)
     } finally {
       setLoading(false)
     }
@@ -94,116 +90,30 @@ export default function AdminDashboard() {
     // Apply search filter
     if (searchTerm) {
       filtered = filtered.filter(app => 
-        app.teamName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        app.school.toLowerCase().includes(searchTerm.toLowerCase())
+        app.schoolName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.coordinatorName.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
-    // Apply status filter
-    if (statusFilter !== "ALL") {
-      if (statusFilter === "STARRED") {
-        filtered = filtered.filter(app => app.starred)
-      } else {
-        filtered = filtered.filter(app => app.status === statusFilter)
-      }
+    // Apply filter (only STARRED supported)
+    if (statusFilter === "STARRED") {
+      filtered = filtered.filter(app => app.starred)
     }
 
     setFilteredApplications(filtered)
   }
 
-  const toggleSelect = (id: string) => {
-    setSelectedIds(prev => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
-  }
-
-  const selectAllVisible = () => {
-    setSelectedIds(new Set(filteredApplications.map(a => a.id)))
-  }
-
-  const clearSelection = () => {
-    setSelectedIds(new Set())
-  }
-
-  const deleteSelected = async () => {
-    if (selectedIds.size === 0) return
-    const confirmed = confirm(`Delete ${selectedIds.size} selected application(s)? This cannot be undone.`)
-    if (!confirmed) return
-    setDeleting(true)
-    try {
-      for (const id of selectedIds) {
-        await fetch(`/api/admin/applications/${id}`, { method: 'DELETE' })
-      }
-      await fetchApplications()
-      clearSelection()
-      alert('Selected applications deleted')
-    } catch (e) {
-      console.error(e)
-      alert('Error deleting selected applications')
-    } finally {
-      setDeleting(false)
-    }
-  }
-
-  const updateSelectedStatus = async (status: "ACCEPTED" | "PENDING") => {
-    if (selectedIds.size === 0) return
-    const label = status === "ACCEPTED" ? "accept" : "mark as pending"
-    const confirmed = confirm(`${label.charAt(0).toUpperCase() + label.slice(1)} ${selectedIds.size} selected application(s)?`)
-    if (!confirmed) return
-    setBulkUpdating(status)
-    try {
-      for (const id of selectedIds) {
-        await fetch(`/api/admin/applications/${id}/status`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ status }),
-        })
-      }
-      await fetchApplications()
-      clearSelection()
-      alert(`Selected applications ${label}ed`)
-    } catch (e) {
-      console.error(e)
-      alert('Error updating selected applications')
-    } finally {
-      setBulkUpdating(null)
-    }
-  }
-
   const toggleStar = async (applicationId: string) => {
     try {
-      const response = await fetch(`/api/admin/applications/${applicationId}/star`, {
+      const response = await fetch(`/api/admin/school-applications/${applicationId}/star`, {
         method: "POST",
       })
       
       if (response.ok) {
-        fetchApplications() // Refresh data
+        fetchSchoolApplications() // Refresh data
       }
     } catch (error) {
       console.error("Error toggling star:", error)
-    }
-  }
-
-  const exportToCSV = async () => {
-    try {
-      const response = await fetch("/api/admin/export")
-      if (response.ok) {
-        const blob = await response.blob()
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.style.display = 'none'
-        a.href = url
-        a.download = `hackathon-applications-${new Date().toISOString().split('T')[0]}.csv`
-        document.body.appendChild(a)
-        a.click()
-        window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
-      }
-    } catch (error) {
-      console.error("Error exporting CSV:", error)
     }
   }
 
@@ -211,30 +121,10 @@ export default function AdminDashboard() {
     setStatusFilter(filter)
   }
 
-  const getStatusBadge = (status: string) => {
-    const variants = {
-      PENDING: "secondary",
-      ACCEPTED: "default", 
-      REJECTED: "destructive"
-    } as const
-    
-    const colors = {
-      PENDING: "bg-yellow-500/20 text-yellow-300 border-yellow-500/20",
-      ACCEPTED: "bg-green-500/20 text-green-300 border-green-500/20",
-      REJECTED: "bg-red-500/20 text-red-300 border-red-500/20"
-    } as const
-
-    return (
-      <Badge className={colors[status as keyof typeof colors]}>
-        {status.toLowerCase()}
-      </Badge>
-    )
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-[#00162D] text-white flex items-center justify-center">
-        <div>Loading applications...</div>
+        <div>Loading school applications...</div>
       </div>
     )
   }
@@ -245,8 +135,11 @@ export default function AdminDashboard() {
       <header className="border-b border-[#4A5EE7]/20 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-[#F7F9FF]">AlegrIA Hackathon Admin</h1>
-            <p className="text-[#BFC9DB]">Welcome, {session?.user?.name}</p>
+            <h1 className="text-2xl font-bold text-[#F7F9FF] flex items-center gap-2">
+              <School size={24} className="text-[#4A5EE7]" />
+              AlegrIA Hackathon - School Applications
+            </h1>
+            <p className="text-[#BFC9DB]">Welcome, {session?.user?.name} - Manage workshop requests from schools</p>
           </div>
           <Button 
             onClick={() => signOut()} 
@@ -261,37 +154,22 @@ export default function AdminDashboard() {
 
       <div className="p-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           <Card 
             className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
             onClick={() => handleStatsCardClick("ALL")}
           >
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
-                <FileText size={20} className="text-[#4A5EE7]" />
+                <School size={20} className="text-[#4A5EE7]" />
                 <div>
                   <p className="text-2xl font-bold text-[#F7F9FF]">{stats.total}</p>
-                  <p className="text-sm text-[#BFC9DB]">Total</p>
+                  <p className="text-sm text-[#BFC9DB]">Total Requests</p>
                 </div>
               </div>
             </CardContent>
           </Card>
           
-          <Card 
-            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
-            onClick={() => handleStatsCardClick("PENDING")}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <Calendar size={20} className="text-yellow-400" />
-                <div>
-                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.pending}</p>
-                  <p className="text-sm text-[#BFC9DB]">Pending</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           <Card 
             className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
             onClick={() => handleStatsCardClick("STARRED")}
@@ -306,36 +184,6 @@ export default function AdminDashboard() {
               </div>
             </CardContent>
           </Card>
-
-          <Card 
-            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
-            onClick={() => handleStatsCardClick("ACCEPTED")}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <Check size={20} className="text-green-400" />
-                <div>
-                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.accepted}</p>
-                  <p className="text-sm text-[#BFC9DB]">Accepted</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card 
-            className="bg-[#00162D] border-[#4A5EE7]/20 cursor-pointer hover:border-[#4A5EE7]/40 transition-colors" 
-            onClick={() => handleStatsCardClick("REJECTED")}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <X size={20} className="text-red-400" />
-                <div>
-                  <p className="text-2xl font-bold text-[#F7F9FF]">{stats.rejected}</p>
-                  <p className="text-sm text-[#BFC9DB]">Rejected</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Filters */}
@@ -346,7 +194,7 @@ export default function AdminDashboard() {
                 <div className="relative">
                   <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#BFC9DB]" />
                   <Input
-                    placeholder="Search teams or schools..."
+                    placeholder="Search schools or coordinators..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 bg-[#00162D] border-[#4A5EE7]/20 text-white"
@@ -357,156 +205,174 @@ export default function AdminDashboard() {
                 <SelectTrigger className="w-[200px] bg-[#00162D] border-[#4A5EE7]/20 text-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
+              <SelectContent className="bg-[#00162D] border-[#4A5EE7]/20 text-white">
                   <SelectItem value="ALL" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">All Applications</SelectItem>
-                  <SelectItem value="PENDING" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Pending</SelectItem>
                   <SelectItem value="STARRED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Starred</SelectItem>
-                  <SelectItem value="ACCEPTED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Accepted</SelectItem>
-                  <SelectItem value="REJECTED" className="text-white hover:bg-[#4A5EE7]/20 focus:bg-[#4A5EE7]/20">Rejected</SelectItem>
                 </SelectContent>
               </Select>
-              <Button 
-                onClick={() => window.location.href = '/admin/review'}
-                className="bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white"
-              >
-                <Users size={16} className="mr-2" />
-                Review Pending
-              </Button>
-              <Button 
-                onClick={() => window.location.href = '/admin/schools'}
-                className="bg-green-600 hover:bg-green-700 text-white"
-              >
-                <School size={16} className="mr-2" />
-                School Applications
-              </Button>
-              <Button 
-                onClick={exportToCSV}
-                variant="outline" 
-                className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
-              >
-                <Download size={16} className="mr-2" />
-                Export CSV
-              </Button>
-              <Button 
-                onClick={() => { window.location.href = '/admin/preview-results' }}
-                className="bg-yellow-600 hover:bg-yellow-700 text-white"
-              >
-                <Trophy size={16} className="mr-2" />
-                Preview Results
-              </Button>
             </div>
           </CardContent>
         </Card>
 
-        {/* Applications Table */}
-        <Card className="bg-[#00162D] border-[#4A5EE7]/20">
-          <CardHeader>
-            <CardTitle className="text-[#F7F9FF]">
-              Applications ({filteredApplications.length})
-            </CardTitle>
-            {filteredApplications.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
-                <Button
-                  variant="outline"
-                  onClick={selectAllVisible}
-                  className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
-                >
-                  Select All
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={clearSelection}
-                  className="border-[#4A5EE7]/20 text-[#BFC9DB] hover:bg-[#4A5EE7]/10"
-                >
-                  Clear Selection
-                </Button>
-                <Button
-                  onClick={() => updateSelectedStatus("PENDING")}
-                  disabled={selectedIds.size === 0 || !!bulkUpdating}
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white"
-                >
-                  {bulkUpdating === 'PENDING' ? 'Marking...' : `Mark Pending (${selectedIds.size})`}
-                </Button>
-                <Button
-                  onClick={() => updateSelectedStatus("ACCEPTED")}
-                  disabled={selectedIds.size === 0 || !!bulkUpdating}
-                  className="bg-green-600 hover:bg-green-700 text-white"
-                >
-                  {bulkUpdating === 'ACCEPTED' ? 'Accepting...' : `Accept Selected (${selectedIds.size})`}
-                </Button>
-                <Button
-                  onClick={deleteSelected}
-                  disabled={selectedIds.size === 0 || deleting}
-                  className="bg-red-600 hover:bg-red-700 text-white"
-                >
-                  <Trash2 size={16} className="mr-2" />
-                  {deleting ? 'Deleting...' : `Delete Selected (${selectedIds.size})`}
-                </Button>
-              </div>
-            )}
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {filteredApplications.length === 0 ? (
-                <p className="text-[#BFC9DB] text-center py-8">No applications found</p>
-              ) : (
-                filteredApplications.map((app) => (
-                  <div
-                    key={app.id}
-                    className="flex items-center gap-4 p-4 border border-[#4A5EE7]/10 rounded-lg hover:border-[#4A5EE7]/30 transition-colors cursor-pointer"
-                    onClick={() => { window.location.href = `/admin/applications/${app.id}` }}
-                  >
-                    <div
-                      onClick={(e) => { e.stopPropagation(); toggleSelect(app.id) }}
-                      className={`shrink-0 w-8 h-8 min-w-8 mr-1 md:mr-2 flex items-center justify-center rounded-md border ${selectedIds.has(app.id) ? 'border-[#4A5EE7] bg-[#4A5EE7]/20' : 'border-[#4A5EE7]/30 bg-transparent'} cursor-pointer`}
-                      aria-label={`Select ${app.teamName}`}
-                      role="checkbox"
-                      aria-checked={selectedIds.has(app.id)}
-                      tabIndex={0}
-                      onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); toggleSelect(app.id) } }}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedIds.has(app.id)}
-                        readOnly
-                        className="pointer-events-none accent-[#4A5EE7] w-4 h-4"
-                      />
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        toggleStar(app.id)
-                      }}
-                      className="text-yellow-400 hover:text-yellow-300"
-                    >
-                      <Star size={20} fill={app.starred ? "currentColor" : "none"} />
-                    </button>
-                    
-                    <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
-                      <div>
-                        <p className="font-medium text-[#F7F9FF]">{app.teamName}</p>
-                        <p className="text-sm text-[#BFC9DB]">{app.participantsCount} members</p>
+        {/* Applications List */}
+        <div className="space-y-4">
+          {filteredApplications.length === 0 ? (
+            <Card className="bg-[#00162D] border-[#4A5EE7]/20">
+              <CardContent className="p-8 text-center">
+                <p className="text-[#BFC9DB]">No school applications found</p>
+              </CardContent>
+            </Card>
+          ) : (
+            filteredApplications.map((app) => (
+              <Card key={app.id} className="bg-[#00162D] border-[#4A5EE7]/20">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 space-y-4">
+                      {/* Header */}
+                      <div className="flex items-center gap-4">
+                        <button
+                          onClick={() => toggleStar(app.id)}
+                          className="text-yellow-400 hover:text-yellow-300"
+                        >
+                          <Star size={20} fill={app.starred ? "currentColor" : "none"} />
+                        </button>
+                        <div>
+                          <h3 className="text-lg font-semibold text-[#F7F9FF] flex items-center gap-2">
+                            <School size={20} className="text-[#4A5EE7]" />
+                            {app.schoolName}
+                          </h3>
+                          <p className="text-[#BFC9DB] text-sm">
+                            Submitted on {new Date(app.submittedAt).toLocaleDateString()}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-[#F7F9FF]">{app.school}</p>
-                        <p className="text-sm text-[#BFC9DB]">{app.gradeOrYear}</p>
+
+                      {/* Details */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="flex items-center gap-2">
+                          <Users size={16} className="text-[#4A5EE7]" />
+                          <div>
+                            <p className="text-[#F7F9FF] font-medium">{app.coordinatorName}</p>
+                            <p className="text-[#BFC9DB] text-sm">Coordinator</p>
+                          </div>
+                        </div>
+                        
+                          <div className="flex items-center gap-2">
+                            <Mail size={16} className="text-[#4A5EE7]" />
+                            <div>
+                              <button
+                                onClick={() => { navigator.clipboard.writeText(app.coordinatorEmail); alert('Email copied to clipboard') }}
+                                className="text-[#F7F9FF] hover:text-[#4A5EE7] underline"
+                              >
+                                {app.coordinatorEmail}
+                              </button>
+                              <p className="text-[#BFC9DB] text-sm">Click to copy email</p>
+                            </div>
+                          </div>
+
+                        <div className="flex items-center gap-2">
+                          <Phone size={16} className="text-[#4A5EE7]" />
+                          <div>
+                            <a 
+                              href={`https://wa.me/${app.phone.replace(/\D/g, '')}?text=Hello! I'm contacting you regarding your workshop request for ${app.schoolName}.`}
+                              className="text-[#F7F9FF] hover:text-green-400 underline"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {app.phone}
+                            </a>
+                            <p className="text-[#BFC9DB] text-sm">Phone (click to open WhatsApp)</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <Users size={16} className="text-[#4A5EE7]" />
+                          <div>
+                            <p className="text-[#F7F9FF] font-medium">{app.numStudents}</p>
+                            <p className="text-[#BFC9DB] text-sm">Students</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <Calendar size={16} className="text-[#4A5EE7]" />
+                          <div>
+                            <p className="text-[#F7F9FF]">{app.preferredDates.length} dates</p>
+                            <p className="text-[#BFC9DB] text-sm">Preferred Dates</p>
+                          </div>
+                        </div>
+
+                        {app.comments && (
+                          <div className="flex items-start gap-2">
+                            <MessageCircle size={16} className="text-[#4A5EE7] mt-1" />
+                            <div>
+                              <p className="text-[#F7F9FF] text-sm">{app.comments}</p>
+                              <p className="text-[#BFC9DB] text-sm">Comments</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <div>
-                        <p className="text-[#F7F9FF]">
-                          {new Date(app.submittedAt).toLocaleDateString()}
-                        </p>
-                        <p className="text-sm text-[#BFC9DB]">{app.contactEmail}</p>
-                      </div>
-                      <div className="flex items-center justify-end">
-                        {getStatusBadge(app.status)}
+
+                      {/* Preferred Dates */}
+                      {app.preferredDates && app.preferredDates.length > 0 && (
+                        <div>
+                          <p className="text-[#BFC9DB] text-sm mb-2">Preferred Workshop Dates:</p>
+                          <div className="flex flex-wrap gap-2">
+                            {app.preferredDates.map((date: string, index: number) => (
+                              <Badge key={index} className="bg-[#4A5EE7]/20 text-[#4A5EE7] border-[#4A5EE7]/20">
+                                {date}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Quick Contact Actions */}
+                      <div className="flex gap-2 pt-4">
+                        <Button 
+                          onClick={() => { navigator.clipboard.writeText(app.coordinatorEmail); alert('Email copied to clipboard') }}
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          <Mail size={16} className="mr-2" />
+                          Copy Email
+                        </Button>
+                        <Button 
+                          onClick={() => window.open(`https://wa.me/${app.phone.replace(/\D/g, '')}?text=Hello! I'm contacting you regarding your workshop request for ${app.schoolName}.`, '_blank')}
+                          className="bg-green-600 hover:bg-green-700 text-white"
+                        >
+                          <Phone size={16} className="mr-2" />
+                          WhatsApp
+                        </Button>
+                        <Button
+                          onClick={async () => {
+                            const ok = confirm(`Delete workshop request from ${app.schoolName}? This action cannot be undone.`)
+                            if (!ok) return
+                            try {
+                              const res = await fetch(`/api/admin/school-applications/${app.id}`, { method: 'DELETE' })
+                              if (!res.ok) {
+                                const errorData = await res.json()
+                                throw new Error(errorData.error || 'Failed to delete')
+                              }
+                              await fetchSchoolApplications()
+                              alert('School application deleted successfully!')
+                            } catch (e) {
+                              console.error('Error deleting school application:', e)
+                              alert(`Error deleting school application: ${e instanceof Error ? e.message : 'Unknown error'}`)
+                            }
+                          }}
+                          variant="outline"
+                          className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                        >
+                          <Trash2 size={16} className="mr-2" />
+                          Delete
+                        </Button>
                       </div>
                     </div>
                   </div>
-                ))
-              )}
-            </div>
-          </CardContent>
-        </Card>
+                </CardContent>
+              </Card>
+            ))
+          )}
+        </div>
       </div>
     </div>
   )

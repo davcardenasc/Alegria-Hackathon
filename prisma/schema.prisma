@@ -10,44 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Application {
-  id              String   @id @default(cuid())
-  submittedAt     DateTime @default(now())
-  teamName        String
-  participantsCount Int
-  participants    String   // JSON array of participant names
-  school          String
-  gradeOrYear     String
-  contactEmail    String
-  idDocumentUrl   String?
-  experienceText  String?
-  motivationText  String
-  ideasText       String?
-  status          ApplicationStatus @default(PENDING)
-  starred         Boolean  @default(false)
-  reviewedBy      String?
-  reviewedAt      DateTime?
-  
-  // Additional metadata
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
-  // Relations
-  reviewer        User?    @relation(fields: [reviewedBy], references: [id])
-  emailLogs       EmailLog[]
-  
-  // Performance indexes for frequently queried fields
-  @@index([status])
-  @@index([starred])
-  @@index([submittedAt])
-  @@index([school])
-  @@index([contactEmail])
-  @@index([reviewedBy])
-  @@index([status, starred]) // Composite index for admin dashboard filtering
-  @@map("applications")
-}
 
-model SchoolApplication {
+model Application {
   id                  String   @id @default(cuid())
   submittedAt         DateTime @default(now())
   schoolName          String
@@ -67,7 +31,7 @@ model SchoolApplication {
   updatedAt           DateTime @updatedAt
   
   // Relations
-  reviewer            User?    @relation("SchoolApplicationReviewer", fields: [reviewedBy], references: [id])
+  reviewer            User?    @relation(fields: [reviewedBy], references: [id])
   
   // Performance indexes for frequently queried fields
   @@index([status])
@@ -91,44 +55,10 @@ model User {
   
   // Relations
   reviewedApplications Application[]
-  reviewedSchoolApplications SchoolApplication[] @relation("SchoolApplicationReviewer")
   
   @@map("users")
 }
 
-model EmailTemplate {
-  id          String        @id @default(cuid())
-  type        EmailType
-  subject     String
-  body        String        // HTML content with placeholders
-  isActive    Boolean       @default(true)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  
-  @@map("email_templates")
-}
-
-model EmailLog {
-  id              String      @id @default(cuid())
-  applicationId   String
-  type            EmailType
-  recipientEmail  String
-  subject         String
-  sentAt          DateTime    @default(now())
-  status          EmailStatus @default(SENT)
-  errorMessage    String?
-  
-  // Relations
-  application     Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
-  
-  // Performance indexes for email audit queries
-  @@index([applicationId])
-  @@index([recipientEmail])
-  @@index([sentAt])
-  @@index([status])
-  @@index([type])
-  @@map("email_logs")
-}
 
 enum ApplicationStatus {
   PENDING
@@ -139,15 +69,4 @@ enum ApplicationStatus {
 enum UserRole {
   REVIEWER
   ADMINISTRATOR
-}
-
-enum EmailType {
-  ACCEPTANCE
-  REJECTION
-}
-
-enum EmailStatus {
-  SENT
-  FAILED
-  PENDING
 }
