@@ -105,7 +105,8 @@ export default function Header() {
       label: t("nav.prizes"),
       isDropdown: true,
       dropdownItems: [
-        { href: "/#premios", label: t("nav.prizes") },
+        { href: "/#premios", label: t("nav.main_prizes") },
+        { href: "/#premios-yummy", label: t("nav.yummy_prizes") },
         { href: "/#patrocinadores", label: t("nav.sponsors") },
       ],
     },

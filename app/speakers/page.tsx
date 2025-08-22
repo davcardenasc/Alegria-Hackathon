@@ -32,15 +32,15 @@ export default function SpeakersPage() {
       confirmed: true,
     },
     {
-      name: "Speaker",
-      title: t("speakers.confirmed"),
-      company: t("speakers.confirmed"),
-      image: null,
-      bio: t("speakers.confirmed"),
-      fullBio: t("speakers.confirmed"),
-      achievements: [t("speakers.confirmed")],
-      linkedin: "#",
-      confirmed: false,
+      name: "Vicente Zavarce",
+      title: t("speakers.vicente.title"),
+      company: "Yummy",
+      image: "/images/speaker-vicente-zavarce.jpeg",
+      bio: t("speakers.vicente.bio"),
+      fullBio: t("speakers.vicente.full_bio"),
+      achievements: t("speakers.vicente.achievements"),
+      linkedin: "https://www.linkedin.com/in/vzavarce/",
+      confirmed: true,
     },
     {
       name: "Speaker",
@@ -67,14 +67,14 @@ export default function SpeakersPage() {
       confirmed: true,
     },
     {
-      title: "Charla por confirmar",
-      speaker: "Speaker por confirmar",
-      company: t("speakers.confirmed"),
-      time: "2:00 PM",
-      date: t("speakers.talk1.date"),
-      description: t("speakers.confirmed"),
-      audience: t("speakers.confirmed"),
-      confirmed: false,
+      title: t("speakers.talk2.title"),
+      speaker: t("speakers.talk2.speaker"),
+      company: t("speakers.talk2.company"),
+      time: t("speakers.talk2.time"),
+      date: t("speakers.talk2.date"),
+      description: t("speakers.talk2.description"),
+      audience: t("speakers.talk2.audience"),
+      confirmed: true,
     },
     {
       title: "Charla por confirmar",
@@ -90,7 +90,7 @@ export default function SpeakersPage() {
 
   const companies = [
     { name: "Slash", logo: "/images/slash-logo.png", url: "https://slash.com", confirmed: true },
-    { name: "Empresa", logo: null, url: "#", confirmed: false },
+    { name: "Yummy", logo: "/images/yummy-logo.png", url: "https://www.yummysuperapp.com/", confirmed: true },
     { name: "Empresa", logo: null, url: "#", confirmed: false },
   ]
 

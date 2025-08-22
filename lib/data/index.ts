@@ -1,6 +1,6 @@
 // Centralized data management
 import { Ambassador, Workshop, Sponsor, Prize, GalleryImage, Testimonial } from '@/types'
-import { Crown, Trophy, Medal, Gift, Gem, Sparkles, Star } from 'lucide-react'
+import { Crown, Trophy, Medal, Gift, Gem, Sparkles, Star, Award } from 'lucide-react'
 
 // Organizers Data
 export const ORGANIZADORES: Ambassador[] = [
@@ -99,11 +99,19 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
   },
   {
-    name: "Por confirmar",
-    description: "Por confirmar",
-    logo: null,
-    url: "#",
-    confirmed: false,
+    name: "Yummy",
+    description: "sponsors.yummy_description",
+    logo: "/images/yummy-logo.png",
+    url: "https://www.yummysuperapp.com/",
+    confirmed: true,
+    tier: "gold",
+  },
+  {
+    name: "Ribbit Capital",
+    description: "sponsors.ribbit_description",
+    logo: "/images/Ribbit_Capital logo.png",
+    url: "https://www.ribbitcap.com/",
+    confirmed: true,
     tier: "gold",
   },
   {
@@ -113,14 +121,6 @@ export const SPONSORS: Sponsor[] = [
     url: "#",
     confirmed: false,
     tier: "silver",
-  },
-  {
-    name: "Por confirmar",
-    description: "Por confirmar",
-    logo: null,
-    url: "#",
-    confirmed: false,
-    tier: "bronze",
   },
   {
     name: "Por confirmar",
@@ -200,6 +200,20 @@ export const PRIZES: Prize[] = [
     color: "text-purple-400",
     bgGradient: "from-purple-400/20 to-purple-600/20",
     borderColor: "border-purple-400/30",
+  },
+]
+
+// Yummy Sub-Category Prizes Data
+export const YUMMY_PRIZES: Prize[] = [
+  {
+    place: "prizes.yummy_winner",
+    icon: Trophy,
+    prize: "prizes.yummy_prize",
+    description: "prizes.yummy_description",
+    bonus: "prizes.yummy_bonus",
+    color: "text-green-400",
+    bgGradient: "from-green-400/20 to-green-600/20",
+    borderColor: "border-green-400/30",
   },
 ]
 

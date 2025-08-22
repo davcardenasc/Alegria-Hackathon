@@ -24,7 +24,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   metadataBase: new URL('https://alegria-hackathon.com'),
   title: "AlegrIA - Hackathon de Emprendimiento",
-  description: "48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios y lanza tu startup",
+  description: "48 horas. Un hackathon. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
   keywords: ["hackathon", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
   authors: [{ name: "AlegrIA Team" }],
   creator: "AlegrIA",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: 'es_VE',
     url: 'https://alegria-hackathon.com',
     title: 'AlegrIA - Hackathon de Emprendimiento',
-    description: '48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios y lanza tu startup',
+    description: '48 horas. Un hackathon. Tu futuro. Compite por $50,000+ en premios y lanza tu startup',
     siteName: 'AlegrIA',
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'AlegrIA - Hackathon de Emprendimiento',
-    description: '48 horas. Un hackathon. Tu futuro. Compite por $25,000+ en premios',
+    description: '48 horas. Un hackathon. Tu futuro. Compite por $50,000+ en premios',
     images: ['/images/New Alegria Logo.png?v=2'],
   },
   icons: {
