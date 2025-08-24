@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     siteName: 'AlegrIA',
     images: [
       {
-        url: 'https://alegria-hackathon.com/images/New Alegria Logo.png?v=2',
+        url: 'https://alegria-hackathon.com/images/Alegria "Construye el futuro".png',
         width: 1200,
         height: 630,
-        alt: 'AlegrIA Hackatón Logo',
+        alt: 'AlegrIA Hackatón - Construye el futuro',
       },
     ],
   },
@@ -53,11 +53,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AlegrIA - Hackatón de Emprendimiento',
     description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios',
-    images: ['https://alegria-hackathon.com/images/New Alegria Logo.png?v=2'],
+    images: ['https://alegria-hackathon.com/images/Alegria "Construye el futuro".png'],
   },
   icons: {
     icon: [
-      { url: '/images/New Alegria Logo.png', sizes: '512x512', type: 'image/png' },
+      { url: '/images/alegria-logo-airplane.png', sizes: '512x512', type: 'image/png' },
       { url: '/favicon.ico', sizes: '32x32' },
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/images/New Alegria Logo.png',
+    shortcut: '/images/alegria-logo-airplane.png',
   },
   manifest: '/manifest.json',
   verification: {
@@ -87,7 +87,7 @@ export default function RootLayout({
     <html lang="es">
       <head>
         {/* Priority favicon for search engines */}
-        <link rel="icon" href="/images/New Alegria Logo.png" />
+        <link rel="icon" href="/images/alegria-logo-airplane.png" />
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2R12J2EBW"></script>
         <script
@@ -110,8 +110,8 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5EE7" />
-        <link rel="shortcut icon" href="/images/New Alegria Logo.png" type="image/png" />
-        <link rel="icon" href="/images/New Alegria Logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/images/alegria-logo-airplane.png" type="image/png" />
+        <link rel="icon" href="/images/alegria-logo-airplane.png" type="image/png" />
         {/* Structured Data for better Google Search results */}
         <script
           type="application/ld+json"
@@ -122,8 +122,8 @@ export default function RootLayout({
               "name": "AlegrIA - Hackatón de Emprendimiento",
               "description": "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
               "url": "https://alegria-hackathon.com",
-              "image": "https://alegria-hackathon.com/images/New Alegria Logo.png",
-              "logo": "https://alegria-hackathon.com/images/New Alegria Logo.png",
+              "image": "https://alegria-hackathon.com/images/Alegria \"Construye el futuro\".png",
+              "logo": "https://alegria-hackathon.com/images/alegria-logo-airplane.png",
               "startDate": "2025-10-17T11:00:00-04:00",
               "endDate": "2025-10-19T18:00:00-04:00",
               "eventStatus": "https://schema.org/EventScheduled",
@@ -144,7 +144,7 @@ export default function RootLayout({
                 "@type": "Organization",
                 "name": "AlegrIA",
                 "url": "https://alegria-hackathon.com",
-                "logo": "https://alegria-hackathon.com/images/New Alegria Logo.png"
+                "logo": "https://alegria-hackathon.com/images/alegria-logo-airplane.png"
               },
               "offers": {
                 "@type": "Offer",
