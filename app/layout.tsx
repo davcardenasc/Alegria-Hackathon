@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'AlegrIA',
     images: [
       {
-        url: '/images/New Alegria Logo.png?v=2',
+        url: 'https://alegria-hackathon.com/images/New Alegria Logo.png?v=2',
         width: 1200,
         height: 630,
         alt: 'AlegrIA Hackatón Logo',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AlegrIA - Hackatón de Emprendimiento',
     description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios',
-    images: ['/images/New Alegria Logo.png?v=2'],
+    images: ['https://alegria-hackathon.com/images/New Alegria Logo.png?v=2'],
   },
   icons: {
     icon: [
@@ -95,6 +95,57 @@ export default function RootLayout({
               gtag('js', new Date());
               gtag('config', 'G-T2R12J2EBW');
             `,
+          }}
+        />
+        {/* Additional meta tags for search engines */}
+        <meta name="theme-color" content="#4A5EE7" />
+        <meta name="msapplication-TileColor" content="#4A5EE7" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+        {/* Structured Data for better Google Search results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "AlegrIA - Hackatón de Emprendimiento",
+              "description": "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
+              "url": "https://alegria-hackathon.com",
+              "image": "https://alegria-hackathon.com/images/New Alegria Logo.png",
+              "logo": "https://alegria-hackathon.com/images/New Alegria Logo.png",
+              "startDate": "2025-10-17T11:00:00-04:00",
+              "endDate": "2025-10-19T18:00:00-04:00",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "Escuela Campo Alegre",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Final Calle La Cinta",
+                  "addressLocality": "Las Mercedes",
+                  "addressRegion": "Caracas",
+                  "postalCode": "1060",
+                  "addressCountry": "VE"
+                }
+              },
+              "organizer": {
+                "@type": "Organization",
+                "name": "AlegrIA",
+                "url": "https://alegria-hackathon.com",
+                "logo": "https://alegria-hackathon.com/images/New Alegria Logo.png"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "20",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": "https://alegria-hackathon.com/formulario-participantes"
+              }
+            }),
           }}
         />
       </head>
