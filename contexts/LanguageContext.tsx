@@ -157,7 +157,7 @@ const translations = {
     "sponsors.slash_description": "plataforma bancaria para PYMEs",
     "sponsors.yummy_description": "superapp y plataforma #1 de delivery y ridesharing en Venezuela",
     "sponsors.ribbit_description": "firma global de capital de riesgo que invierte en empresas fintech. Portfolio: Coinbase, Robinhood...",
-    "sponsors.cardenas_description": "Proveedor de máquinas financieras más grande de Venezuela.",
+    "sponsors.cardenas_description": "proveedor de máquinas bancarias multinacional",
 
     // FAQ Section
     "faq.title": "Preguntas frecuentes",
@@ -492,7 +492,7 @@ const translations = {
     "sponsors.slash_description": "banking platform for SMEs",
     "sponsors.yummy_description": "superapp and #1 delivery and ridesharing platform in Venezuela",
     "sponsors.ribbit_description": "global venture capital firm investing in fintech companies. Portfolio: Coinbase, Robinhood...",
-    "sponsors.cardenas_description": "Largest provider of financial machines in Venezuela.",
+    "sponsors.cardenas_description": "multinational banking machines provider",
 
     // FAQ Section
     "faq.title": "Frequently Asked Questions",
