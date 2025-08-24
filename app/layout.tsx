@@ -23,9 +23,9 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://alegria-hackathon.com'),
-  title: "AlegrIA - Hackathon de Emprendimiento",
-  description: "48 horas. Un hackathon. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
-  keywords: ["hackathon", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
+  title: "AlegrIA - Hackatón de Emprendimiento",
+  description: "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
+  keywords: ["hackatón", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
   authors: [{ name: "AlegrIA Team" }],
   creator: "AlegrIA",
   publisher: "AlegrIA",
@@ -37,22 +37,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_VE',
     url: 'https://alegria-hackathon.com',
-    title: 'AlegrIA - Hackathon de Emprendimiento',
-    description: '48 horas. Un hackathon. Tu futuro. Compite por $50,000+ en premios y lanza tu startup',
+    title: 'AlegrIA - Hackatón de Emprendimiento',
+    description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup',
     siteName: 'AlegrIA',
     images: [
       {
         url: '/images/New Alegria Logo.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'AlegrIA Hackathon Logo',
+        alt: 'AlegrIA Hackatón Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AlegrIA - Hackathon de Emprendimiento',
-    description: '48 horas. Un hackathon. Tu futuro. Compite por $50,000+ en premios',
+    title: 'AlegrIA - Hackatón de Emprendimiento',
+    description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios',
     images: ['/images/New Alegria Logo.png?v=2'],
   },
   icons: {
@@ -66,6 +66,7 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
   },
+  manifest: '/manifest.json',
   verification: {
     google: 'your-google-verification-code-here',
     other: {

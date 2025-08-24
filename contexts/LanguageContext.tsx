@@ -45,10 +45,10 @@ const translations = {
     "hero.from_idea": "De idea…",
     "hero.to_prototype": "…a prototipo",
     "hero.to_business": "…a negocio real",
-    "hero.main_title": "48 horas. Un hackathon. Tu futuro.",
-    "hero.subtitle": "Compite en el primer vibe-coding hackathon de la historia de Venezuela por $50,000+ en premios y lanza tu startup",
+    "hero.main_title": "48 horas. Un hackatón. Tu futuro.",
+    "hero.subtitle": "Compite en el primer vibe-coding hackatón de la historia de Venezuela por $50,000+ en premios y lanza tu startup",
     "hero.subtitle_first_part": "Compite en el ",
-    "hero.subtitle_highlight": "primer vibe-coding hackathon",
+    "hero.subtitle_highlight": "primer vibe-coding hackatón",
     "hero.subtitle_last_part": " de la historia de Venezuela por $50,000+ en premios y lanza tu startup",
     "hero.cta": "Aplica ahora",
     "hero.deadline": "Fecha límite: 19 de septiembre, 2025",
@@ -59,7 +59,7 @@ const translations = {
     "applications.description":
       "Forma un equipo de 2 a 4 personas y aplica para vivir 48 horas de construcción, inspiración y comunidad.",
     "applications.student.title": "Soy estudiante y quiero participar",
-    "applications.student.description": "Únete al hackathon con tu equipo y compite por increíbles premios",
+    "applications.student.description": "Únete al hackatón con tu equipo y compite por increíbles premios",
     "applications.student.cta": "Aplicar ahora",
     "applications.school.title": "Quiero llevar AlegrIA a mi colegio",
     "applications.school.description": "Organiza un workshop de AlegrIA en tu institución educativa",
@@ -102,7 +102,7 @@ const translations = {
     "schedule.speakers_preview": "Vicente Zavarce, CEO de Yummy; Victor Cardenas, CEO de Slash (Empresa de $400M)",
     "schedule.view_all_speakers": "Ver todos los speakers",
     "schedule.day1_networking": "• Reunión con bebidas y comida",
-    "schedule.days23": "18–19 de octubre – Hackathon",
+    "schedule.days23": "18–19 de octubre – Hackatón",
     "schedule.days23_location": "Zona de eventos, Escuela Campo Alegre",
     "schedule.days23_time": "48 horas intensivas de creación",
     "schedule.days23_activities":
@@ -166,7 +166,7 @@ const translations = {
       "• Fecha límite para aplicar: 19 de septiembre, 2025\n• Fecha tentativa de respuesta: 28 de septiembre, 2025\n• Fecha del evento: 17-19 de octubre, 2025",
     "faq.q2": "¿Cómo funciona el proceso de aplicación?",
     "faq.a2":
-      "AlegrIA es un evento exclusivo con cupos limitados. Debes aplicar con tu equipo y pasar por un proceso de selección. Solo los equipos más prometedores serán aceptados para participar en el hackathon. Te notificaremos si tu aplicación fue exitosa.",
+      "AlegrIA es un evento exclusivo con cupos limitados. Debes aplicar con tu equipo y pasar por un proceso de selección. Solo los equipos más prometedores serán aceptados para participar en el hackatón. Te notificaremos si tu aplicación fue exitosa.",
     "faq.q3": "¿Quién puede participar?",
     "faq.a3": "Estudiantes de bachillerato o universidad en cualquier parte de Venezuela.",
     "faq.q4": "¿Necesito experiencia previa?",
@@ -248,7 +248,7 @@ const translations = {
     "forms.deadline_notice": "Fecha límite de aplicación",
     "forms.deadline_date": "19 de septiembre, 2025 - 11:59 PM EST",
     "forms.deadline_passed": "Período de Aplicaciones Cerrado",
-    "forms.deadline_message": "Lo sentimos, el período de aplicaciones para AlegrIA Hackathon ha cerrado.",
+    "forms.deadline_message": "Lo sentimos, el período de aplicaciones para AlegrIA Hackatón ha cerrado.",
     "forms.deadline_date_message": "La fecha límite era el 19 de septiembre de 2025 a las 11:59 PM EST.",
     "forms.questions": "¿Tienes preguntas?",
     "forms.contact_message": "Si tienes alguna consulta, no dudes en contactarnos.",
@@ -271,7 +271,7 @@ const translations = {
     "forms.file_formats": "Formatos: JPG, PNG, PDF (máx. 5MB)",
     "forms.previous_experience": "Experiencia previa de todos los miembros del equipo (máx. 100 palabras)",
     "forms.motivation": "¿Por qué quieren participar? (máx. 200 palabras) *",
-    "forms.preliminary_ideas": "Ideas preliminares para el hackathon (máx. 150 palabras)",
+    "forms.preliminary_ideas": "Ideas preliminares para el hackatón (máx. 150 palabras)",
     "forms.school_name": "Nombre del colegio *",
     "forms.coordinator_name": "Nombre del coordinador/docente *",
     "forms.coordinator_email": "Correo del coordinador *",
@@ -299,7 +299,7 @@ const translations = {
     // Ideas Section
     "ideas.title": "Posibles ideas",
     "ideas.description":
-      "¿No sabes por dónde empezar? Aquí tienes algunas ideas inspiradoras que podrías desarrollar durante el hackathon.",
+      "¿No sabes por dónde empezar? Aquí tienes algunas ideas inspiradoras que podrías desarrollar durante el hackatón.",
     "ideas.click_to_expand": "Haz clic para ver más detalles",
     "ideas.idea1.title": "Mapa Colaborativo de Tráfico",
     "ideas.idea1.description":
@@ -344,7 +344,7 @@ const translations = {
       "Equipos de 2–4 personas.\nEstudiantes de bachillerato o universidad en Venezuela.\nLa experiencia técnica es opcional.",
     "overview.dates.title": "Fechas clave",
     "overview.dates.body":
-      "Cierre de aplicaciones: 19 de septiembre, 2025.\nDía 1: 17 de octubre, 2025.\nHackathon: 18–19 de octubre, 2025.",
+      "Cierre de aplicaciones: 19 de septiembre, 2025.\nDía 1: 17 de octubre, 2025.\nHackatón: 18–19 de octubre, 2025.",
     "overview.cost.title": "Costo",
     "overview.cost.body": "Aplicar es gratis.\nSi eres aceptado: $20 por persona.",
     "overview.prizes.title": "Premios",

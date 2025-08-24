@@ -26,7 +26,7 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <Phone className="text-[#4A5EE7]" size={16} />
                 <a 
-                  href={`https://wa.me/584122226901?text=${encodeURIComponent("Hola! Estoy interesado en el hackathon de AlegrIA y me gustaría obtener más información.")}`} 
+                  href={`https://wa.me/584122226901?text=${encodeURIComponent("Hola! Estoy interesado en el hackatón de AlegrIA y me gustaría obtener más información.")}`} 
                   className="text-[#BFC9DB] hover:text-[#F7F9FF] transition-colors"
                 >
                   +58 412 222 6901

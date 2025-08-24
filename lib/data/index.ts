@@ -9,7 +9,7 @@ export const ORGANIZADORES: Ambassador[] = [
     role: "ambassadors.david.role",
     institution: "Escuela Campo Alegre",
     whatsapp: "+58 412 2226901",
-    whatsappMessage: "Hola David, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola David, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-david-cardenas.jpeg",
   },
   {
@@ -17,7 +17,7 @@ export const ORGANIZADORES: Ambassador[] = [
     role: "ambassadors.ugo.role",
     institution: "Escuela Campo Alegre",
     whatsapp: "+58 424 2572999",
-    whatsappMessage: "Hola Ugo, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola Ugo, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-ugo-di-martino.jpg",
   },
 ]
@@ -29,7 +29,7 @@ export const EMBAJADORES: Ambassador[] = [
     role: "",
     institution: "San Ignacio",
     whatsapp: "+58 412 2378192",
-    whatsappMessage: "Hola José, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola José, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-jose-nunez.jpeg",
   },
   {
@@ -37,7 +37,7 @@ export const EMBAJADORES: Ambassador[] = [
     role: "",
     institution: "Colegio Ávila",
     whatsapp: "+58 412 2719711",
-    whatsappMessage: "Hola Nicolás, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola Nicolás, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-nicolas-lapadula-new.png",
   },
   {
@@ -45,7 +45,7 @@ export const EMBAJADORES: Ambassador[] = [
     role: "",
     institution: "British School of Caracas",
     whatsapp: "+58 424 1368923",
-    whatsappMessage: "Hola Augusto, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola Augusto, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-augusto-mini.png",
   },
   {
@@ -53,7 +53,7 @@ export const EMBAJADORES: Ambassador[] = [
     role: "",
     institution: "Academia Washington",
     whatsapp: "+58 412 2407168",
-    whatsappMessage: "Hola Manuel, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola Manuel, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-manuel-marin.png",
   },
   {
@@ -61,7 +61,7 @@ export const EMBAJADORES: Ambassador[] = [
     role: "",
     institution: "Cristo Rey",
     whatsapp: "+58 424 1248997",
-    whatsappMessage: "Hola Mariana, estoy interesada en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola Mariana, estoy interesada en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-mariana-banchs.png",
   },
   {
@@ -69,7 +69,7 @@ export const EMBAJADORES: Ambassador[] = [
     role: "",
     institution: "Escuela Campo Alegre",
     whatsapp: "+58 414 3168157",
-    whatsappMessage: "Hola Bernardo, estoy interesado en el hackathon de AlegrIA! Me gustaría obtener más información.",
+    whatsappMessage: "Hola Bernardo, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
     image: "/images/embajador-bernardo-perez.png",
   },
 ]
