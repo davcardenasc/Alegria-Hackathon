@@ -19,7 +19,7 @@ export default function AplicacionesSection() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <Link href="/formulario-participantes">
+          <Link href="https://formulario.alegriahackaton.com/" target="_blank" rel="noopener noreferrer">
             <div className="relative bg-gradient-to-br from-[#4A5EE7]/10 to-[#6366f1]/10 border-2 border-[#4A5EE7]/30 rounded-xl p-8 hover:border-[#4A5EE7]/60 hover:shadow-[0_0_30px_#4A5EE7/20] hover:scale-105 transition-[border-color,box-shadow,transform] duration-300 cursor-pointer group overflow-hidden">
               {/* Background decoration */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#4A5EE7]/10 to-transparent rounded-full -translate-y-16 translate-x-16" />

@@ -139,7 +139,7 @@ export default function IdeasPage() {
 
             {/* Call to action */}
             <a
-              href="https://tally.so/r/mByGRR"
+              href="https://formulario.alegriahackaton.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A5EE7] to-[#BFC9DB] hover:from-[#4A5EE7]/80 hover:to-[#BFC9DB]/80 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-[0_0_20px_#4A5EE7] hover:scale-105 block mx-auto mt-12 text-center"
