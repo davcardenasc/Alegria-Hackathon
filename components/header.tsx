@@ -443,7 +443,7 @@ export default function Header() {
           {/* CTA at bottom */}
           <div className="p-6 sm:p-6 border-t border-[#4A5EE7]/20">
             <button
-              onClick={() => handleMenuClick("/#aplicaciones")}
+              onClick={() => handleMenuClick("https://tally.so/r/mByGRR")}
               className="w-full bg-gradient-to-r from-[#4A5EE7] to-[#BFC9DB] hover:from-[#4A5EE7]/80 hover:to-[#BFC9DB]/80 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
             >
               {t("nav.apply")}

@@ -76,7 +76,7 @@ export default function OverviewSection() {
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!containerRef.current) return
     setIsDragging(true)
-    setStartX(e.pageX - containerRef.current.offsetLeft)
+    setStartX(e.pageX)
     setScrollLeft(containerRef.current.scrollLeft)
     e.preventDefault()
   }
@@ -84,33 +84,53 @@ export default function OverviewSection() {
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!containerRef.current) return
     setIsDragging(true)
-    setStartX(e.touches[0].pageX - containerRef.current.offsetLeft)
+    setStartX(e.touches[0].pageX)
     setScrollLeft(containerRef.current.scrollLeft)
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !containerRef.current) return
     e.preventDefault()
-    const x = e.pageX - containerRef.current.offsetLeft
-    const walk = (x - startX) * 2
+    const x = e.pageX
+    const walk = (x - startX)
     containerRef.current.scrollLeft = scrollLeft - walk
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging || !containerRef.current) return
-    const x = e.touches[0].pageX - containerRef.current.offsetLeft
-    const walk = (x - startX) * 2
+    const x = e.touches[0].pageX
+    const walk = (x - startX)
     containerRef.current.scrollLeft = scrollLeft - walk
   }
 
   const handleMouseUp = () => {
+    if (!isDragging) return
     setIsDragging(false)
-    // Let scroll snapping handle the positioning naturally
+    // Snap to nearest card after drag ends
+    setTimeout(() => {
+      if (containerRef.current) {
+        const cardWidth = containerRef.current.scrollWidth / items.length
+        const scrollPosition = containerRef.current.scrollLeft
+        const newIndex = Math.round(scrollPosition / cardWidth)
+        const clampedIndex = Math.max(0, Math.min(newIndex, items.length - 1))
+        setCurrentIndex(clampedIndex)
+      }
+    }, 100)
   }
 
   const handleTouchEnd = () => {
+    if (!isDragging) return
     setIsDragging(false)
-    // Let scroll snapping handle the positioning naturally
+    // Snap to nearest card after drag ends
+    setTimeout(() => {
+      if (containerRef.current) {
+        const cardWidth = containerRef.current.scrollWidth / items.length
+        const scrollPosition = containerRef.current.scrollLeft
+        const newIndex = Math.round(scrollPosition / cardWidth)
+        const clampedIndex = Math.max(0, Math.min(newIndex, items.length - 1))
+        setCurrentIndex(clampedIndex)
+      }
+    }, 100)
   }
 
   // Sync scroll position with currentIndex
@@ -144,7 +164,7 @@ export default function OverviewSection() {
         if (clampedIndex !== currentIndex) {
           setCurrentIndex(clampedIndex)
         }
-      }, 150) // Wait for scroll to settle
+      }, 50) // Faster response time
     }
 
     container.addEventListener('scroll', handleScroll, { passive: true })
@@ -170,12 +190,13 @@ export default function OverviewSection() {
           <div className="overflow-hidden">
             <div 
               ref={containerRef}
-              className="flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing scroll-smooth"
+              className="flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
               style={{
                 scrollBehavior: isDragging ? 'auto' : 'smooth',
                 WebkitOverflowScrolling: 'touch',
                 scrollSnapType: 'x mandatory',
                 scrollSnapStop: 'always',
+                touchAction: 'pan-x',
               }}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}

@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="text-lg font-semibold text-[#F7F9FF] mb-4">{t("footer.links")}</h4>
             <div className="space-y-2">
               <Link href="/terminos" className="block text-[#BFC9DB] hover:text-[#F7F9FF] transition-colors">
@@ -57,7 +57,7 @@ export default function Footer() {
                 {t("footer.conduct")}
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="border-t border-[#4A5EE7]/20 pt-8 text-center">

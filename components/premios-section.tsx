@@ -130,6 +130,13 @@ export default function PremiosSection() {
             <span className="text-[#F7F9FF] font-semibold">{t("prizes.cta")}</span>
           </div>
         </div>
+
+        {/* Prize disclaimer */}
+        <div className="text-center mt-8">
+          <p className="text-[#BFC9DB] text-sm italic">
+            *Algunos premios pueden ser canjeados por otros como promovidos en redes sociales (e.g: Macbooks).
+          </p>
+        </div>
       </div>
     </section>
   )
