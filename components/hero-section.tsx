@@ -192,7 +192,7 @@ export default function HeroSection() {
   }
 
   const handleCTAClick = () => {
-    document.querySelector("#aplicaciones")?.scrollIntoView({ behavior: "smooth" })
+    window.open("https://formulario.alegriahackaton.com", "_blank")
   }
 
   const getTitleColor = (phase: any) => {

@@ -12,7 +12,7 @@ import { useLanguage } from "@/contexts/LanguageContext"
 export default function SpeakersPage() {
   const [expandedTalk, setExpandedTalk] = useState<number | null>(null)
   const [selectedSpeaker, setSelectedSpeaker] = useState<any>(null)
-  const { t } = useLanguage()
+  const { t, tArray } = useLanguage()
 
   // Scroll to top on mount
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function SpeakersPage() {
       image: "/images/speaker-victor-cardenas.jpeg",
       bio: t("speakers.victor.bio"),
       fullBio: t("speakers.victor.full_bio"),
-      achievements: t("speakers.victor.achievements"),
+      achievements: tArray("speakers.victor.achievements"),
       linkedin: "https://www.linkedin.com/in/victor-d-cardenas/",
       confirmed: true,
     },
@@ -38,7 +38,7 @@ export default function SpeakersPage() {
       image: "/images/speaker-vicente-zavarce.jpeg",
       bio: t("speakers.vicente.bio"),
       fullBio: t("speakers.vicente.full_bio"),
-      achievements: t("speakers.vicente.achievements"),
+      achievements: tArray("speakers.vicente.achievements"),
       linkedin: "https://www.linkedin.com/in/vzavarce/",
       confirmed: true,
     },
@@ -219,10 +219,6 @@ export default function SpeakersPage() {
                     <div className="px-6 pb-6">
                       <div className="border-t border-[#4A5EE7]/20 pt-4">
                         <p className="text-[#BFC9DB] mb-4 leading-relaxed">{talk.description}</p>
-                        <div className="bg-[#4A5EE7]/10 rounded-lg p-4">
-                          <p className="text-[#F7F9FF] font-semibold mb-1">{t("speakers.for_whom")}</p>
-                          <p className="text-[#BFC9DB] text-sm">{talk.audience}</p>
-                        </div>
                       </div>
                     </div>
                   )}

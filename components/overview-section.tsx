@@ -105,21 +105,54 @@ export default function OverviewSection() {
 
   const handleMouseUp = () => {
     setIsDragging(false)
+    // Let scroll snapping handle the positioning naturally
   }
 
   const handleTouchEnd = () => {
     setIsDragging(false)
+    // Let scroll snapping handle the positioning naturally
   }
 
   // Sync scroll position with currentIndex
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current || isDragging) return
     const cardWidth = containerRef.current.scrollWidth / items.length
     containerRef.current.scrollTo({
       left: currentIndex * cardWidth,
       behavior: 'smooth'
     })
-  }, [currentIndex, items.length])
+  }, [currentIndex, items.length, isDragging])
+
+  // Add scroll listener to sync index with manual scroll
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    let timeoutId: NodeJS.Timeout
+    
+    const handleScroll = () => {
+      if (isDragging) return // Don't update during drag
+      
+      // Debounce the scroll handler to avoid conflicts with snap scrolling
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        const cardWidth = container.scrollWidth / items.length
+        const scrollPosition = container.scrollLeft
+        const newIndex = Math.round(scrollPosition / cardWidth)
+        const clampedIndex = Math.max(0, Math.min(newIndex, items.length - 1))
+        
+        if (clampedIndex !== currentIndex) {
+          setCurrentIndex(clampedIndex)
+        }
+      }, 150) // Wait for scroll to settle
+    }
+
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      container.removeEventListener('scroll', handleScroll)
+      clearTimeout(timeoutId)
+    }
+  }, [currentIndex, items.length, isDragging])
 
   const currentItem = items[currentIndex]
 
@@ -137,10 +170,12 @@ export default function OverviewSection() {
           <div className="overflow-hidden">
             <div 
               ref={containerRef}
-              className="flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+              className="flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing scroll-smooth"
               style={{
                 scrollBehavior: isDragging ? 'auto' : 'smooth',
                 WebkitOverflowScrolling: 'touch',
+                scrollSnapType: 'x mandatory',
+                scrollSnapStop: 'always',
               }}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
@@ -154,6 +189,7 @@ export default function OverviewSection() {
                 <div
                   key={idx}
                   className="flex-shrink-0 w-full max-w-xs sm:max-w-lg md:max-w-2xl"
+                  style={{ scrollSnapAlign: 'start' }}
                 >
                   <div
                     className={`relative bg-gradient-to-br ${item.color} border-2 sm:border-3 ${item.border} rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 overflow-hidden shadow-lg sm:shadow-xl backdrop-blur-sm min-h-[280px] sm:min-h-[320px] flex flex-col mx-2 sm:mx-4`}

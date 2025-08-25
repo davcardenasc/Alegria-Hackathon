@@ -34,14 +34,14 @@ export default function PremiosSection() {
           {prizes.map((prize, index) => (
             <div
               key={index}
-              className={`relative bg-gradient-to-br ${prize.bgGradient} border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-105 hover:-translate-y-1 transition-all duration-300 ease-out group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
+              className={`relative bg-gradient-to-br ${prize.bgGradient} border-3 ${prize.borderColor} rounded-2xl p-8 text-center hover:scale-105 hover:-translate-y-1 transition-transform duration-300 ease-out group overflow-hidden shadow-2xl backdrop-blur-md min-h-[400px] flex flex-col justify-between`}
             >
               {/* Enhanced background decorations */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-12 -translate-x-12" />
               
-              {/* Hover brightness overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/10 group-hover:to-white/5 rounded-2xl transition-all duration-500" />
+              {/* Simple glow effect */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-br from-white/10 to-white/5 pointer-events-none" />
               
               <div className="relative z-10 flex-grow flex flex-col">
                 {/* Icon */}
@@ -64,17 +64,11 @@ export default function PremiosSection() {
                 )}
 
                 {/* Bonus - Enhanced */}
-                <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl hover:scale-105 hover:shadow-2xl hover:from-[#4A5EE7]/50 hover:to-[#BFC9DB]/50 transition-all duration-300 ease-out relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] hover:translate-x-[300%] transition-transform duration-800" />
-                  <span className="relative z-10">{prize.bonus}</span>
+                <div className="text-[#F7F9FF] text-lg md:text-xl font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-2xl px-6 py-4 backdrop-blur-sm mt-auto shadow-xl">
+                  <span>{prize.bonus}</span>
                 </div>
               </div>
 
-              {/* Enhanced shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1200" />
-              
-              {/* Glow effect on hover */}
-              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${prize.bgGradient} blur-xl -z-10`} />
             </div>
           ))}
         </div>
@@ -90,14 +84,14 @@ export default function PremiosSection() {
             {yummyPrizes.map((prize, index) => (
               <div
                 key={index}
-                className={`relative bg-gradient-to-br ${prize.bgGradient} border-2 ${prize.borderColor} rounded-xl p-6 text-center hover:scale-105 hover:-translate-y-1 transition-all duration-300 ease-out group overflow-hidden shadow-xl backdrop-blur-md min-h-[300px] flex flex-col justify-between`}
+                className={`relative bg-gradient-to-br ${prize.bgGradient} border-2 ${prize.borderColor} rounded-xl p-6 text-center hover:scale-105 hover:-translate-y-1 transition-transform duration-300 ease-out group overflow-hidden shadow-xl backdrop-blur-md min-h-[300px] flex flex-col justify-between`}
               >
                 {/* Enhanced background decorations */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-12 translate-x-12" />
                 <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-10 -translate-x-10" />
                 
-                {/* Hover brightness overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/10 group-hover:to-white/5 rounded-xl transition-all duration-500" />
+                {/* Simple glow effect */}
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-br from-white/10 to-white/5 pointer-events-none" />
                 
                 <div className="relative z-10 flex-grow flex flex-col">
                   {/* Icon */}
@@ -120,17 +114,11 @@ export default function PremiosSection() {
                   )}
 
                   {/* Bonus - Enhanced */}
-                  <div className="text-[#F7F9FF] text-base md:text-lg font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-xl px-4 py-3 backdrop-blur-sm mt-auto shadow-xl hover:scale-105 hover:shadow-2xl hover:from-[#4A5EE7]/50 hover:to-[#BFC9DB]/50 transition-all duration-300 ease-out relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-300%] hover:translate-x-[300%] transition-transform duration-800" />
-                    <span className="relative z-10">{prize.bonus}</span>
+                  <div className="text-[#F7F9FF] text-base md:text-lg font-bold bg-gradient-to-r from-[#4A5EE7]/40 to-[#BFC9DB]/40 border-2 border-[#4A5EE7]/60 rounded-xl px-4 py-3 backdrop-blur-sm mt-auto shadow-xl">
+                    <span>{prize.bonus}</span>
                   </div>
                 </div>
 
-                {/* Enhanced shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1200" />
-                
-                {/* Glow effect on hover */}
-                <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${prize.bgGradient} blur-xl -z-10`} />
               </div>
             ))}
           </div>

@@ -22,12 +22,11 @@ export default function EmbajadoresSection() {
 
         {/* Organizadores */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-[#F7F9FF] text-center mb-8">{t("ambassadors.organizers")}</h3>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {organizadores.map((organizador, index) => (
               <div
                 key={index}
-                className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-8 text-center hover:border-[#4A5EE7]/40 hover:shadow-[0_0_20px_#4A5EE7/20] transition-all duration-300"
+                className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-8 text-center hover:scale-105 transition-transform duration-300 ease-out group"
               >
                 <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden p-2">
                   <div className="relative w-full h-full rounded-full overflow-hidden">
@@ -44,7 +43,7 @@ export default function EmbajadoresSection() {
                 <p className="text-[#BFC9DB] text-base mb-4">{organizador.institution}</p>
                 <a
                   href={`https://wa.me/${organizador.whatsapp.replace(/\s+/g, "")}?text=${encodeURIComponent(organizador.whatsappMessage)}`}
-                  className="inline-flex items-center gap-2 text-[#4A5EE7] hover:text-[#F7F9FF] transition-colors text-lg"
+                  className="inline-flex items-center gap-2 text-[#4A5EE7] group-hover:text-[#F7F9FF] transition-colors duration-300 text-lg"
                 >
                   <Phone size={18} />
                   <span className="hidden sm:inline">{organizador.whatsapp}</span>
@@ -54,37 +53,38 @@ export default function EmbajadoresSection() {
           </div>
         </div>
 
-        {/* Embajadores */}
-        <div>
-          <h3 className="text-2xl font-bold text-[#F7F9FF] text-center mb-8">{t("ambassadors.ambassadors")}</h3>
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {embajadores.map((embajador, index) => (
-              <div
-                key={index}
-                className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6 text-center hover:border-[#4A5EE7]/60 hover:shadow-[0_0_15px_#4A5EE7/30] transition-all duration-300 group"
-              >
-                <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden p-2">
-                  <div className="relative w-full h-full rounded-full overflow-hidden">
-                    <Image
-                      src={embajador.image || "/placeholder.svg"}
-                      alt={embajador.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-                </div>
-                <h4 className="text-base font-bold text-[#F7F9FF] mb-2">{embajador.name}</h4>
-                <p className="text-[#BFC9DB] text-sm mb-3">{embajador.institution}</p>
-                <a
-                  href={`https://wa.me/${embajador.whatsapp.replace(/\s+/g, "")}?text=${encodeURIComponent(embajador.whatsappMessage)}`}
-                  className="inline-flex items-center gap-1 text-[#4A5EE7] hover:text-[#F7F9FF] transition-colors text-sm"
+        {/* Embajadores - now empty since EMBAJADORES array is empty */}
+        {embajadores.length > 0 && (
+          <div>
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
+              {embajadores.map((embajador, index) => (
+                <div
+                  key={index}
+                  className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6 text-center hover:border-[#4A5EE7]/60 transition-all duration-300 group"
                 >
-                  <Phone size={14} />
-                </a>
-              </div>
-            ))}
+                  <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden p-2">
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                      <Image
+                        src={embajador.image || "/placeholder.svg"}
+                        alt={embajador.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                  </div>
+                  <h4 className="text-base font-bold text-[#F7F9FF] mb-2">{embajador.name}</h4>
+                  <p className="text-[#BFC9DB] text-sm mb-3">{embajador.institution}</p>
+                  <a
+                    href={`https://wa.me/${embajador.whatsapp.replace(/\s+/g, "")}?text=${encodeURIComponent(embajador.whatsappMessage)}`}
+                    className="inline-flex items-center gap-1 text-[#4A5EE7] hover:text-[#F7F9FF] transition-colors text-sm"
+                  >
+                    <Phone size={14} />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   )

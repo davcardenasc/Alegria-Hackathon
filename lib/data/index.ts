@@ -22,57 +22,8 @@ export const ORGANIZADORES: Ambassador[] = [
   },
 ]
 
-// Ambassadors Data
-export const EMBAJADORES: Ambassador[] = [
-  {
-    name: "José Núñez",
-    role: "",
-    institution: "San Ignacio",
-    whatsapp: "+58 412 2378192",
-    whatsappMessage: "Hola José, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
-    image: "/images/embajador-jose-nunez.jpeg",
-  },
-  {
-    name: "Nicolás Lapadula",
-    role: "",
-    institution: "Colegio Ávila",
-    whatsapp: "+58 412 2719711",
-    whatsappMessage: "Hola Nicolás, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
-    image: "/images/embajador-nicolas-lapadula-new.png",
-  },
-  {
-    name: "Augusto Mini",
-    role: "",
-    institution: "British School of Caracas",
-    whatsapp: "+58 424 1368923",
-    whatsappMessage: "Hola Augusto, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
-    image: "/images/embajador-augusto-mini.png",
-  },
-  {
-    name: "Manuel Marín",
-    role: "",
-    institution: "Academia Washington",
-    whatsapp: "+58 412 2407168",
-    whatsappMessage: "Hola Manuel, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
-    image: "/images/embajador-manuel-marin.png",
-  },
-  {
-    name: "Mariana Banchs",
-    role: "",
-    institution: "Cristo Rey",
-    whatsapp: "+58 424 1248997",
-    whatsappMessage: "Hola Mariana, estoy interesada en el hackatón de AlegrIA! Me gustaría obtener más información.",
-    image: "/images/embajador-mariana-banchs.png",
-  },
-  {
-    name: "Bernardo Pérez",
-    role: "",
-    institution: "Escuela Campo Alegre",
-    whatsapp: "+58 414 3168157",
-    whatsappMessage: "Hola Bernardo, estoy interesado en el hackatón de AlegrIA! Me gustaría obtener más información.",
-    image: "/images/embajador-bernardo-perez.png",
-  },
-]
+// Ambassadors Data (now empty - only organizers remain)
+export const EMBAJADORES: Ambassador[] = []
 
 // Workshops Data
 export const WORKSHOPS: Workshop[] = [
