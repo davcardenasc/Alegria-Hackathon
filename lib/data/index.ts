@@ -130,14 +130,6 @@ export const SPONSORS: Sponsor[] = [
     confirmed: false,
     tier: "bronze",
   },
-  {
-    name: "Por confirmar",
-    description: "Por confirmar",
-    logo: null,
-    url: "#",
-    confirmed: false,
-    tier: "bronze",
-  },
 ]
 
 // Backup of unconfirmed sponsors (for future use when confirmed)
