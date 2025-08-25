@@ -4,4 +4,5 @@ Allow: /
 # Educational hackathon website
 # AlegrIA - Venezuelan hackathon for students
 
+Sitemap: https://alegriahackaton.com/sitemap.xml
 Sitemap: https://alegria-hackathon.com/sitemap.xml

@@ -1,33 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Primary domain (new) -->
   <url>
-    <loc>https://alegria-hackathon.com</loc>
+    <loc>https://alegriahackaton.com</loc>
     <lastmod>2025-01-12</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://alegria-hackathon.com/formulario-colegios</loc>
+    <loc>https://alegriahackaton.com/formulario-colegios</loc>
     <lastmod>2025-01-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alegria-hackathon.com/speakers</loc>
+    <loc>https://alegriahackaton.com/speakers</loc>
     <lastmod>2025-01-12</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://alegria-hackathon.com/ideas</loc>
+    <loc>https://alegriahackaton.com/ideas</loc>
     <lastmod>2025-01-12</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://alegria-hackathon.com/resultados</loc>
+    <loc>https://alegriahackaton.com/resultados</loc>
     <lastmod>2025-01-21</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://alegria-hackathon.com/formulario-participantes</loc>
+    <loc>https://alegriahackaton.com/formulario-participantes</loc>
     <lastmod>2025-01-21</lastmod>
     <priority>0.8</priority>
+  </url>
+  <!-- Legacy domain (old) for transition -->
+  <url>
+    <loc>https://alegria-hackathon.com</loc>
+    <lastmod>2025-01-12</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://alegria-hackathon.com/formulario-colegios</loc>
+    <lastmod>2025-01-12</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://alegria-hackathon.com/speakers</loc>
+    <lastmod>2025-01-12</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://alegria-hackathon.com/ideas</loc>
+    <lastmod>2025-01-12</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://alegria-hackathon.com/resultados</loc>
+    <lastmod>2025-01-21</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://alegria-hackathon.com/formulario-participantes</loc>
+    <lastmod>2025-01-21</lastmod>
+    <priority>0.4</priority>
   </url>
 </urlset>

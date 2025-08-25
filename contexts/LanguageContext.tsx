@@ -84,11 +84,11 @@ const translations = {
     "prizes.top5_prize": "1 mes suscripción en Lovable Pro",
     "prizes.top5_bonus": "+ Certificado de participación",
     "prizes.yummy_category_title": "Premios Yummy",
-    "prizes.yummy_category_description": "Para las mejores ideas que requieran delivery físico. El pago será en créditos de Yummy.",
+    "prizes.yummy_category_description": "Para las mejores ideas que requieran delivery físico. El pago será en créditos de envíos para tu negocio con el API de Yummy.",
     "prizes.yummy_winner": "🏆 Ganador",
     "prizes.yummy_prize": "$20.000",
     "prizes.yummy_bonus": "Para desarrollo de negocio con delivery",
-    "prizes.yummy_description": "... en créditos Yummy",
+    "prizes.yummy_description": "... en créditos de envíos Yummy para tu negocio",
     "prizes.cta": "¿Listo para competir por estos premios?",
 
     // Schedule Section
@@ -109,7 +109,7 @@ const translations = {
       "• Desarrollo de prototipos\n• Creación de pitch\n• Mentorías + Networking\n• Premiación final",
     "schedule.location_title": "Ubicación del Evento",
     "schedule.address1": "Por confirmar",
-    "schedule.address2": "",
+    "schedule.address2": "Ubicación",
     "schedule.directions": "Por confirmar",
     "schedule.open_maps": "Por confirmar",
 
@@ -418,11 +418,11 @@ const translations = {
     "prizes.top5_prize": "1 month Lovable Pro subscription",
     "prizes.top5_bonus": "+ Participation certificate",
     "prizes.yummy_category_title": "Yummy Prizes",
-    "prizes.yummy_category_description": "For the best ideas requiring physical delivery. Payment will be in Yummy credits.",
+    "prizes.yummy_category_description": "For the best ideas requiring physical delivery. Payment will be in Yummy API credits for your business delivery needs.",
     "prizes.yummy_winner": "🏆 Winner",
     "prizes.yummy_prize": "$20,000",
     "prizes.yummy_bonus": "For delivery business development",
-    "prizes.yummy_description": "... in Yummy credits",
+    "prizes.yummy_description": "... in Yummy delivery credits for your business",
     "prizes.cta": "Ready to compete for these prizes?",
 
     // Schedule Section
@@ -443,7 +443,7 @@ const translations = {
       "• Prototype development\n• Pitch creation\n• Mentoring + Networking\n• Final awards ceremony",
     "schedule.location_title": "Event Location",
     "schedule.address1": "TBD",
-    "schedule.address2": "",
+    "schedule.address2": "Location",
     "schedule.directions": "TBD",
     "schedule.open_maps": "TBD",
 

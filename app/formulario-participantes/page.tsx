@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Formulario de Aplicación - Estudiantes | AlegrIA Hackathon",
   description: "Aplica ahora al AlegrIA Hackathon. Compite por $50,000+ en premios con tu equipo de hasta 4 estudiantes venezolanos.",
   alternates: {
-    canonical: 'https://alegria-hackathon.com/formulario-participantes',
+    canonical: 'https://alegriahackaton.com/formulario-participantes',
   },
 }
 

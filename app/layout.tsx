@@ -22,7 +22,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://alegria-hackathon.com'),
+  metadataBase: new URL('https://alegriahackaton.com'),
   title: "AlegrIA - Hackatón de Emprendimiento",
   description: "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
   keywords: ["hackatón", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
@@ -31,18 +31,18 @@ export const metadata: Metadata = {
   publisher: "AlegrIA",
   robots: "index, follow",
   alternates: {
-    canonical: 'https://alegria-hackathon.com',
+    canonical: 'https://alegriahackaton.com',
   },
   openGraph: {
     type: 'website',
     locale: 'es_VE',
-    url: 'https://alegria-hackathon.com',
+    url: 'https://alegriahackaton.com',
     title: 'AlegrIA - Hackatón de Emprendimiento',
     description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup',
     siteName: 'AlegrIA',
     images: [
       {
-        url: 'https://alegria-hackathon.com/images/Alegria "Construye el futuro".png',
+        url: 'https://alegriahackaton.com/images/Alegria "Construye el futuro".png',
         width: 1200,
         height: 630,
         alt: 'AlegrIA Hackatón - Construye el futuro',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AlegrIA - Hackatón de Emprendimiento',
     description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios',
-    images: ['https://alegria-hackathon.com/images/Alegria "Construye el futuro".png'],
+    images: ['https://alegriahackaton.com/images/Alegria "Construye el futuro".png'],
   },
   icons: {
     icon: [
@@ -121,9 +121,9 @@ export default function RootLayout({
               "@type": "Event",
               "name": "AlegrIA - Hackatón de Emprendimiento",
               "description": "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
-              "url": "https://alegria-hackathon.com",
-              "image": "https://alegria-hackathon.com/images/Alegria \"Construye el futuro\".png",
-              "logo": "https://alegria-hackathon.com/images/alegria-logo-airplane.png",
+              "url": "https://alegriahackaton.com",
+              "image": "https://alegriahackaton.com/images/Alegria \"Construye el futuro\".png",
+              "logo": "https://alegriahackaton.com/images/alegria-logo-airplane.png",
               "startDate": "2025-10-17T11:00:00-04:00",
               "endDate": "2025-10-19T18:00:00-04:00",
               "eventStatus": "https://schema.org/EventScheduled",
@@ -143,15 +143,15 @@ export default function RootLayout({
               "organizer": {
                 "@type": "Organization",
                 "name": "AlegrIA",
-                "url": "https://alegria-hackathon.com",
-                "logo": "https://alegria-hackathon.com/images/alegria-logo-airplane.png"
+                "url": "https://alegriahackaton.com",
+                "logo": "https://alegriahackaton.com/images/alegria-logo-airplane.png"
               },
               "offers": {
                 "@type": "Offer",
                 "price": "20",
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/InStock",
-                "url": "https://alegria-hackathon.com/formulario-participantes"
+                "url": "https://alegriahackaton.com/formulario-participantes"
               }
             }),
           }}

@@ -2,11 +2,11 @@
 export const config = {
   email: {
     apiKey: process.env.RESEND_API_KEY!,
-    fromEmail: process.env.FROM_EMAIL || 'noreply@alegria-hackathon.com',
-    toEmail: process.env.TO_EMAIL || 'info@alegria-hackathon.com',
+    fromEmail: process.env.FROM_EMAIL || 'noreply@alegriahackaton.com',
+    toEmail: process.env.TO_EMAIL || 'info@alegriahackaton.com',
   },
   app: {
-    url: process.env.NEXT_PUBLIC_APP_URL || 'https://alegria-hackathon.com',
+    url: process.env.NEXT_PUBLIC_APP_URL || 'https://alegriahackaton.com',
     deadlineDate: process.env.DEADLINE_DATE || '2024-02-15',
   },
   security: {
