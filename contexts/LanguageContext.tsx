@@ -94,7 +94,7 @@ const translations = {
     // Schedule Section
     "schedule.title": "Cronograma y speakers",
     "schedule.day1": "17 de octubre – Taller + Speakers",
-    "schedule.day1_location": "Teatro de la Escuela Campo Alegre",
+    "schedule.day1_location": "Por confirmar",
     "schedule.day1_time": "11:00 – 16:00",
     "schedule.day1_description": "Charlas de los líderes más innovadores de Venezuela",
     "schedule.day1_speakers_link": "Ver lista completa de speakers",
@@ -103,15 +103,15 @@ const translations = {
     "schedule.view_all_speakers": "Ver todos los speakers",
     "schedule.day1_networking": "• Reunión con bebidas y comida",
     "schedule.days23": "18–19 de octubre – Hackatón",
-    "schedule.days23_location": "Zona de eventos, Escuela Campo Alegre",
+    "schedule.days23_location": "Por confirmar",
     "schedule.days23_time": "48 horas intensivas de creación",
     "schedule.days23_activities":
       "• Desarrollo de prototipos\n• Creación de pitch\n• Mentorías + Networking\n• Premiación final",
     "schedule.location_title": "Ubicación del Evento",
-    "schedule.address1": "Final Calle La Cinta",
-    "schedule.address2": "Las Mercedes, Caracas 1060, Venezuela",
-    "schedule.directions": "Ver direcciones",
-    "schedule.open_maps": "Abrir en Google Maps",
+    "schedule.address1": "Por confirmar",
+    "schedule.address2": "",
+    "schedule.directions": "Por confirmar",
+    "schedule.open_maps": "Por confirmar",
 
     // Workshops Section
     "workshops.title": "Workshops previos",
@@ -428,7 +428,7 @@ const translations = {
     // Schedule Section
     "schedule.title": "Schedule & Speakers",
     "schedule.day1": "October 17 – Workshop + Speakers",
-    "schedule.day1_location": "Escuela Campo Alegre Theater",
+    "schedule.day1_location": "TBD",
     "schedule.day1_time": "11:00 AM – 4:00 PM",
     "schedule.day1_description": "Talks by Venezuela's most innovative leaders",
     "schedule.day1_speakers_link": "See complete speakers list",
@@ -437,15 +437,15 @@ const translations = {
     "schedule.view_all_speakers": "View all speakers",
     "schedule.day1_networking": "• Networking with drinks and food",
     "schedule.days23": "October 18–19 – Hackathon",
-    "schedule.days23_location": "Event area, Escuela Campo Alegre",
+    "schedule.days23_location": "TBD",
     "schedule.days23_time": "48 intensive hours of creation",
     "schedule.days23_activities":
       "• Prototype development\n• Pitch creation\n• Mentoring + Networking\n• Final awards ceremony",
     "schedule.location_title": "Event Location",
-    "schedule.address1": "Final Calle La Cinta",
-    "schedule.address2": "Las Mercedes, Caracas 1060, Venezuela",
-    "schedule.directions": "Get directions",
-    "schedule.open_maps": "Open in Google Maps",
+    "schedule.address1": "TBD",
+    "schedule.address2": "",
+    "schedule.directions": "TBD",
+    "schedule.open_maps": "TBD",
 
     // Workshops Section
     "workshops.title": "Previous Workshops",

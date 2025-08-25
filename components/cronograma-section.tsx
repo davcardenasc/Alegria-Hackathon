@@ -8,7 +8,8 @@ export default function CronogramaSection() {
   const { t } = useLanguage()
 
   const handleMapClick = () => {
-    window.open("https://maps.app.goo.gl/qLjKTvdZfGNKJJxJ8", "_blank")
+    // Maps integration disabled until venue is confirmed
+    // window.open("https://maps.app.goo.gl/qLjKTvdZfGNKJJxJ8", "_blank")
   }
 
   return (
@@ -93,57 +94,20 @@ export default function CronogramaSection() {
           <div className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6">
             <h4 className="text-lg font-semibold text-[#F7F9FF] mb-4">{t("schedule.location_title")}</h4>
 
-            {/* Interactive Map */}
-            <div
-              onClick={handleMapClick}
-              className="relative aspect-video bg-[#BFC9DB]/10 rounded-lg overflow-hidden cursor-pointer group hover:bg-[#BFC9DB]/20 transition-all duration-300"
-            >
-              {/* Map iframe */}
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.5!2d-66.86!3d10.49!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a58ae4e8c5aeb%3A0x123456789abcdef!2sFinal%20Calle%20La%20Cinta%2C%20Las%20Mercedes%2C%20Caracas%201060%2C%20Venezuela!5e0!3m2!1sen!2sve!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="pointer-events-none"
-              />
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#00162D]/60 to-transparent pointer-events-none" />
-
-              {/* Click indicator */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-[#4A5EE7] text-white px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg">
-                  <ExternalLink size={16} />
-                  <span className="text-sm font-medium">{t("schedule.open_maps")}</span>
-                </div>
-              </div>
-
-              {/* Location info */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white pointer-events-none">
-                <div className="flex items-center gap-2">
-                  <MapPin size={20} className="text-[#4A5EE7]" />
-                  <div>
-                    <p className="font-semibold">Final Calle La Cinta</p>
-                    <p className="text-sm opacity-90">Las Mercedes, Caracas</p>
-                  </div>
-                </div>
+            {/* Location Placeholder */}
+            <div className="relative aspect-video bg-[#BFC9DB]/10 rounded-lg overflow-hidden flex items-center justify-center">
+              <div className="text-center text-[#BFC9DB]">
+                <MapPin size={48} className="text-[#4A5EE7] mx-auto mb-4" />
+                <p className="text-lg font-semibold text-[#F7F9FF] mb-2">{t("schedule.location_title")}</p>
+                <p className="text-sm">{t("schedule.address1")}</p>
               </div>
             </div>
 
             {/* Address info below map */}
             <div className="mt-4 text-[#BFC9DB] text-sm space-y-1">
               <p>{t("schedule.address1")}</p>
-              <p>{t("schedule.address2")}</p>
-              <button
-                onClick={handleMapClick}
-                className="text-[#4A5EE7] hover:text-[#BFC9DB] transition-colors duration-300 flex items-center gap-1 mt-2"
-              >
-                <span>{t("schedule.directions")}</span>
-                <ExternalLink size={14} />
-              </button>
+              {t("schedule.address2") && <p>{t("schedule.address2")}</p>}
+              <p className="text-[#4A5EE7] text-xs mt-2 italic">{t("schedule.directions")}</p>
             </div>
           </div>
         </div>
