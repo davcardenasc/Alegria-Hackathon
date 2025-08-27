@@ -101,6 +101,8 @@ export default function RootLayout({
           }}
         />
         {/* Additional meta tags for search engines */}
+        <meta name="referrer" content="origin-when-cross-origin" />
+        <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content="#4A5EE7" />
         <meta name="msapplication-TileColor" content="#4A5EE7" />
         <meta name="msapplication-config" content="/browserconfig.xml" />

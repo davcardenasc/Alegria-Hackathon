@@ -72,7 +72,7 @@ const translations = {
     "prizes.second_place": "🥈 2do lugar",
     "prizes.third_place": "🥉 3er lugar",
     "prizes.top5": "⭐ Todos",
-    "prizes.first_prize": "$20.000",
+    "prizes.first_prize": "$25.000",
     "prizes.first_description": "para el desarrollo de su negocio",
     "prizes.first_bonus": "+ 1 año suscripción en Lovable Pro",
     "prizes.second_prize": "$5.000",
@@ -158,6 +158,7 @@ const translations = {
     "sponsors.yummy_description": "superapp y plataforma #1 de delivery y ridesharing en Venezuela",
     "sponsors.ribbit_description": "firma global de capital de riesgo que invierte en empresas fintech. Portfolio: Coinbase, Robinhood...",
     "sponsors.cardenas_description": "proveedor de máquinas bancarias multinacional",
+    "sponsors.cashea_description": "aplicación de compras a crédito que permite a los usuarios adquirir productos en cuotas sin interés",
 
     // FAQ Section
     "faq.title": "Preguntas frecuentes",
@@ -406,7 +407,7 @@ const translations = {
     "prizes.second_place": "🥈 2nd place",
     "prizes.third_place": "🥉 3rd place",
     "prizes.top5": "⭐ Everyone",
-    "prizes.first_prize": "$20,000",
+    "prizes.first_prize": "$25,000",
     "prizes.first_description": "for business development",
     "prizes.first_bonus": "+ 1 year Lovable Pro subscription",
     "prizes.second_prize": "$5,000",
@@ -491,6 +492,7 @@ const translations = {
     "sponsors.yummy_description": "superapp and #1 delivery and ridesharing platform in Venezuela",
     "sponsors.ribbit_description": "global venture capital firm investing in fintech companies. Portfolio: Coinbase, Robinhood...",
     "sponsors.cardenas_description": "multinational banking machines provider",
+    "sponsors.cashea_description": "credit shopping app that allows users to purchase products in installments without interest",
 
     // FAQ Section
     "faq.title": "Frequently Asked Questions",
