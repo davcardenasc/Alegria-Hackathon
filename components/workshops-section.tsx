@@ -15,7 +15,7 @@ export default function WorkshopsSection() {
         <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16">{t("workshops.title")}</h2>
 
         <div className="max-w-3xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             {workshops.map((workshop, index) => (
               <div
                 key={index}
