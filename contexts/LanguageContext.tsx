@@ -51,7 +51,7 @@ const translations = {
     "hero.subtitle_highlight": "primer vibe-coding hackatón",
     "hero.subtitle_last_part": " de la historia de Venezuela por $50,000+ en premios y lanza tu startup",
     "hero.cta": "Aplica ahora",
-    "hero.deadline": "Fecha límite: 19 de septiembre, 2025",
+    "hero.deadline": "Fecha límite: 1 de octubre, 2025",
     "hero.scroll_hint": "Desliza para continuar",
 
     // Applications Section
@@ -164,7 +164,7 @@ const translations = {
     "faq.title": "Preguntas frecuentes",
     "faq.q1": "¿Cuál es el timeline de aplicaciones?",
     "faq.a1":
-      "• Fecha límite para aplicar: 19 de septiembre, 2025\n• Fecha tentativa de respuesta: 28 de septiembre, 2025\n• Fecha del evento: 17-19 de octubre, 2025",
+      "• Fecha límite para aplicar: 1 de octubre, 2025\n• Fecha tentativa de respuesta: 7 de octubre, 2025\n• Fecha del evento: 17-19 de octubre, 2025",
     "faq.q2": "¿Cómo funciona el proceso de aplicación?",
     "faq.a2":
       "AlegrIA es un evento exclusivo con cupos limitados. Debes aplicar con tu equipo y pasar por un proceso de selección. Solo los equipos más prometedores serán aceptados para participar en el hackatón. Te notificaremos si tu aplicación fue exitosa.",
@@ -245,10 +245,10 @@ const translations = {
     "forms.student_title": "Formulario de Aplicación - Participantes",
     "forms.school_title": "Formulario de Aplicación - Colegios",
     "forms.deadline_notice": "Fecha límite de aplicación",
-    "forms.deadline_date": "19 de septiembre, 2025 - 11:59 PM EST",
+    "forms.deadline_date": "1 de octubre, 2025 - 11:59 PM EST",
     "forms.deadline_passed": "Período de Aplicaciones Cerrado",
     "forms.deadline_message": "Lo sentimos, el período de aplicaciones para AlegrIA Hackatón ha cerrado.",
-    "forms.deadline_date_message": "La fecha límite era el 19 de septiembre de 2025 a las 11:59 PM EST.",
+    "forms.deadline_date_message": "La fecha límite era el 1 de octubre de 2025 a las 11:59 PM EST.",
     "forms.questions": "¿Tienes preguntas?",
     "forms.contact_message": "Si tienes alguna consulta, no dudes en contactarnos.",
     "forms.contact_organizers": "Contactar Organizadores",
@@ -292,8 +292,8 @@ const translations = {
 
     // Results Section
     "results.coming_soon": "¡Los resultados se anunciarán pronto!",
-    "results.check_back_date": "Regresa el 28 de septiembre de 2025 para ver los equipos aceptados",
-    "results.announcement_date": "Fecha de anuncio: 28 de septiembre, 2025",
+    "results.check_back_date": "Regresa el 7 de octubre de 2025 para ver los equipos aceptados",
+    "results.announcement_date": "Fecha de anuncio: 7 de octubre, 2025",
 
     // Ideas Section
     "ideas.title": "Posibles ideas",
@@ -343,7 +343,7 @@ const translations = {
       "Equipos de 2–4 personas.\nCualquier persona de los 14 a 29 años en Venezuela.\nLa experiencia técnica es opcional.",
     "overview.dates.title": "Fechas clave",
     "overview.dates.body":
-      "Cierre de aplicaciones: 19 de septiembre, 2025.\nDía 1: 17 de octubre, 2025.\nHackatón: 18–19 de octubre, 2025.",
+      "Cierre de aplicaciones: 1 de octubre, 2025.\nDía 1: 17 de octubre, 2025.\nHackatón: 18–19 de octubre, 2025.",
     "overview.cost.title": "Costo",
     "overview.cost.body": "Aplicar es gratis.\nSi eres aceptado: $20 por persona.",
     "overview.prizes.title": "Premios",
@@ -386,7 +386,7 @@ const translations = {
     "hero.subtitle_highlight": "first vibe-coding hackathon",
     "hero.subtitle_last_part": " in history for $50,000+ in prizes and launch your startup",
     "hero.cta": "Apply now",
-    "hero.deadline": "Deadline: September 19, 2025",
+    "hero.deadline": "Deadline: October 1, 2025",
     "hero.scroll_hint": "Scroll to continue",
 
     // Applications Section
@@ -498,7 +498,7 @@ const translations = {
     "faq.title": "Frequently Asked Questions",
     "faq.q1": "What is the application timeline?",
     "faq.a1":
-      "• Application deadline: September 19, 2025\n• Tentative response date: September 28, 2025\n• Event date: October 17-19, 2025",
+      "• Application deadline: October 1, 2025\n• Tentative response date: October 7, 2025\n• Event date: October 17-19, 2025",
     "faq.q2": "How does the application process work?",
     "faq.a2":
       "AlegrIA is an exclusive event with limited spots. You must apply with your team and go through a selection process. Only the most promising teams will be accepted to participate in the hackathon. We will notify you if your application was successful.",
@@ -578,10 +578,10 @@ const translations = {
     "forms.student_title": "Application Form - Participants",
     "forms.school_title": "Application Form - Schools",
     "forms.deadline_notice": "Application deadline",
-    "forms.deadline_date": "September 19, 2025 - 11:59 PM EST",
+    "forms.deadline_date": "October 1, 2025 - 11:59 PM EST",
     "forms.deadline_passed": "Application Period Closed",
     "forms.deadline_message": "Sorry, the application period for AlegrIA Hackathon has closed.",
-    "forms.deadline_date_message": "The deadline was September 19, 2025 at 11:59 PM EST.",
+    "forms.deadline_date_message": "The deadline was October 1, 2025 at 11:59 PM EST.",
     "forms.questions": "Have questions?",
     "forms.contact_message": "If you have any questions, don't hesitate to contact us.",
     "forms.contact_organizers": "Contact Organizers",
@@ -625,8 +625,8 @@ const translations = {
 
     // Results Section
     "results.coming_soon": "Results will be announced soon!",
-    "results.check_back_date": "Check back on September 28, 2025 to see the accepted teams",
-    "results.announcement_date": "Announcement date: September 28, 2025",
+    "results.check_back_date": "Check back on October 7, 2025 to see the accepted teams",
+    "results.announcement_date": "Announcement date: October 7, 2025",
 
     // Ideas Section
     "ideas.title": "Project Ideas",
@@ -676,7 +676,7 @@ const translations = {
       "Teams of 2–4 people.\nAnyone aged 14 to 29 in Venezuela.\nAdvanced technical experience optional.",
     "overview.dates.title": "Key dates",
     "overview.dates.body":
-      "Applications close: September 19, 2025.\nDay 1: October 17, 2025.\nHackathon: October 18–19, 2025.",
+      "Applications close: October 1, 2025.\nDay 1: October 17, 2025.\nHackathon: October 18–19, 2025.",
     "overview.cost.title": "Cost",
     "overview.cost.body": "Applying is free.\nIf accepted: $20 per person.",
     "overview.prizes.title": "Prizes",
