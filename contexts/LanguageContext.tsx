@@ -154,11 +154,11 @@ const translations = {
     "sponsors.title": "Patrocinadores",
     "sponsors.description": "Por confirmar",
     "sponsors.sponsor": "Patrocinador",
-    "sponsors.slash_description": "plataforma bancaria para PYMEs",
-    "sponsors.yummy_description": "superapp y plataforma #1 de delivery y ridesharing en Venezuela",
-    "sponsors.ribbit_description": "firma global de capital de riesgo que invierte en empresas fintech. Portfolio: Coinbase, Robinhood...",
-    "sponsors.cardenas_description": "proveedor de máquinas bancarias multinacional",
-    "sponsors.cashea_description": "aplicación de compras a crédito que permite a los usuarios adquirir productos en cuotas sin interés",
+    "sponsors.slash_description": "Plataforma bancaria para PYMEs",
+    "sponsors.yummy_description": "Superapp y plataforma #1 de delivery y ridesharing en Venezuela",
+    "sponsors.ribbit_description": "Firma global de capital de riesgo que invierte en empresas fintech. Portfolio: Coinbase, Robinhood...",
+    "sponsors.cardenas_description": "Proveedor de máquinas bancarias multinacional",
+    "sponsors.cashea_description": "El primer compra ahora y paga después de Venezuela. El más grande, más rentable y de crecimiento más rápido de Latinoamérica.",
 
     // FAQ Section
     "faq.title": "Preguntas frecuentes",
@@ -488,11 +488,11 @@ const translations = {
     "sponsors.title": "Sponsors",
     "sponsors.description": "To be confirmed",
     "sponsors.sponsor": "Sponsor",
-    "sponsors.slash_description": "banking platform for SMEs",
-    "sponsors.yummy_description": "superapp and #1 delivery and ridesharing platform in Venezuela",
-    "sponsors.ribbit_description": "global venture capital firm investing in fintech companies. Portfolio: Coinbase, Robinhood...",
-    "sponsors.cardenas_description": "multinational banking machines provider",
-    "sponsors.cashea_description": "credit shopping app that allows users to purchase products in installments without interest",
+    "sponsors.slash_description": "Banking platform for SMEs",
+    "sponsors.yummy_description": "Superapp and #1 delivery and ridesharing platform in Venezuela",
+    "sponsors.ribbit_description": "Global venture capital firm investing in fintech companies. Portfolio: Coinbase, Robinhood...",
+    "sponsors.cardenas_description": "Multinational banking machines provider",
+    "sponsors.cashea_description": "Venezuela's first buy now, pay later. The biggest, most profitable and fastest growing in Latin America.",
 
     // FAQ Section
     "faq.title": "Frequently Asked Questions",
