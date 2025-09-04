@@ -28,7 +28,7 @@ const translations = {
     "nav.yummy_prizes": "Premios Yummy",
     "nav.workshops": "Workshops",
     "nav.ambassadors": "Organizadores",
-    "nav.sponsors": "Patrocinadores",
+    "nav.sponsors": "Aliados",
     "nav.faq": "FAQ",
     "nav.contact": "Contacto",
     "nav.apply": "Aplica ahora",
@@ -151,9 +151,9 @@ const translations = {
     "moments.photo10": "Sesión de aprendizaje colaborativo en San Ignacio",
 
     // Sponsors Section
-    "sponsors.title": "Patrocinadores",
+    "sponsors.title": "Aliados",
     "sponsors.description": "Por confirmar",
-    "sponsors.sponsor": "Patrocinador",
+    "sponsors.sponsor": "Aliado",
     "sponsors.slash_description": "Plataforma bancaria para PYMEs",
     "sponsors.yummy_description": "Superapp y plataforma #1 de delivery y ridesharing en Venezuela",
     "sponsors.ribbit_description": "Firma global de capital de riesgo que invierte en empresas fintech. Portfolio: Coinbase, Robinhood...",

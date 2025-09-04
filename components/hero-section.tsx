@@ -322,10 +322,10 @@ export default function HeroSection() {
 
           {/* Scroll hint - Higher on mobile only */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 md:hidden"
+            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 md:hidden pointer-events-none"
             style={{
               bottom: "18vh", // Higher on mobile
-              opacity: Math.max(0.7, 1 - scrollProgress * 3),
+              opacity: scrollProgress > 0.15 ? 0 : Math.max(0, 1 - scrollProgress * 6),
             }}
           >
             <div className="flex flex-col items-center opacity-75">
@@ -336,10 +336,10 @@ export default function HeroSection() {
 
           {/* Desktop scroll hint - original position */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 hidden md:block"
+            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 hidden md:block pointer-events-none"
             style={{
               bottom: "12vh",
-              opacity: Math.max(0, 1 - scrollProgress * 5),
+              opacity: scrollProgress > 0.15 ? 0 : Math.max(0, 1 - scrollProgress * 6),
             }}
           >
             <div className="flex flex-col items-center opacity-75">
