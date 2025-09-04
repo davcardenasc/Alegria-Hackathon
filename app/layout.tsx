@@ -4,6 +4,7 @@ import { Montserrat, Roboto } from 'next/font/google'
 import "./globals.css"
 import ConditionalBackground from "@/components/conditional-background"
 import { Providers } from "@/components/providers"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Font for headings
 const montserrat = Montserrat({
@@ -164,6 +165,7 @@ export default function RootLayout({
           <ConditionalBackground />
           {children}
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   )
