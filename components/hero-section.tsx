@@ -276,12 +276,12 @@ export default function HeroSection() {
                         
                         <svg
                           className="absolute -bottom-1 left-0 w-full h-4 z-0 opacity-80"
-                          viewBox="0 0 300 16"
+                          viewBox="0 0 400 16"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M2 10.5C20 8.2 45 6.8 75 7.5C110 8.5 145 9.2 180 8.8C215 8.4 250 7.9 285 9.2C290 9.5 295 10.1 298 10.8"
+                            d="M2 10.5C25 8.2 60 6.8 100 7.5C150 8.5 200 9.2 250 8.8C300 8.4 350 7.9 385 9.2C390 9.5 395 10.1 398 10.8"
                             stroke="#EF4444"
                             strokeWidth="3"
                             strokeLinecap="round"

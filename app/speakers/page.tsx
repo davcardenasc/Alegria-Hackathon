@@ -43,15 +43,15 @@ export default function SpeakersPage() {
       confirmed: true,
     },
     {
-      name: "Speaker",
-      title: t("speakers.confirmed"),
-      company: t("speakers.confirmed"),
-      image: null,
-      bio: t("speakers.confirmed"),
-      fullBio: t("speakers.confirmed"),
-      achievements: [t("speakers.confirmed")],
-      linkedin: "#",
-      confirmed: false,
+      name: "Pedro Julio Vallenilla Sosa",
+      title: t("speakers.pedro.title"),
+      company: "Cashea",
+      image: "/images/speaker-pedro-sosa.jpeg",
+      bio: t("speakers.pedro.bio"),
+      fullBio: t("speakers.pedro.full_bio"),
+      achievements: tArray("speakers.pedro.achievements"),
+      linkedin: "https://www.linkedin.com/in/pedrovallenilla/",
+      confirmed: true,
     },
   ]
 
@@ -77,21 +77,21 @@ export default function SpeakersPage() {
       confirmed: true,
     },
     {
-      title: "Charla por confirmar",
-      speaker: "Speaker por confirmar",
-      company: t("speakers.confirmed"),
-      time: "3:30 PM",
-      date: t("speakers.talk1.date"),
-      description: t("speakers.confirmed"),
-      audience: t("speakers.confirmed"),
-      confirmed: false,
+      title: t("speakers.talk3.title"),
+      speaker: t("speakers.talk3.speaker"),
+      company: t("speakers.talk3.company"),
+      time: t("speakers.talk3.time"),
+      date: t("speakers.talk3.date"),
+      description: t("speakers.talk3.description"),
+      audience: t("speakers.talk3.audience"),
+      confirmed: true,
     },
   ]
 
   const companies = [
     { name: "Slash", logo: "/images/slash-logo.png", url: "https://slash.com", confirmed: true },
     { name: "Yummy", logo: "/images/yummy-logo.png", url: "https://www.yummysuperapp.com/", confirmed: true },
-    { name: "Empresa", logo: null, url: "#", confirmed: false },
+    { name: "Cashea", logo: "/images/cashea-logo.jpg", url: "https://cashea.com", confirmed: true },
   ]
 
   const toggleTalk = (index: number) => {

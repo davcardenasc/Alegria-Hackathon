@@ -131,12 +131,6 @@ export default function PremiosSection() {
           </div>
         </div>
 
-        {/* Prize disclaimer */}
-        <div className="text-center mt-8">
-          <p className="text-[#BFC9DB] text-sm italic">
-            *Algunos premios pueden ser canjeados por otros como promovidos en redes sociales (e.g: Macbooks).
-          </p>
-        </div>
       </div>
     </section>
   )

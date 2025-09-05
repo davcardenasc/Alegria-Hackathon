@@ -8,8 +8,7 @@ export default function CronogramaSection() {
   const { t } = useLanguage()
 
   const handleMapClick = () => {
-    // Maps integration disabled until venue is confirmed
-    // window.open("https://maps.app.goo.gl/qLjKTvdZfGNKJJxJ8", "_blank")
+    window.open(t("schedule.open_maps"), "_blank")
   }
 
   return (
@@ -94,12 +93,28 @@ export default function CronogramaSection() {
           <div className="bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg p-6">
             <h4 className="text-lg font-semibold text-[#F7F9FF] mb-4">{t("schedule.location_title")}</h4>
 
-            {/* Location Placeholder */}
-            <div className="relative aspect-video bg-[#BFC9DB]/10 rounded-lg overflow-hidden flex items-center justify-center">
-              <div className="text-center text-[#BFC9DB]">
-                <MapPin size={48} className="text-[#4A5EE7] mx-auto mb-4" />
-                <p className="text-lg font-semibold text-[#F7F9FF] mb-2">{t("schedule.location_title")}</p>
-                <p className="text-sm">{t("schedule.address1")}</p>
+            {/* Google Maps Iframe */}
+            <div className="relative aspect-video bg-[#BFC9DB]/10 rounded-lg overflow-hidden border border-[#4A5EE7]/20">
+              <iframe
+                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Escuela%20Campo%20Alegre,%20Calle%20La%20Cinta,%20Las%20Mercedes,%20Caracas,%20Venezuela&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                width="100%"
+                height="100%"
+                style={{border: 0}}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Escuela Campo Alegre Location"
+              />
+              
+              {/* Overlay for click to open in Google Maps */}
+              <div 
+                onClick={handleMapClick}
+                className="absolute inset-0 bg-transparent hover:bg-[#4A5EE7]/10 transition-all duration-300 cursor-pointer flex items-end justify-end p-4 group"
+              >
+                <div className="bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-3 py-2 rounded-lg shadow-lg transition-all duration-300 flex items-center gap-2 group-hover:scale-105">
+                  <ExternalLink size={16} />
+                  <span className="text-sm font-medium">{t("schedule.open_maps_text")}</span>
+                </div>
               </div>
             </div>
 

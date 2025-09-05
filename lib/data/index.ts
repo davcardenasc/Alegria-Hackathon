@@ -66,14 +66,6 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
   },
   {
-    name: "Corporación Cárdenas",
-    description: "sponsors.cardenas_description",
-    logo: "/images/corporacion-cardenas-logo.png",
-    url: "https://corporacioncardenas.com/",
-    confirmed: true,
-    tier: "silver",
-  },
-  {
     name: "Cashea",
     description: "sponsors.cashea_description",
     logo: "/images/cashea-logo.jpg",
