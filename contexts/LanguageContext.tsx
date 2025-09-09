@@ -58,7 +58,7 @@ const translations = {
     "applications.title": "Aplicaciones",
     "applications.description":
       "Forma un equipo de 2 a 4 personas y aplica para vivir 48 horas de construcción, inspiración y comunidad.",
-    "applications.student.title": "Soy estudiante y quiero participar",
+    "applications.student.title": "Quiero participar en el hackatón",
     "applications.student.description": "Únete al hackatón con tu equipo y compite por increíbles premios",
     "applications.student.cta": "Aplicar ahora",
     "applications.school.title": "Quiero llevar AlegrIA a mi colegio",
