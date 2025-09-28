@@ -53,9 +53,30 @@ export default function SpeakersPage() {
       linkedin: "https://www.linkedin.com/in/pedrovallenilla/",
       confirmed: true,
     },
+    {
+      name: "Pedro Urdaneta",
+      title: t("speakers.pedro_urdaneta.title"),
+      company: "Venecápital",
+      image: "/images/speaker-pedro-urdaneta.jpeg",
+      bio: t("speakers.pedro_urdaneta.bio"),
+      fullBio: t("speakers.pedro_urdaneta.full_bio"),
+      achievements: tArray("speakers.pedro_urdaneta.achievements"),
+      linkedin: "https://www.linkedin.com/in/pedro-urdaneta/",
+      confirmed: true,
+    },
   ]
 
   const talks = [
+    {
+      title: t("speakers.talk4.title"),
+      speaker: t("speakers.talk4.speaker"),
+      company: t("speakers.talk4.company"),
+      time: t("speakers.talk4.time"),
+      date: t("speakers.talk4.date"),
+      description: t("speakers.talk4.description"),
+      audience: t("speakers.talk4.audience"),
+      confirmed: true,
+    },
     {
       title: t("speakers.talk1.title"),
       speaker: t("speakers.talk1.speaker"),
@@ -86,12 +107,23 @@ export default function SpeakersPage() {
       audience: t("speakers.talk3.audience"),
       confirmed: true,
     },
+    {
+      title: t("speakers.talk5.title"),
+      speaker: t("speakers.talk5.speaker"),
+      company: t("speakers.talk5.company"),
+      time: t("speakers.talk5.time"),
+      date: t("speakers.talk5.date"),
+      description: t("speakers.talk5.description"),
+      audience: t("speakers.talk5.audience"),
+      confirmed: true,
+    },
   ]
 
   const companies = [
     { name: "Slash", logo: "/images/slash-logo.png", url: "https://slash.com", confirmed: true },
     { name: "Yummy", logo: "/images/yummy-logo.png", url: "https://www.yummysuperapp.com/", confirmed: true },
     { name: "Cashea", logo: "/images/cashea-logo.jpg", url: "https://cashea.com", confirmed: true },
+    { name: "Venecápital", logo: "/images/venecapital-logo.png", url: "https://venecapital.com", confirmed: true },
   ]
 
   const toggleTalk = (index: number) => {
@@ -126,7 +158,7 @@ export default function SpeakersPage() {
 
             <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16">{t("speakers.title")}</h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
               {speakers.map((speaker, index) => (
                 <div
                   key={index}

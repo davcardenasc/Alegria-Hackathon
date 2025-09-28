@@ -73,6 +73,30 @@ export const SPONSORS: Sponsor[] = [
     confirmed: true,
     tier: "silver",
   },
+  {
+    name: "Lovable",
+    description: "sponsors.lovable_description",
+    logo: "/images/lovable-logo.png",
+    url: "https://lovable.dev/",
+    confirmed: true,
+    tier: "gold",
+  },
+  {
+    name: "Intezia",
+    description: "sponsors.intezia_description",
+    logo: "/images/INTEZIA_logo.png",
+    url: "https://intezia.com/",
+    confirmed: true,
+    tier: "silver",
+  },
+  {
+    name: "4Geeks Academy",
+    description: "sponsors.4geeks_description",
+    logo: "/images/4GeeksAcademy-logo.png",
+    url: "https://4geeksacademy.com/es/inicio",
+    confirmed: true,
+    tier: "gold",
+  },
 ]
 
 // Backup of unconfirmed sponsors (for future use when confirmed)
