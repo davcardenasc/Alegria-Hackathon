@@ -253,8 +253,8 @@ const translations = {
       "Conocido por su estilo de liderazgo basado en datos y enfocado en la resistencia",
     ],
     "speakers.pedro.title": "Fundador y CEO de Cashea",
-    "speakers.pedro.bio": "Fundador y CEO de Cashea, la fintech líder de pagos diferidos en Venezuela",
-    "speakers.pedro.full_bio": "Pedro Julio Vallenilla es el Fundador y CEO de Cashea, la fintech líder de pagos diferidos en Venezuela. Desde su lanzamiento en 2022, Cashea ha alcanzado a más de 4.5 millones de usuarios y está presente en 5,000 comercios, convirtiéndose en una de las apps financieras más influyentes del país. Su modelo innovador de Buy Now, Pay Later transformó la forma de comprar en Venezuela, brindando flexibilidad de pago a millones de usuarios. Antes de Cashea, Pedro fundó startups como Elemétrica, Meser y TuDescuento, además de desempeñarse en Colektia, donde gestionó portafolios millonarios para bancos como Nubank y Santander. También ha sido mentor en programas como Startup Chile y Founder Institute, apoyando a emprendedores en toda Latinoamérica.",
+    "speakers.pedro.bio": "Fundador y CEO de Cashea, la aplicación líder de pagos de compra ahora y paga después en Venezuela",
+    "speakers.pedro.full_bio": "Pedro Julio Vallenilla es el Fundador y CEO de Cashea, la aplicación líder de pagos de compra ahora y paga después en Venezuela. Desde su lanzamiento en 2022, Cashea ha alcanzado a más de 8 millones de usuarios y está presente en 18,000 comercios, convirtiéndose en una de las apps financieras más influyentes del país. Su modelo innovador de Buy Now, Pay Later transformó la forma de comprar en Venezuela, brindando flexibilidad de pago a millones de usuarios. Con más de 31 millones de órdenes procesadas, Cashea ha revolucionado el comercio electrónico venezolano. Antes de Cashea, Pedro fundó startups como Elemétrica, Meser y TuDescuento, además de desempeñarse en Colektia, donde gestionó portafolios millonarios para bancos como Nubank y Santander. También ha sido mentor en programas como Startup Chile y Founder Institute, apoyando a emprendedores en toda Latinoamérica.",
     "speakers.pedro.achievements": [
       "Cashea procesa alrededor del 1% del PIB venezolano en transacciones",
       "La app creció 10× en un año y ya cubre a casi un tercio de la población adulta del país",
@@ -286,7 +286,7 @@ const translations = {
     "speakers.talk2.company": "CEO y Fundador de Yummy",
     "speakers.talk2.time": "2:00 PM",
     "speakers.talk2.date": "17 de octubre",
-    "speakers.talk3.title": "Construyendo la fintech compra ahora, paga después más grande de Latinoamerica",
+    "speakers.talk3.title": "Construyendo la app compra ahora, paga después más grande de Latinoamerica",
     "speakers.talk3.description":
       "Descubre cómo Cashea revolucionó el mercado financiero venezolano y las estrategias para crear productos fintech accesibles en mercados emergentes.",
     "speakers.talk3.audience": "emprendedores fintech, especialistas en crédito, founders de startups",
@@ -658,8 +658,8 @@ const translations = {
       "Known for his data-driven, resilience-focused leadership style",
     ],
     "speakers.pedro.title": "Founder and CEO of Cashea",
-    "speakers.pedro.bio": "Founder and CEO of Cashea, Venezuela's leading deferred payment fintech",
-    "speakers.pedro.full_bio": "Pedro Julio Vallenilla is the Founder and CEO of Cashea, Venezuela's leading deferred payment fintech. Since its launch in 2022, Cashea has reached over 4.5 million users and is present in 5,000 stores, becoming one of the most influential financial apps in the country. His innovative Buy Now, Pay Later model transformed how Venezuelans shop, providing payment flexibility to millions of users. Before Cashea, Pedro founded startups like Elemétrica, Meser, and TuDescuento, and worked at Colektia, where he managed million-dollar portfolios for banks like Nubank and Santander. He has also been a mentor in programs like Startup Chile and Founder Institute, supporting entrepreneurs throughout Latin America.",
+    "speakers.pedro.bio": "Founder and CEO of Cashea, Venezuela's leading buy now, pay later app",
+    "speakers.pedro.full_bio": "Pedro Julio Vallenilla is the Founder and CEO of Cashea, Venezuela's leading buy now, pay later app. Since its launch in 2022, Cashea has reached over 8 million users and is present in 18,000 stores, becoming one of the most influential financial apps in the country. His innovative Buy Now, Pay Later model transformed how Venezuelans shop, providing payment flexibility to millions of users. With over 31 million orders processed, Cashea has revolutionized Venezuelan e-commerce. Before Cashea, Pedro founded startups like Elemétrica, Meser, and TuDescuento, and worked at Colektia, where he managed million-dollar portfolios for banks like Nubank and Santander. He has also been a mentor in programs like Startup Chile and Founder Institute, supporting entrepreneurs throughout Latin America.",
     "speakers.pedro.achievements": [
       "Cashea processes around 1% of Venezuelan GDP in transactions",
       "The app grew 10× in one year and already covers almost a third of the country's adult population",
@@ -691,7 +691,7 @@ const translations = {
     "speakers.talk2.company": "CEO and Founder of Yummy",
     "speakers.talk2.time": "2:00 PM",
     "speakers.talk2.date": "October 17",
-    "speakers.talk3.title": "Building Latin America's largest buy now, pay later fintech",
+    "speakers.talk3.title": "Building Latin America's largest buy now, pay later app",
     "speakers.talk3.description":
       "Discover how Cashea revolutionized the Venezuelan financial market and strategies for creating accessible fintech products in emerging markets.",
     "speakers.talk3.audience": "fintech entrepreneurs, credit specialists, startup founders",
