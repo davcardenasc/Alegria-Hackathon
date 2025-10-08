@@ -50,8 +50,8 @@ const translations = {
     "hero.subtitle_first_part": "Compite en el ",
     "hero.subtitle_highlight": "primer hackatón de vibe-coding",
     "hero.subtitle_last_part": " de la historia de Venezuela por $50,000+ en premios y lanza tu startup",
-    "hero.cta": "Aplica ahora",
-    "hero.deadline": "Fecha límite: 1 de octubre, 2025",
+    "hero.cta": "Ver resultados",
+    "hero.deadline": "¡Felicitaciones a los equipos clasificados! Ahora a construir...",
     "hero.scroll_hint": "Desliza para continuar",
 
     // Applications Section
@@ -60,7 +60,7 @@ const translations = {
       "Forma un equipo de 2 a 4 personas y aplica para vivir 48 horas de construcción, inspiración y comunidad.",
     "applications.student.title": "Quiero participar en el hackatón",
     "applications.student.description": "Únete al hackatón con tu equipo y compite por increíbles premios",
-    "applications.student.cta": "Aplicar ahora",
+    "applications.student.cta": "Ver resultados",
     "applications.school.title": "Quiero llevar AlegrIA a mi colegio",
     "applications.school.description": "Organiza un workshop de AlegrIA en tu institución educativa",
     "applications.school.cta": "Solicitar workshop",

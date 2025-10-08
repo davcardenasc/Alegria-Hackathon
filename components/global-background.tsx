@@ -1,17 +1,20 @@
 "use client"
 
-import { useMemo } from "react"
+import { useState, useEffect } from "react"
 
 export default function GlobalBackground() {
-  const particles = useMemo(() => {
-    const particleCount = typeof window !== "undefined" && window.innerWidth >= 768 ? 120 : 75 // More particles on desktop
-    return [...Array(particleCount)].map((_, i) => {
-      const size = Math.random() * 2 + 0.5 // Smaller particles (0.5px to 2.5px)
-      const duration = Math.random() * 20 + 15 // Slower movement (15s to 35s)
-      const delay = Math.random() * 30 // Longer delays
+  const [particles, setParticles] = useState<Array<{ id: number; style: React.CSSProperties }>>([])
+
+  useEffect(() => {
+    // Only generate particles on the client side to avoid hydration mismatch
+    const particleCount = window.innerWidth >= 768 ? 120 : 75
+    const newParticles = [...Array(particleCount)].map((_, i) => {
+      const size = Math.random() * 2 + 0.5
+      const duration = Math.random() * 20 + 15
+      const delay = Math.random() * 30
       const left = Math.random() * 100
       const top = Math.random() * 100
-      const direction = Math.random() > 0.5 ? 1 : -1 // Random direction
+      const direction = Math.random() > 0.5 ? 1 : -1
 
       return {
         id: i,
@@ -23,9 +26,10 @@ export default function GlobalBackground() {
           animationDuration: `${duration}s`,
           animationDelay: `${delay}s`,
           "--direction": direction,
-        },
+        } as React.CSSProperties,
       }
     })
+    setParticles(newParticles)
   }, [])
 
   return (

@@ -103,6 +103,8 @@ export default function CronogramaSection() {
                 style={{border: 0}}
                 title="Cronograma Completo"
                 className="rounded-lg"
+                tabIndex={-1}
+                loading="lazy"
               />
               
               {/* Overlay for click to open in Google Docs */}
@@ -132,8 +134,9 @@ export default function CronogramaSection() {
                 width="100%"
                 height="100%"
                 style={{border: 0}}
-                allowFullScreen
+                tabIndex={-1}
                 loading="lazy"
+                allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Escuela Campo Alegre Location"
               />

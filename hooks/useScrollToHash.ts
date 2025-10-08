@@ -27,10 +27,16 @@ export function useScrollToHash() {
       }
     }
 
-    // Scroll on initial load
-    scrollToHash()
+    // Clear any hash from the URL on initial load to prevent unwanted scrolling
+    if (pathname === "/" && window.location.hash) {
+      // Use replaceState to remove hash without triggering hashchange
+      window.history.replaceState(null, "", window.location.pathname)
+    }
 
-    // Listen for hash changes
+    // Don't scroll on initial load - only on explicit hash changes
+    // This prevents automatic scrolling when the page loads
+    
+    // Listen for hash changes only
     window.addEventListener("hashchange", scrollToHash)
 
     return () => {

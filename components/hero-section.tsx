@@ -104,7 +104,6 @@ export default function HeroSection() {
     }
   }, [])
 
-  // Calculate which phases should be visible and their opacities
   const getPhaseOpacity = (phaseIndex: number) => {
     const totalPhases = phases.length
     const phaseStart = phaseIndex / totalPhases
@@ -168,7 +167,6 @@ export default function HeroSection() {
     }
   }
 
-  // Calculate vertical position for each phase
   const getPhaseTransform = (phaseIndex: number) => {
     const totalPhases = phases.length
     const phaseProgress = scrollProgress * totalPhases - phaseIndex
@@ -192,7 +190,7 @@ export default function HeroSection() {
   }
 
   const handleCTAClick = () => {
-    window.open("https://formulario.alegriahackaton.com", "_blank")
+    window.location.href = "/resultados"
   }
 
   const getTitleColor = (phase: any) => {
@@ -209,7 +207,7 @@ export default function HeroSection() {
   const airplaneOpacity = scrollProgress < 0.6 ? 1 - scrollProgress * 1.67 : 0
 
   return (
-    <section ref={heroRef} id="mision" className="relative" style={{ height: `${phases.length * 80}vh` }}>
+    <section ref={heroRef} id="mision" className="relative" style={{ height: `${phases.length * 100}vh` }}>
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         <div className="container mx-auto px-6 sm:px-8 lg:px-4 text-center">
