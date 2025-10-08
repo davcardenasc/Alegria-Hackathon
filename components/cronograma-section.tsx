@@ -4,9 +4,11 @@ import { Calendar, MapPin, Clock, ExternalLink, ArrowRight, Users } from 'lucide
 import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useEffect } from "react"
 
 export default function CronogramaSection() {
   const { t } = useLanguage()
+  
 
   const handleMapClick = () => {
     window.open(t("schedule.open_maps"), "_blank")
@@ -105,6 +107,7 @@ export default function CronogramaSection() {
                 className="rounded-lg"
                 tabIndex={-1}
                 loading="lazy"
+                aria-hidden="true"
               />
               
               {/* Overlay for click to open in Google Docs */}
@@ -139,6 +142,7 @@ export default function CronogramaSection() {
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Escuela Campo Alegre Location"
+                aria-hidden="true"
               />
               
               {/* Overlay for click to open in Google Maps */}

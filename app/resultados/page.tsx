@@ -252,17 +252,19 @@ export default function ResultadosPage() {
       <GlobalBackground />
       <div className="min-h-screen text-white py-20 relative z-10">
         <div className="container mx-auto px-6 sm:px-8 lg:px-4 max-w-7xl">
-          {/* Header */}
-          <div className="relative text-center mb-12">
-            {/* Back to Landing Button - positioned at same level as title */}
+          {/* Back to Landing Button - Above header */}
+          <div className="mb-8">
             <Link 
               href="/"
-              className="absolute left-0 top-0 inline-flex items-center gap-2 bg-[#4A5EE7]/20 hover:bg-[#4A5EE7]/30 border border-[#4A5EE7]/50 hover:border-[#4A5EE7] text-[#F7F9FF] px-4 py-2 rounded-lg transition-all duration-300 group"
+              className="inline-flex items-center gap-2 bg-[#4A5EE7]/20 hover:bg-[#4A5EE7]/30 border border-[#4A5EE7]/50 hover:border-[#4A5EE7] text-[#F7F9FF] px-4 py-2 rounded-lg transition-all duration-300 group"
             >
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
               Volver al Inicio
             </Link>
+          </div>
 
+          {/* Header */}
+          <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-[#F7F9FF] mb-4">
               Equipos Seleccionados
             </h1>
