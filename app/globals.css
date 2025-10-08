@@ -150,14 +150,6 @@
     line-height: 1.6;
   }
 
-  /* Scroll snap for better UX */
-  .hero-section {
-    scroll-snap-type: y mandatory;
-  }
-
-  .hero-phase {
-    scroll-snap-align: start;
-  }
 }
 
 @layer utilities {
