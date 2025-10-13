@@ -133,7 +133,7 @@ export default function CronogramaSection() {
             {/* Google Maps Iframe */}
             <div className="relative aspect-video bg-[#BFC9DB]/10 rounded-lg overflow-hidden border border-[#4A5EE7]/20 flex-1">
               <iframe
-                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Escuela%20Campo%20Alegre,%20Calle%20La%20Cinta,%20Las%20Mercedes,%20Caracas,%20Venezuela&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Centro%20Banaven%20Cubo%20Negro,%20Av%20La%20Estancia,%20Chuao,%20Caracas,%20Venezuela&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                 width="100%"
                 height="100%"
                 style={{border: 0}}
@@ -141,7 +141,7 @@ export default function CronogramaSection() {
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Escuela Campo Alegre Location"
+                title="Centro Banaven Cubo Negro Location"
                 aria-hidden="true"
               />
               

@@ -137,10 +137,10 @@ const translations = {
     "schedule.days23_activities":
       "• Desarrollo de prototipos\n• Creación de pitch\n• Mentorías + Networking\n• Premiación final",
     "schedule.location_title": "Ubicación del Evento",
-    "schedule.address1": "Final Calle La Cinta",
-    "schedule.address2": "Las Mercedes, Caracas, Venezuela",
+    "schedule.address1": "Centro Banaven (Cubo Negro)",
+    "schedule.address2": "Oficinas Yummy, Chuao, Caracas",
     "schedule.directions": "Dirección disponible en Google Maps",
-    "schedule.open_maps": "https://www.google.com/maps/search/?api=1&query=Escuela+Campo+Alegre+Final+Calle+La+Cinta+Las+Mercedes+Caracas+Venezuela",
+    "schedule.open_maps": "https://www.google.com/maps/search/?api=1&query=Centro+Banaven+Cubo+Negro+Av+La+Estancia+Chuao+Caracas+Venezuela",
     "schedule.open_maps_text": "Abrir en Google Maps",
 
     // Workshops Section
@@ -544,10 +544,10 @@ const translations = {
     "schedule.days23_activities":
       "• Prototype development\n• Pitch creation\n• Mentoring + Networking\n• Final awards ceremony",
     "schedule.location_title": "Event Location",
-    "schedule.address1": "Final Calle La Cinta",
-    "schedule.address2": "Las Mercedes, Caracas, Venezuela",
+    "schedule.address1": "Centro Banaven (Cubo Negro)",
+    "schedule.address2": "Oficinas Yummy, Chuao, Caracas",
     "schedule.directions": "Directions available on Google Maps",
-    "schedule.open_maps": "https://www.google.com/maps/search/?api=1&query=Escuela+Campo+Alegre+Final+Calle+La+Cinta+Las+Mercedes+Caracas+Venezuela",
+    "schedule.open_maps": "https://www.google.com/maps/search/?api=1&query=Centro+Banaven+Cubo+Negro+Av+La+Estancia+Chuao+Caracas+Venezuela",
     "schedule.open_maps_text": "Open in Google Maps",
 
     // Workshops Section
