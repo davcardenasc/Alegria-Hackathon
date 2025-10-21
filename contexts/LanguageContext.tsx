@@ -191,6 +191,7 @@ const translations = {
     "sponsors.lovable_description": "Plataforma de desarrollo de software con IA que permite crear aplicaciones web completas usando lenguaje natural.",
     "sponsors.intezia_description": "Consultoría de inteligencia artificial en Latam.",
     "sponsors.4geeks_description": "Bootcamp internacional en línea con 2000+ graduados en desarrollo web, IA y ciberseguridad.",
+    "sponsors.startup_venezuela_summit_description": "El evento que conecta a fundadores, inversionistas y visionarios venezolanos para impulsar el ecosistema emprendedor del país.",
 
     // FAQ Section
     "faq.title": "Preguntas frecuentes",
@@ -597,6 +598,7 @@ const translations = {
     "sponsors.lovable_description": "AI-powered software development platform that enables building complete web applications using natural language.",
     "sponsors.intezia_description": "Artificial intelligence consulting in Latin America.",
     "sponsors.4geeks_description": "International online bootcamp with 2000+ graduates in web development, AI and cybersecurity.",
+    "sponsors.startup_venezuela_summit_description": "The event that connects Venezuelan founders, investors and visionaries to boost the country's entrepreneurial ecosystem.",
 
     // FAQ Section
     "faq.title": "Frequently Asked Questions",

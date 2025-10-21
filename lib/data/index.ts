@@ -97,6 +97,14 @@ export const SPONSORS: Sponsor[] = [
     confirmed: true,
     tier: "gold",
   },
+  {
+    name: "Startup Venezuela Summit",
+    description: "sponsors.startup_venezuela_summit_description",
+    logo: "/images/startup-venezuela-summit-logo.png",
+    url: "https://www.startupvenezuelasummit.com/#day-30-oct",
+    confirmed: true,
+    tier: "silver",
+  },
 ]
 
 // Backup of unconfirmed sponsors (for future use when confirmed)
