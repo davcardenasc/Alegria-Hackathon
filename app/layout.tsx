@@ -25,7 +25,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   metadataBase: new URL('https://alegriahackaton.com'),
   title: "AlegrIA - Hackatón de Emprendimiento",
-  description: "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
+  description: "48 horas. Un hackatón. Tu futuro. Compite por $75,000+ en premios y lanza tu startup",
   keywords: ["hackatón", "emprendimiento", "venezuela", "startup", "estudiantes", "competencia", "premios", "educación"],
   authors: [{ name: "AlegrIA Team" }],
   creator: "AlegrIA",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     locale: 'es_VE',
     url: 'https://alegriahackaton.com',
     title: 'AlegrIA - Hackatón de Emprendimiento',
-    description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup',
+    description: '48 horas. Un hackatón. Tu futuro. Compite por $75,000+ en premios y lanza tu startup',
     siteName: 'AlegrIA',
     images: [
       {
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'AlegrIA - Hackatón de Emprendimiento',
-    description: '48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios',
+    description: '48 horas. Un hackatón. Tu futuro. Compite por $75,000+ en premios',
     images: ['https://alegriahackaton.com/images/Alegria "Construye el futuro".png'],
   },
   icons: {
@@ -123,7 +123,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Event",
               "name": "AlegrIA - Hackatón de Emprendimiento",
-              "description": "48 horas. Un hackatón. Tu futuro. Compite por $50,000+ en premios y lanza tu startup",
+              "description": "48 horas. Un hackatón. Tu futuro. Compite por $75,000+ en premios y lanza tu startup",
               "url": "https://alegriahackaton.com",
               "image": "https://alegriahackaton.com/images/Alegria \"Construye el futuro\".png",
               "logo": "https://alegriahackaton.com/images/alegria-logo-airplane.png",
