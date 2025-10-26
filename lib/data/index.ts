@@ -27,16 +27,17 @@ export const EMBAJADORES: Ambassador[] = []
 
 // Workshops Data
 export const WORKSHOPS: Workshop[] = [
+  // Completed workshops
   { name: "ECA – 6to grado", completed: true },
   { name: "ECA – 7mo grado", completed: true },
   { name: "ECA – 8vo grado", completed: true },
   { name: "San Ignacio – CESI", completed: true },
+  { name: "Cristo Rey", completed: true },
+  { name: "Academia Washington", completed: true },
+  { name: "CIC Caracas", completed: true },
+  { name: "Colegio Integral El Ávila", completed: true },
+  // Pending workshops
   { name: "British School", completed: false },
-  { name: "British School", completed: false },
-  { name: "Cristo Rey", completed: false },
-  { name: "Cristo Rey", completed: false },
-  { name: "Academia Washington", completed: false },
-  { name: "Academia Washington", completed: false },
 ]
 
 // Sponsors Data
