@@ -153,6 +153,18 @@ const teams = [
     name: "KOSMOS",
     idea: "App para rastrear autobuses y optimizar la movilidad urbana.",
     videoUrl: "https://youtube.com/shorts/WfALwXM6x2k?si=vfnTmDZKyfYyofCr"
+  },
+  {
+    id: 25,
+    name: "Mano Amiga Mariches",
+    idea: "App educativa para impulsar el aprendizaje de los autistas en Venezuela.",
+    videoUrl: "https://youtube.com/shorts/UwWogjs3b5E?feature=share"
+  },
+  {
+    id: 26,
+    name: "Mano Amiga Turgua",
+    idea: "Semáforo interactivo para controlar el sonido en los salones.",
+    videoUrl: "https://youtu.be/TPCBtjVYUQc"
   }
 ]
 
@@ -269,7 +281,7 @@ export default function ResultadosPage() {
               Equipos Seleccionados
             </h1>
             <p className="text-xl text-[#BFC9DB] mb-8">
-              Conoce a los 24 equipos que competirán en el Hackatón de AlegrIA
+              Conoce a los 26 equipos que competirán en el Hackatón de AlegrIA
             </p>
             
             {/* Search Bar and Filters */}
