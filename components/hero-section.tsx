@@ -190,7 +190,7 @@ export default function HeroSection() {
   }
 
   const handleCTAClick = () => {
-    window.location.href = "/resultados"
+    window.location.href = "/resultados-2026"
   }
 
   const getTitleColor = (phase: any) => {
@@ -318,32 +318,15 @@ export default function HeroSection() {
             })}
           </div>
 
-          {/* Scroll hint - Higher on mobile only */}
+          {/* Subtle scroll indicator — no text, just a chevron */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 md:hidden pointer-events-none"
-            style={{
-              bottom: "18vh", // Higher on mobile
-              opacity: scrollProgress > 0.15 ? 0 : Math.max(0, 1 - scrollProgress * 6),
-            }}
-          >
-            <div className="flex flex-col items-center opacity-75">
-              <span>{t("hero.scroll_hint")}</span>
-              <ChevronDown className="mt-1" size={20} />
-            </div>
-          </div>
-
-          {/* Desktop scroll hint - original position */}
-          <div
-            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB] text-sm z-30 hidden md:block pointer-events-none"
+            className="absolute left-1/2 transform -translate-x-1/2 text-[#BFC9DB]/40 z-30 pointer-events-none"
             style={{
               bottom: "12vh",
-              opacity: scrollProgress > 0.15 ? 0 : Math.max(0, 1 - scrollProgress * 6),
+              opacity: scrollProgress > 0.1 ? 0 : Math.max(0, 1 - scrollProgress * 10),
             }}
           >
-            <div className="flex flex-col items-center opacity-75">
-              <span>{t("hero.scroll_hint")}</span>
-              <ChevronDown className="mt-1" size={20} />
-            </div>
+            <ChevronDown size={24} />
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Clock, Calendar, Users, ChevronDown, ChevronUp } from "lucide-react"
+import { Clock, Calendar, Users, ChevronDown, ChevronUp, ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import SpeakerModal from "@/components/speaker-modal"
@@ -14,7 +14,6 @@ export default function SpeakersPage() {
   const [selectedSpeaker, setSelectedSpeaker] = useState<any>(null)
   const { t, tArray } = useLanguage()
 
-  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -144,154 +143,225 @@ export default function SpeakersPage() {
     <div className="min-h-screen bg-[#00162D] text-white">
       <Header />
 
-      <main className="pt-20">
-        {/* Speakers Grid - Moved to top */}
-        <section id="speakers-grid" className="py-20 bg-[#00162D]">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-4">
-            <Link
-              href="/#cronograma"
-              className="inline-flex items-center gap-2 text-[#4A5EE7] hover:text-[#F7F9FF] mb-8 transition-colors"
+      {/* ─── HERO ─────────────────────────────────────────────── */}
+      <section className="relative min-h-[50vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 hero-glow" />
+        <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse at 75% 70%, rgba(74, 94, 231, 0.18) 0%, transparent 50%)'}} />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#00162D] to-transparent" />
+
+        <div className="relative z-10 container mx-auto px-6 lg:px-12 pb-20 pt-40">
+          <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-sm mb-4">
+            {t("speakers.hero.eyebrow")}
+          </p>
+          <h1
+            className="font-bold leading-none mb-6"
+            style={{
+              fontFamily: "var(--font-montserrat)",
+              fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {t("speakers.title")}
+          </h1>
+          <p className="text-[#BFC9DB] text-xl max-w-xl leading-relaxed">
+            {t("speakers.hero.subtitle")}
+          </p>
+        </div>
+      </section>
+
+      {/* ─── PHOTO STRIP ──────────────────────────────────────── */}
+      <div className="grid grid-cols-3 h-64 md:h-80">
+        <div className="relative overflow-hidden">
+          <Image src="/images/1-conferencephoto.JPG" alt="Conferencia AlegrIA" fill className="object-cover" sizes="33vw" quality={80} priority />
+        </div>
+        <div className="relative overflow-hidden">
+          <Image src="/images/1-speaker.JPG" alt="Ponente AlegrIA" fill className="object-cover" sizes="33vw" quality={80} priority />
+        </div>
+        <div className="relative overflow-hidden">
+          <Image src="/images/1-speaker2.JPG" alt="Ponente AlegrIA" fill className="object-cover" sizes="33vw" quality={80} priority />
+        </div>
+      </div>
+
+      {/* ─── SPEAKERS GRID ────────────────────────────────────── */}
+      <section className="py-24 container mx-auto px-6 lg:px-12">
+        <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-sm mb-4">{t("speakers.grid.eyebrow")}</p>
+        <h2
+          className="font-bold text-white mb-16"
+          style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+        >
+          {t("speakers.grid.title")}
+        </h2>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {speakers.map((speaker, index) => (
+            <div
+              key={index}
+              onClick={() => handleSpeakerClick(speaker)}
+              className={`border border-[#4A5EE7]/20 hover:border-[#4A5EE7]/50 rounded-2xl p-8 text-center transition-all duration-300 group ${
+                speaker.confirmed ? "cursor-pointer" : "cursor-default"
+              }`}
             >
-              <ArrowLeft size={20} />
-              {t("speakers.back_to_schedule")}
-            </Link>
-
-            <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16">{t("speakers.title")}</h2>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-              {speakers.map((speaker, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleSpeakerClick(speaker)}
-                  className={`bg-[#00162D] border border-[#4A5EE7]/20 rounded-xl p-6 text-center hover:border-[#4A5EE7]/60 hover:shadow-[0_0_30px_#4A5EE7/20] hover:scale-105 transition-all duration-300 group relative ${
-                    speaker.confirmed ? "cursor-pointer" : "cursor-default"
-                  }`}
-                >
-                  {!speaker.confirmed && (
-                    <div className="absolute top-4 right-4 w-8 h-8 bg-[#BFC9DB]/20 rounded-full flex items-center justify-center">
-                      <span className="text-[#BFC9DB] text-lg font-bold">?</span>
-                    </div>
-                  )}
-                  <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
-                    {speaker.confirmed && speaker.image ? (
-                      <Image
-                        src={speaker.image || "/placeholder.svg"}
-                        alt={speaker.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-[#BFC9DB]/10 rounded-full flex items-center justify-center">
-                        <span className="text-[#BFC9DB] text-4xl font-bold">?</span>
-                      </div>
-                    )}
+              <div className="relative w-28 h-28 mx-auto mb-6 rounded-full overflow-hidden">
+                {speaker.confirmed && speaker.image ? (
+                  <Image
+                    src={speaker.image}
+                    alt={speaker.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-[#0a1f3d] rounded-full flex items-center justify-center">
+                    <span className="text-[#BFC9DB] text-4xl font-bold">?</span>
                   </div>
+                )}
+              </div>
 
-                  <h3 className="text-xl font-bold text-[#F7F9FF] mb-2">{speaker.name}</h3>
-                  <p className="text-[#4A5EE7] font-semibold mb-3">{speaker.title}</p>
-                  <p className="text-[#BFC9DB] text-sm leading-relaxed mb-4">{speaker.bio}</p>
-                  {speaker.confirmed && (
-                    <p className="text-[#4A5EE7] text-xs font-medium">{t("speakers.click_details")}</p>
-                  )}
-                </div>
-              ))}
+              <h3
+                className="font-bold text-white text-lg mb-1"
+                style={{ fontFamily: "var(--font-montserrat)" }}
+              >
+                {speaker.name}
+              </h3>
+              <p className="text-[#4A5EE7] text-sm font-semibold mb-3">{speaker.title}</p>
+              <p className="text-[#BFC9DB] text-sm leading-relaxed">{speaker.bio}</p>
+              {speaker.confirmed && (
+                <p className="text-[#4A5EE7]/60 text-xs font-medium mt-4 group-hover:text-[#4A5EE7] transition-colors">
+                  {t("speakers.click_details")}
+                </p>
+              )}
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        {/* Talks Section */}
-        <section className="py-20 bg-[#00162D]">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-4">
-            <h2 className="text-3xl md:text-5xl font-bold text-[#F7F9FF] text-center mb-16">
-              {t("speakers.talks_title")}
-            </h2>
+      {/* ─── TALKS ────────────────────────────────────────────── */}
+      <section className="py-24 bg-[#04112a]">
+        <div className="container mx-auto px-6 lg:px-12">
+          <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-sm mb-4">{t("speakers.program.eyebrow")}</p>
+          <h2
+            className="font-bold text-white mb-16"
+            style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+          >
+            {t("speakers.talks_title")}
+          </h2>
 
-            <div className="max-w-4xl mx-auto space-y-4 mb-20">
-              {talks.map((talk, index) => (
-                <div
-                  key={index}
-                  className={`bg-[#00162D] border border-[#4A5EE7]/20 rounded-lg overflow-hidden hover:border-[#4A5EE7]/40 transition-all duration-300 relative ${
-                    !talk.confirmed ? "opacity-75" : ""
-                  }`}
+          <div className="max-w-3xl mx-auto space-y-4">
+            {talks.map((talk, index) => (
+              <div
+                key={index}
+                className="border border-[#4A5EE7]/15 hover:border-[#4A5EE7]/40 rounded-xl overflow-hidden transition-all duration-300"
+              >
+                <button
+                  className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none"
+                  onClick={() => toggleTalk(index)}
                 >
-                  {!talk.confirmed && (
-                    <div className="absolute top-4 right-4 w-8 h-8 bg-[#BFC9DB]/20 rounded-full flex items-center justify-center">
-                      <span className="text-[#BFC9DB] text-lg font-bold">?</span>
+                  <div className="flex-1">
+                    <h3
+                      className="font-bold text-white text-lg mb-2"
+                      style={{ fontFamily: "var(--font-montserrat)" }}
+                    >
+                      {talk.title}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-4 text-[#BFC9DB] text-sm">
+                      <span className="flex items-center gap-1.5">
+                        <Users size={14} className="text-[#4A5EE7]" />
+                        {talk.speaker}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock size={14} className="text-[#4A5EE7]" />
+                        {talk.time}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Calendar size={14} className="text-[#4A5EE7]" />
+                        {talk.date}
+                      </span>
                     </div>
-                  )}
-                  <button
-                    className="w-full px-6 py-6 text-left flex items-center justify-between focus:outline-none"
-                    onClick={() => toggleTalk(index)}
-                  >
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-[#F7F9FF] mb-2">{talk.title}</h3>
-                      <div className="flex flex-wrap items-center gap-4 text-[#BFC9DB]">
-                        <span className="flex items-center gap-1">
-                          <Users size={16} className="text-[#4A5EE7]" />
-                          {talk.speaker}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock size={16} className="text-[#4A5EE7]" />
-                          {talk.time}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar size={16} className="text-[#4A5EE7]" />
-                          {talk.date}
-                        </span>
-                      </div>
-                    </div>
-                    {expandedTalk === index ? (
-                      <ChevronUp className="text-[#4A5EE7]" size={24} />
-                    ) : (
-                      <ChevronDown className="text-[#4A5EE7]" size={24} />
-                    )}
-                  </button>
-
-                  {expandedTalk === index && (
-                    <div className="px-6 pb-6">
-                      <div className="border-t border-[#4A5EE7]/20 pt-4">
-                        <p className="text-[#BFC9DB] mb-4 leading-relaxed">{talk.description}</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Companies Section - Full color, with links */}
-        <section className="py-20 bg-[#00162D]">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-4">
-            <h3 className="text-2xl font-bold text-[#F7F9FF] text-center mb-8">{t("speakers.companies_title")}</h3>
-
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              {companies.map((company, index) => (
-                <div key={index} className="hover:scale-110 transition-all duration-300 group relative">
-                  {!company.confirmed && (
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#BFC9DB]/20 rounded-full flex items-center justify-center">
-                      <span className="text-[#BFC9DB] text-sm font-bold">?</span>
-                    </div>
-                  )}
-                  {company.confirmed && company.logo ? (
-                    <Image
-                      src={company.logo || "/placeholder.svg"}
-                      alt={`${company.name} logo`}
-                      width={120}
-                      height={60}
-                      className="max-h-12 w-auto object-contain"
-                    />
+                  </div>
+                  {expandedTalk === index ? (
+                    <ChevronUp className="text-[#4A5EE7] flex-shrink-0 ml-4" size={20} />
                   ) : (
-                    <div className="w-24 h-12 bg-[#BFC9DB]/10 rounded-lg flex items-center justify-center">
-                      <span className="text-[#BFC9DB] text-lg font-bold">?</span>
-                    </div>
+                    <ChevronDown className="text-[#4A5EE7] flex-shrink-0 ml-4" size={20} />
                   )}
-                </div>
-              ))}
-            </div>
+                </button>
+
+                {expandedTalk === index && (
+                  <div className="px-6 pb-6">
+                    <div className="border-t border-[#4A5EE7]/10 pt-4">
+                      <p className="text-[#BFC9DB] leading-relaxed">{talk.description}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* ─── COMPANIES ────────────────────────────────────────── */}
+      <section className="py-24 container mx-auto px-6 lg:px-12">
+        <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-sm mb-4">{t("speakers.companies.eyebrow")}</p>
+        <h2
+          className="font-bold text-white mb-12"
+          style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+        >
+          {t("speakers.companies_title")}
+        </h2>
+
+        <div className="flex flex-wrap items-center gap-10 md:gap-16">
+          {companies.map((company, index) => (
+            <a
+              key={index}
+              href={company.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-105 transition-transform duration-300"
+            >
+              {company.confirmed && company.logo ? (
+                <Image
+                  src={company.logo}
+                  alt={`${company.name} logo`}
+                  width={130}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                />
+              ) : (
+                <div className="w-24 h-12 bg-[#0a1f3d] rounded-lg flex items-center justify-center">
+                  <span className="text-[#BFC9DB] text-lg font-bold">?</span>
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── CTA ──────────────────────────────────────────────── */}
+      <section className="py-24 bg-[#04112a]">
+        <div className="container mx-auto px-6 lg:px-12 text-center">
+          <h2
+            className="font-bold text-white mb-6"
+            style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+          >
+            {t("speakers.cta.title")}
+          </h2>
+          <p className="text-[#BFC9DB] text-lg mb-10">
+            {t("speakers.cta.subtitle")}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/resultados-2026"
+              className="inline-flex items-center gap-2 bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+            >
+              {t("speakers.cta.btn_results")} <ArrowRight size={18} />
+            </Link>
+            <Link
+              href="/premios"
+              className="inline-flex items-center gap-2 border border-[#4A5EE7]/40 hover:border-[#4A5EE7] text-[#BFC9DB] hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+            >
+              {t("speakers.cta.btn_prizes")}
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Speaker Modal */}
       {selectedSpeaker && (

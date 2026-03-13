@@ -65,11 +65,6 @@ const nextConfig = {
     ]
   },
   
-  // Enable experimental features if needed
-  experimental: {
-    // Add any experimental features here
-  },
-  
   // Environment variables validation (optional but recommended)
   env: {
     // Add any public environment variables here
