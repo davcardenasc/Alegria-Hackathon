@@ -132,21 +132,21 @@ export default function PremiosPage() {
             <br />
             {t("premios.hero.title_suffix")}
           </h1>
-          <p className="text-[#BFC9DB] text-xl max-w-xl leading-relaxed">
+          <p className="text-[#BFC9DB] text-lg md:text-xl max-w-xl leading-relaxed">
             {t("premios.hero.subtitle")}
           </p>
         </div>
       </section>
 
       {/* ─── PHOTO STRIP ──────────────────────────────────────── */}
-      <div className="grid grid-cols-3 h-64 md:h-80">
+      <div className="grid grid-cols-1 sm:grid-cols-3 h-56 sm:h-64 md:h-80">
         <div className="relative overflow-hidden">
-          <Image src="/images/1Winners.JPG" alt="Ganadores AlegrIA" fill className="object-cover" sizes="33vw" quality={80} priority />
+          <Image src="/images/1Winners.JPG" alt="Ganadores AlegrIA" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" quality={80} priority />
         </div>
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hidden sm:block">
           <Image src="/images/1_medalspic.JPG" alt="Medallas AlegrIA" fill className="object-cover" sizes="33vw" quality={80} priority />
         </div>
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hidden sm:block">
           <Image src="/images/1-paneljudging.JPG" alt="Panel de jueces AlegrIA" fill className="object-cover" sizes="33vw" quality={80} priority />
         </div>
       </div>

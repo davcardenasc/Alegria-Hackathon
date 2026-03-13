@@ -85,9 +85,9 @@ function StatsStrip() {
   return (
     <div className="bg-[#4A5EE7]">
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/20">
+        <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x divide-white/20">
           {stats.map((stat, i) => (
-            <div key={i} className="px-6 md:px-10 py-8 md:py-10 text-center">
+            <div key={i} className="px-3 md:px-10 py-6 md:py-10 text-center">
               <div
                 className="font-bold text-white"
                 style={{
@@ -225,7 +225,7 @@ function PhotoGallery() {
       </div>
 
       <div
-        className="grid grid-cols-4 md:grid-cols-5"
+        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5"
         style={{ lineHeight: 0 }}
       >
         {galleryPhotos.map((photo, i) => (
@@ -316,7 +316,7 @@ function SponsorsBar() {
               <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
-          <div className="flex flex-wrap items-center gap-8 md:gap-12">
+          <div className="flex flex-wrap items-center gap-5 md:gap-10">
             {confirmed.map((sponsor, i) => (
               <a
                 key={i}

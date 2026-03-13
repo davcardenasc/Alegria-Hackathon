@@ -110,14 +110,14 @@ export default function IdeasPage() {
       </section>
 
       {/* ─── PHOTO STRIP ──────────────────────────────────────── */}
-      <div className="grid grid-cols-3 h-64 md:h-80">
+      <div className="grid grid-cols-1 sm:grid-cols-3 h-56 sm:h-64 md:h-80">
         <div className="relative overflow-hidden">
-          <Image src="/images/8vo-1.jpg" alt="Taller AlegrIA" fill className="object-cover" sizes="33vw" quality={75} priority />
+          <Image src="/images/8vo-1.jpg" alt="Taller AlegrIA" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" quality={75} priority />
         </div>
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hidden sm:block">
           <Image src="/images/7mo-1-copy.jpeg" alt="Taller AlegrIA" fill className="object-cover" sizes="33vw" quality={75} priority />
         </div>
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hidden sm:block">
           <Image src="/images/6to-1-copy.jpg" alt="Taller AlegrIA" fill className="object-cover" sizes="33vw" quality={75} priority />
         </div>
       </div>
@@ -172,7 +172,7 @@ export default function IdeasPage() {
 
                 {isExpanded && (
                   <div className="px-6 pb-5">
-                    <div className="border-t border-[#4A5EE7]/10 pt-4 ml-14">
+                    <div className="border-t border-[#4A5EE7]/10 pt-4 ml-6 sm:ml-14">
                       <p className="text-[#BFC9DB] text-sm leading-relaxed">{idea.description}</p>
                     </div>
                   </div>

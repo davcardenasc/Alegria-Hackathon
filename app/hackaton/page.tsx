@@ -52,22 +52,22 @@ export default function HackatonPage() {
           >
             {t("hackaton.hero.title_main")}
           </h1>
-          <p className="text-[#BFC9DB] text-xl max-w-xl leading-relaxed">
+          <p className="text-[#BFC9DB] text-lg md:text-xl max-w-xl leading-relaxed">
             {t("hackaton.hero.subtitle")}
           </p>
         </div>
       </section>
 
       {/* ─── PHOTO STRIP ─────────────────────────────────────── */}
-      <div className="grid grid-cols-3 h-64 md:h-80">
+      <div className="grid grid-cols-1 sm:grid-cols-3 h-56 sm:h-64 md:h-80">
         <div className="relative overflow-hidden">
-          <Image src="/images/1-equipofoto.JPG" alt="Equipos AlegrIA" fill className="object-cover" sizes="33vw" />
+          <Image src="/images/1-equipofoto.JPG" alt="Equipos AlegrIA" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" priority />
         </div>
-        <div className="relative overflow-hidden">
-          <Image src="/images/1-workingteam1.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" />
+        <div className="relative overflow-hidden hidden sm:block">
+          <Image src="/images/1-workingteam1.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" priority />
         </div>
-        <div className="relative overflow-hidden">
-          <Image src="/images/1-workingteam2.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" />
+        <div className="relative overflow-hidden hidden sm:block">
+          <Image src="/images/1-workingteam2.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" priority />
         </div>
       </div>
 

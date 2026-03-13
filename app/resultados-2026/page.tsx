@@ -65,7 +65,7 @@ export default function Resultados2026Page() {
             <br />
             <span className="text-[#4A5EE7]">Los Resultados</span>
           </h1>
-          <p className="text-[#BFC9DB] text-xl max-w-xl leading-relaxed">
+          <p className="text-[#BFC9DB] text-lg md:text-xl max-w-xl leading-relaxed">
             El primer hackatón de vibe-coding de Venezuela, en números y en historias.
           </p>
         </div>
@@ -74,14 +74,14 @@ export default function Resultados2026Page() {
       {/* ─── STATS STRIP ─────────────────────────────────────── */}
       <section className="border-y border-[#4A5EE7]/20 bg-[#00162D]">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#4A5EE7]/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x divide-[#4A5EE7]/20">
             {[
               { icon: <Users size={20} />, number: "26", label: "Equipos participaron" },
               { icon: <Clock size={20} />, number: "48h", label: "De construcción" },
               { icon: <DollarSign size={20} />, number: "$75K+", label: "En premios" },
               { icon: <Zap size={20} />, number: "26", label: "Proyectos creados" },
             ].map((stat, i) => (
-              <div key={i} className="px-8 py-10 text-center">
+              <div key={i} className="px-4 md:px-8 py-7 md:py-10 text-center">
                 <div className="text-[#4A5EE7] mb-2 flex justify-center">{stat.icon}</div>
                 <div
                   className="font-bold text-white mb-1"
@@ -112,7 +112,7 @@ export default function Resultados2026Page() {
             <div className="relative aspect-video md:aspect-auto min-h-[280px] overflow-hidden">
               <Image src="/images/1Winners.JPG" alt="Equipo ganador AlegrIA 2025" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
-            <div className="p-10 flex flex-col justify-center">
+            <div className="p-6 md:p-10 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
                 <span className="bg-[#FFD700] text-[#00162D] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                   1er Lugar
@@ -262,9 +262,10 @@ export default function Resultados2026Page() {
             Lo que pasó en AlegrIA 2025
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[200px]">
+          {/* Desktop masonry */}
+          <div className="hidden md:grid grid-cols-4 gap-3 auto-rows-[200px]">
             <div className="relative col-span-2 row-span-2 rounded-xl overflow-hidden">
-              <Image src="/images/1Team_Wide_Shot_2.JPG" alt="Equipos en AlegrIA 2025" fill className="object-cover" sizes="(max-width: 768px) 50vw, 50vw" />
+              <Image src="/images/1Team_Wide_Shot_2.JPG" alt="Equipos en AlegrIA 2025" fill className="object-cover" sizes="50vw" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
               <Image src="/images/1_judging.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" />
@@ -287,6 +288,21 @@ export default function Resultados2026Page() {
             <div className="relative rounded-xl overflow-hidden">
               <Image src="/images/1randomteamphoto.JPG" alt="Equipos AlegrIA 2025" fill className="object-cover" sizes="25vw" />
             </div>
+          </div>
+          {/* Mobile simple grid */}
+          <div className="grid grid-cols-2 gap-3 md:hidden" style={{ gridAutoRows: "160px" }}>
+            {[
+              { src: "/images/1Team_Wide_Shot_2.JPG", alt: "Equipos en AlegrIA 2025" },
+              { src: "/images/1Winners.JPG", alt: "Ganadores AlegrIA 2025" },
+              { src: "/images/1_judging.JPG", alt: "Jurado AlegrIA 2025" },
+              { src: "/images/1judging1.JPG", alt: "Jurado AlegrIA 2025" },
+              { src: "/images/1_openingceremony.JPG", alt: "Ceremonia de apertura" },
+              { src: "/images/1_medalspic.JPG", alt: "Medallas AlegrIA 2025" },
+            ].map((photo, i) => (
+              <div key={i} className="relative rounded-xl overflow-hidden">
+                <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="50vw" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
