@@ -6,7 +6,9 @@ import Footer from "@/components/footer"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle, MapPin, Users, Code2, Lightbulb, Trophy, ChevronDown, ChevronUp } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { LiquidButton } from "@/components/ui/liquid-glass-button"
 
 const stepIcons = [
   <Users size={28} key="0" />,
@@ -18,6 +20,7 @@ const stepIcons = [
 export default function HackatonPage() {
   const { t, tArray } = useLanguage()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const router = useRouter()
 
   const steps = [
     { number: "01", icon: stepIcons[0], title: t("hackaton.steps.0.title"), description: t("hackaton.steps.0.description"), photo: "/images/1_openingceremony.JPG" },
@@ -313,13 +316,14 @@ export default function HackatonPage() {
         <p className="text-[#BFC9DB] text-lg mb-10">
           {t("hackaton.cta.subtitle")}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/resultados-2026"
-            className="inline-flex items-center gap-2 bg-[#4A5EE7] hover:bg-[#4A5EE7]/80 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <LiquidButton
+            onClick={() => router.push("/resultados-2026")}
+            className="bg-[#4A5EE7] text-white font-semibold rounded-lg"
+            size="xl"
           >
             {t("hackaton.cta.btn_results")} <ArrowRight size={18} />
-          </Link>
+          </LiquidButton>
           <Link
             href="/premios"
             className="inline-flex items-center gap-2 border border-[#4A5EE7]/40 hover:border-[#4A5EE7] text-[#BFC9DB] hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"

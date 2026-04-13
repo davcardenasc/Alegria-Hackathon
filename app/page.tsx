@@ -5,14 +5,17 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { LiquidButton } from "@/components/ui/liquid-glass-button"
 import { SPONSORS } from "@/lib/data"
 
 // ─── Hero (split: text left, photo right) ─────────────────────────────────────
 
 function Hero() {
   const { t } = useLanguage()
+  const router = useRouter()
   return (
     <section className="relative min-h-screen bg-[#00162D] pt-20 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at 15% 60%, rgba(74, 94, 231, 0.25) 0%, transparent 55%)'}} />
@@ -32,13 +35,14 @@ function Hero() {
           <p className="text-[#BFC9DB] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
             {t("home.hero.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link
-              href="/resultados-2026"
-              className="inline-flex items-center justify-center gap-2 bg-[#4A5EE7] hover:bg-[#3a4ed7] text-white px-7 py-3.5 rounded-lg font-semibold transition-all duration-300 text-sm"
+          <div className="flex flex-col sm:flex-row gap-3 items-start">
+            <LiquidButton
+              onClick={() => router.push("/resultados-2026")}
+              className="bg-[#4A5EE7] text-white font-semibold text-sm rounded-lg"
+              size="xl"
             >
               {t("home.hero.cta_results")} <ArrowRight size={16} />
-            </Link>
+            </LiquidButton>
             <Link
               href="/hackaton"
               className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/50 text-white px-7 py-3.5 rounded-lg font-semibold transition-all duration-300 text-sm"
@@ -339,6 +343,7 @@ function SponsorsBar() {
 
 function NextEdition() {
   const { t } = useLanguage()
+  const router = useRouter()
   return (
     <section className="bg-[#00162D]">
       <div className="container mx-auto px-6 lg:px-12 py-20 md:py-28 text-center">
@@ -355,12 +360,13 @@ function NextEdition() {
         <p className="text-[#BFC9DB] text-lg mb-10 max-w-md mx-auto">
           {t("home.next_edition.subtitle")}
         </p>
-        <Link
-          href="/contacto"
-          className="inline-flex items-center gap-2 bg-[#4A5EE7] hover:bg-[#3a4ed7] text-white px-8 py-4 rounded-lg font-bold transition-all duration-300 text-sm"
+        <LiquidButton
+          onClick={() => router.push("/contacto")}
+          className="bg-[#4A5EE7] text-white font-bold text-sm rounded-lg"
+          size="xl"
         >
           {t("home.next_edition.cta")} <ArrowRight size={16} />
-        </Link>
+        </LiquidButton>
       </div>
     </section>
   )
