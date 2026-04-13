@@ -18,14 +18,6 @@ function Hero() {
       <div className="absolute inset-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at 15% 60%, rgba(74, 94, 231, 0.25) 0%, transparent 55%)'}} />
       <div className="grid lg:grid-cols-2 min-h-[calc(100vh-5rem)] relative z-10">
         <div className="flex flex-col justify-center px-8 md:px-16 lg:px-20 xl:px-28 py-16 lg:py-0">
-          <Image
-            src="/images/New Alegria Logo.png"
-            alt="AlegrIA"
-            width={180}
-            height={60}
-            className="mb-10 w-[140px] md:w-[180px]"
-            priority
-          />
           <h1
             className="font-bold text-white mb-6"
             style={{
