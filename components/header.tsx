@@ -25,7 +25,6 @@ export default function Header() {
   }, [])
 
   const menuItems = [
-    { href: "/", label: t("nav.inicio") },
     { href: "/hackaton", label: t("nav.hackaton") },
     { href: "/speakers", label: t("nav.speakers") },
     { href: "/premios", label: t("nav.prizes") },

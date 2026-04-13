@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { ChevronDown, ChevronUp, MapPin, ShoppingCart, Users, Utensils, AlertTriangle, Shield, GraduationCap, Calendar, ArrowRight, Lightbulb } from "lucide-react"
+import { ArrowRight, ChevronDown, Lightbulb } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -17,67 +17,15 @@ export default function IdeasPage() {
   }, [])
 
   const ideas = [
-    {
-      title: t("ideas.idea4.title"),
-      description: t("ideas.idea4.description"),
-      icon: Utensils,
-      color: "text-orange-400",
-      accentColor: "#fb923c",
-    },
-    {
-      title: t("ideas.idea5.title"),
-      description: t("ideas.idea5.description"),
-      icon: Calendar,
-      color: "text-teal-400",
-      accentColor: "#2dd4bf",
-    },
-    {
-      title: t("ideas.idea1.title"),
-      description: t("ideas.idea1.description"),
-      icon: MapPin,
-      color: "text-blue-400",
-      accentColor: "#60a5fa",
-    },
-    {
-      title: t("ideas.idea2.title"),
-      description: t("ideas.idea2.description"),
-      icon: ShoppingCart,
-      color: "text-green-400",
-      accentColor: "#4ade80",
-    },
-    {
-      title: t("ideas.idea3.title"),
-      description: t("ideas.idea3.description"),
-      icon: Users,
-      color: "text-purple-400",
-      accentColor: "#c084fc",
-    },
-    {
-      title: t("ideas.idea6.title"),
-      description: t("ideas.idea6.description"),
-      icon: AlertTriangle,
-      color: "text-yellow-400",
-      accentColor: "#facc15",
-    },
-    {
-      title: t("ideas.idea7.title"),
-      description: t("ideas.idea7.description"),
-      icon: Shield,
-      color: "text-red-400",
-      accentColor: "#f87171",
-    },
-    {
-      title: t("ideas.idea8.title"),
-      description: t("ideas.idea8.description"),
-      icon: GraduationCap,
-      color: "text-indigo-400",
-      accentColor: "#818cf8",
-    },
+    { title: t("ideas.idea4.title"), description: t("ideas.idea4.description"), accentColor: "#fb923c" },
+    { title: t("ideas.idea5.title"), description: t("ideas.idea5.description"), accentColor: "#2dd4bf" },
+    { title: t("ideas.idea1.title"), description: t("ideas.idea1.description"), accentColor: "#60a5fa" },
+    { title: t("ideas.idea2.title"), description: t("ideas.idea2.description"), accentColor: "#4ade80" },
+    { title: t("ideas.idea3.title"), description: t("ideas.idea3.description"), accentColor: "#c084fc" },
+    { title: t("ideas.idea6.title"), description: t("ideas.idea6.description"), accentColor: "#facc15" },
+    { title: t("ideas.idea7.title"), description: t("ideas.idea7.description"), accentColor: "#f87171" },
+    { title: t("ideas.idea8.title"), description: t("ideas.idea8.description"), accentColor: "#818cf8" },
   ]
-
-  const toggleIdea = (index: number) => {
-    setExpandedIdea(expandedIdea === index ? null : index)
-  }
 
   return (
     <div className="min-h-screen bg-[#00162D] text-white">
@@ -122,64 +70,70 @@ export default function IdeasPage() {
         </div>
       </div>
 
-      {/* ─── IDEAS GRID ───────────────────────────────────────── */}
-      <section className="py-24 container mx-auto px-6 lg:px-12">
-        <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-sm mb-4">{t("ideas.grid.eyebrow")}</p>
-        <h2
-          className="font-bold text-white mb-16"
-          style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
-        >
-          {t("ideas.grid.title")}
-        </h2>
+      {/* ─── IDEAS — TIMELINE ─────────────────────────────────── */}
+      <section className="py-24 bg-[#04112a]">
+        <div className="container mx-auto px-6 lg:px-12">
+          <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-sm mb-4">{t("ideas.grid.eyebrow")}</p>
+          <h2
+            className="font-bold text-white mb-16"
+            style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+          >
+            {t("ideas.grid.title")}
+          </h2>
 
-        <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-          {ideas.map((idea, index) => {
-            const isExpanded = expandedIdea === index
-            return (
-              <div
-                key={index}
-                className="border border-[#4A5EE7]/15 hover:border-[#4A5EE7]/40 rounded-xl overflow-hidden transition-all duration-300"
-              >
-                <button
-                  className="w-full px-6 py-5 text-left flex items-start gap-4 focus:outline-none"
-                  onClick={() => toggleIdea(index)}
-                >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ backgroundColor: idea.accentColor + "15" }}
+          <div className="max-w-4xl">
+            {ideas.map((idea, index) => (
+              <div key={index} className={`flex gap-4 md:gap-8 ${index < ideas.length - 1 ? "pb-10" : ""}`}>
+                {/* Number + dot column */}
+                <div className="flex flex-col items-center flex-shrink-0 w-16 md:w-24">
+                  <span
+                    className="font-bold text-xs whitespace-nowrap mb-2"
+                    style={{ fontFamily: "var(--font-montserrat)", color: idea.accentColor }}
                   >
-                    <idea.icon className={idea.color} size={20} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3
-                      className="font-bold text-white text-base mb-1"
-                      style={{ fontFamily: "var(--font-montserrat)" }}
-                    >
-                      {idea.title}
-                    </h3>
-                    {!isExpanded && (
-                      <p className="text-[#BFC9DB] text-sm line-clamp-2">{idea.description}</p>
-                    )}
-                  </div>
-                  <div className="flex-shrink-0 mt-1">
-                    {isExpanded ? (
-                      <ChevronUp className="text-[#4A5EE7]" size={18} />
-                    ) : (
-                      <ChevronDown className="text-[#4A5EE7]" size={18} />
-                    )}
-                  </div>
-                </button>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div
+                    className="w-3 h-3 rounded-full ring-4 ring-[#04112a] flex-shrink-0"
+                    style={{ backgroundColor: idea.accentColor }}
+                  />
+                  {index < ideas.length - 1 && (
+                    <div className="w-px flex-1 bg-[#4A5EE7]/20 mt-2" />
+                  )}
+                </div>
 
-                {isExpanded && (
-                  <div className="px-6 pb-5">
-                    <div className="border-t border-[#4A5EE7]/10 pt-4 ml-6 sm:ml-14">
-                      <p className="text-[#BFC9DB] text-sm leading-relaxed">{idea.description}</p>
+                {/* Idea content */}
+                <div className="flex-1 min-w-0">
+                  <button
+                    className="w-full text-left focus:outline-none group"
+                    onClick={() => setExpandedIdea(expandedIdea === index ? null : index)}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <h3
+                        className="font-bold text-white text-lg group-hover:text-[#4A5EE7] transition-colors"
+                        style={{ fontFamily: "var(--font-montserrat)" }}
+                      >
+                        {idea.title}
+                      </h3>
+                      <ChevronDown
+                        size={18}
+                        className={`flex-shrink-0 mt-1 transition-all duration-300 ${
+                          expandedIdea === index ? "rotate-180 text-[#4A5EE7]" : "text-white/30 group-hover:text-[#4A5EE7]"
+                        }`}
+                      />
                     </div>
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-out ${
+                      expandedIdea === index ? "max-h-40 opacity-100 mt-3" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <p className="text-[#BFC9DB] leading-relaxed text-sm max-w-2xl">{idea.description}</p>
                   </div>
-                )}
+                </div>
               </div>
-            )
-          })}
+            ))}
+          </div>
         </div>
       </section>
 

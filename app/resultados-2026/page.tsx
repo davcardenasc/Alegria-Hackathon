@@ -110,7 +110,7 @@ export default function Resultados2026Page() {
         <div className="mb-8 rounded-2xl overflow-hidden border border-[#FFD700]/30 bg-gradient-to-br from-[#FFD700]/5 to-transparent">
           <div className="grid md:grid-cols-2">
             <div className="relative aspect-video md:aspect-auto min-h-[280px] overflow-hidden">
-              <Image src="/images/1Winners.JPG" alt="Equipo ganador AlegrIA 2025" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+              <Image src="/images/1Winners.JPG" alt="Equipo ganador AlegrIA 2025" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" quality={70} loading="lazy" />
             </div>
             <div className="p-6 md:p-10 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
@@ -147,7 +147,7 @@ export default function Resultados2026Page() {
                 <span className="text-[#BFC9DB] text-sm font-semibold">{item.place}</span>
               </div>
               <div className="relative aspect-video rounded-xl overflow-hidden mb-6">
-                <Image src={item.photo} alt={item.place} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                <Image src={item.photo} alt={item.place} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" quality={70} loading="lazy" />
               </div>
               <h3 className="font-bold text-white text-xl mb-1" style={{ fontFamily: "var(--font-montserrat)" }}>
                 {item.team}
@@ -265,28 +265,28 @@ export default function Resultados2026Page() {
           {/* Desktop masonry */}
           <div className="hidden md:grid grid-cols-4 gap-3 auto-rows-[200px]">
             <div className="relative col-span-2 row-span-2 rounded-xl overflow-hidden">
-              <Image src="/images/1Team_Wide_Shot_2.JPG" alt="Equipos en AlegrIA 2025" fill className="object-cover" sizes="50vw" />
+              <Image src="/images/1Team_Wide_Shot_2.JPG" alt="Equipos en AlegrIA 2025" fill className="object-cover" sizes="50vw" quality={65} loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
-              <Image src="/images/1_judging.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" />
+              <Image src="/images/1_judging.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" quality={65} loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
-              <Image src="/images/1judging1.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" />
+              <Image src="/images/1judging1.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" quality={65} loading="lazy" />
             </div>
             <div className="relative col-span-2 rounded-xl overflow-hidden">
-              <Image src="/images/1_openingceremony.JPG" alt="Ceremonia de apertura" fill className="object-cover" sizes="50vw" />
+              <Image src="/images/1_openingceremony.JPG" alt="Ceremonia de apertura" fill className="object-cover" sizes="50vw" quality={65} loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
-              <Image src="/images/1judging2.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" />
+              <Image src="/images/1judging2.JPG" alt="Jurado AlegrIA 2025" fill className="object-cover" sizes="25vw" quality={65} loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
-              <Image src="/images/1_interview.JPG" alt="Entrevista AlegrIA 2025" fill className="object-cover" sizes="25vw" />
+              <Image src="/images/1_interview.JPG" alt="Entrevista AlegrIA 2025" fill className="object-cover" sizes="25vw" quality={65} loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
-              <Image src="/images/1_medalspic.JPG" alt="Medallas AlegrIA 2025" fill className="object-cover" sizes="25vw" />
+              <Image src="/images/1_medalspic.JPG" alt="Medallas AlegrIA 2025" fill className="object-cover" sizes="25vw" quality={65} loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden">
-              <Image src="/images/1randomteamphoto.JPG" alt="Equipos AlegrIA 2025" fill className="object-cover" sizes="25vw" />
+              <Image src="/images/1randomteamphoto.JPG" alt="Equipos AlegrIA 2025" fill className="object-cover" sizes="25vw" quality={65} loading="lazy" />
             </div>
           </div>
           {/* Mobile simple grid */}
@@ -300,7 +300,7 @@ export default function Resultados2026Page() {
               { src: "/images/1_medalspic.JPG", alt: "Medallas AlegrIA 2025" },
             ].map((photo, i) => (
               <div key={i} className="relative rounded-xl overflow-hidden">
-                <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="50vw" />
+                <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="50vw" quality={65} loading="lazy" />
               </div>
             ))}
           </div>

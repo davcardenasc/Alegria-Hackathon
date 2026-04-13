@@ -5,17 +5,10 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, MapPin, Users, Code2, Lightbulb, Trophy, ChevronDown, ChevronUp } from "lucide-react"
+import { ArrowRight, CheckCircle, ChevronDown, ChevronUp } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { LiquidButton } from "@/components/ui/liquid-glass-button"
-
-const stepIcons = [
-  <Users size={28} key="0" />,
-  <Lightbulb size={28} key="1" />,
-  <Code2 size={28} key="2" />,
-  <Trophy size={28} key="3" />,
-]
 
 export default function HackatonPage() {
   const { t, tArray } = useLanguage()
@@ -23,10 +16,10 @@ export default function HackatonPage() {
   const router = useRouter()
 
   const steps = [
-    { number: "01", icon: stepIcons[0], title: t("hackaton.steps.0.title"), description: t("hackaton.steps.0.description"), photo: "/images/1_openingceremony.JPG" },
-    { number: "02", icon: stepIcons[1], title: t("hackaton.steps.1.title"), description: t("hackaton.steps.1.description"), photo: "/images/1Team_Wide_Shot_2.JPG" },
-    { number: "03", icon: stepIcons[2], title: t("hackaton.steps.2.title"), description: t("hackaton.steps.2.description"), photo: "/images/1_workingteam.JPG" },
-    { number: "04", icon: stepIcons[3], title: t("hackaton.steps.3.title"), description: t("hackaton.steps.3.description"), photo: "/images/1_judging.JPG" },
+    { number: "01", title: t("hackaton.steps.0.title"), description: t("hackaton.steps.0.description"), photo: "/images/1_openingceremony.JPG" },
+    { number: "02", title: t("hackaton.steps.1.title"), description: t("hackaton.steps.1.description"), photo: "/images/1Team_Wide_Shot_2.JPG" },
+    { number: "03", title: t("hackaton.steps.2.title"), description: t("hackaton.steps.2.description"), photo: "/images/1_workingteam.JPG" },
+    { number: "04", title: t("hackaton.steps.3.title"), description: t("hackaton.steps.3.description"), photo: "/images/1_judging.JPG" },
   ]
 
   const whoItems = tArray("hackaton.who.items")
@@ -64,13 +57,13 @@ export default function HackatonPage() {
       {/* ─── PHOTO STRIP ─────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 h-56 sm:h-64 md:h-80">
         <div className="relative overflow-hidden">
-          <Image src="/images/1-equipofoto.JPG" alt="Equipos AlegrIA" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" priority />
+          <Image src="/images/1-equipofoto.JPG" alt="Equipos AlegrIA" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" quality={70} priority />
         </div>
         <div className="relative overflow-hidden hidden sm:block">
-          <Image src="/images/1-workingteam1.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" priority />
+          <Image src="/images/1-workingteam1.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" quality={70} priority />
         </div>
         <div className="relative overflow-hidden hidden sm:block">
-          <Image src="/images/1-workingteam2.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" priority />
+          <Image src="/images/1-workingteam2.JPG" alt="Equipos trabajando" fill className="object-cover" sizes="33vw" quality={70} priority />
         </div>
       </div>
 
@@ -92,7 +85,7 @@ export default function HackatonPage() {
             </div>
           </div>
           <div className="relative aspect-square rounded-2xl overflow-hidden">
-            <Image src="/images/1Team_Wide_Shot1.JPG" alt="Equipos en AlegrIA" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <Image src="/images/1Team_Wide_Shot1.JPG" alt="Equipos en AlegrIA" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" quality={70} loading="lazy" />
           </div>
         </div>
       </section>
@@ -116,15 +109,12 @@ export default function HackatonPage() {
                     i % 2 === 1 ? "lg:order-2" : ""
                   }`}
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    <span
-                      className="font-bold text-[#4A5EE7]/30"
-                      style={{ fontFamily: "var(--font-montserrat)", fontSize: "4rem", lineHeight: 1 }}
-                    >
-                      {step.number}
-                    </span>
-                    <div className="text-[#4A5EE7]">{step.icon}</div>
-                  </div>
+                  <span
+                    className="font-bold text-[#4A5EE7]/30 mb-6 block"
+                    style={{ fontFamily: "var(--font-montserrat)", fontSize: "4rem", lineHeight: 1 }}
+                  >
+                    {step.number}
+                  </span>
                   <h3
                     className="font-bold text-white mb-4"
                     style={{ fontFamily: "var(--font-montserrat)", fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)" }}
@@ -138,7 +128,7 @@ export default function HackatonPage() {
                     i % 2 === 1 ? "lg:order-1" : ""
                   }`}
                 >
-                  <Image src={step.photo} alt={step.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <Image src={step.photo} alt={step.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" quality={70} loading="lazy" />
                 </div>
               </div>
             ))}
@@ -171,16 +161,13 @@ export default function HackatonPage() {
               <h3 className="font-bold text-white mb-2" style={{ fontFamily: "var(--font-montserrat)" }}>
                 {t("hackaton.venue.title")}
               </h3>
-              <div className="flex items-start gap-3">
-                <MapPin className="text-[#4A5EE7] mt-1 flex-shrink-0" size={18} />
-                <div>
-                  <p className="text-[#F7F9FF]">{t("hackaton.venue.address1")}</p>
-                  <p className="text-[#BFC9DB] text-sm">{t("hackaton.venue.address2")}</p>
-                </div>
+              <div>
+                <p className="text-[#F7F9FF]">{t("hackaton.venue.address1")}</p>
+                <p className="text-[#BFC9DB] text-sm">{t("hackaton.venue.address2")}</p>
               </div>
             </div>
             <div className="relative aspect-video rounded-xl overflow-hidden">
-              <Image src="/images/1_cubo negro.jpg" alt="Centro Banaven Cubo Negro" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+              <Image src="/images/1_cubo negro.jpg" alt="Centro Banaven Cubo Negro" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" quality={70} loading="lazy" />
             </div>
           </div>
         </div>
@@ -202,7 +189,7 @@ export default function HackatonPage() {
                 {t("hackaton.community.description")}
               </p>
               <div className="relative aspect-video rounded-xl overflow-hidden">
-                <Image src="/images/9san-ignacio-alegria.jpg" alt="Workshop en colegio" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                <Image src="/images/9san-ignacio-alegria.jpg" alt="Workshop en colegio" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" quality={70} loading="lazy" />
               </div>
             </div>
             <div className="space-y-3">

@@ -207,6 +207,7 @@ export default function SpeakersPage() {
                 fill
                 className="object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
               />
               <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-transparent via-transparent to-[#00162D]/80" />
             </div>
@@ -250,6 +251,8 @@ export default function SpeakersPage() {
                 fill
                 className="object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
+                loading="lazy"
               />
               <div className={`absolute inset-0 ${
                 i % 2 === 0

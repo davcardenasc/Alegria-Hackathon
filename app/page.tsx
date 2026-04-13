@@ -58,6 +58,7 @@ function Hero() {
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
+            quality={70}
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#00162D] via-transparent to-transparent lg:via-[#00162D]/20 lg:to-transparent pointer-events-none" />
@@ -130,6 +131,7 @@ function AboutAlegrIA() {
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={70}
               loading="lazy"
             />
           </div>
@@ -196,27 +198,18 @@ function PhotoGallery() {
   return (
     <section>
       <div className="bg-[#F7F9FF]">
-        <div className="container mx-auto px-6 lg:px-12 pt-20 pb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div>
-            <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-xs mb-3">{t("home.gallery.eyebrow")}</p>
-            <h2
-              className="font-bold text-[#00162D]"
-              style={{
-                fontFamily: "var(--font-montserrat)",
-                fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              {t("home.gallery.title")}
-            </h2>
-          </div>
-          <Link
-            href="/resultados-2026#galeria"
-            className="inline-flex items-center gap-2 text-[#00162D]/40 hover:text-[#00162D] text-sm font-medium transition-colors group"
+        <div className="container mx-auto px-6 lg:px-12 pt-20 pb-8">
+          <p className="text-[#4A5EE7] font-semibold tracking-widest uppercase text-xs mb-3">{t("home.gallery.eyebrow")}</p>
+          <h2
+            className="font-bold text-[#00162D]"
+            style={{
+              fontFamily: "var(--font-montserrat)",
+              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+              letterSpacing: "-0.02em",
+            }}
           >
-            {t("home.gallery.cta")}
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+            {t("home.gallery.title")}
+          </h2>
         </div>
       </div>
 
@@ -236,6 +229,7 @@ function PhotoGallery() {
               fill
               className="object-cover hover:scale-105 transition-transform duration-700 absolute inset-0"
               sizes="(max-width: 768px) 25vw, 20vw"
+              quality={65}
               loading="lazy"
             />
           </div>
